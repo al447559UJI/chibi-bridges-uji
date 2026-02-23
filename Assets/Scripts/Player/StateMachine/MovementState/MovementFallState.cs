@@ -4,7 +4,7 @@ public class MovementFallState : MovementBaseState
 {
     public override void EnterState(MovementStateManager player)
     {
-        //Debug.Log("Entered Fall State");
+
     }
 
     public override void ExitState(MovementStateManager player)

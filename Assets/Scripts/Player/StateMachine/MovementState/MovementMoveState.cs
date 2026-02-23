@@ -4,7 +4,7 @@ public class MovementMoveState : MovementBaseState
 {
     public override void EnterState(MovementStateManager player)
     {
-        //Debug.Log("Player entered Move State");
+
     }
 
     public override void ExitState(MovementStateManager player)
@@ -14,7 +14,8 @@ public class MovementMoveState : MovementBaseState
 
     public override void FixedUpdateState(MovementStateManager player)
     {
-        if (player.controller.horizontalInput == 0f)
+        // If linear velocity is between deadzone (0.01f) and there isn't horizontal input, switch to Idle
+        if (Mathf.Abs(player.controller.rb.linearVelocityX) < 0.01f && player.controller.horizontalInput == 0)
         {
             player.SwitchState(player.idleState);
         }

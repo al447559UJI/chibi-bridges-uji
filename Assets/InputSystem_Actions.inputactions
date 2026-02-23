@@ -8,18 +8,18 @@
             "actions": [
                 {
                     "name": "Move",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "351f2ccd-1f9f-44bf-9bec-d62ac5c5f408",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 },
                 {
                     "name": "Look",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "6b444451-8a00-4d00-a97e-f47457f736a8",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -82,7 +82,16 @@
                     "name": "Sprint",
                     "type": "Button",
                     "id": "641cd816-40e6-41b4-8c3d-04687c349290",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DebugMenu",
+                    "type": "Button",
+                    "id": "d83ca3a2-1000-4cd8-be8b-968545ed06b5",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -471,6 +480,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3a2e243b-cea1-4496-8720-87cf3d07e9f9",
+                    "path": "<Keyboard>/f3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DebugMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -14,6 +14,7 @@ public class MovementStateManager : MonoBehaviour
     void Awake()
     {
         controller = GetComponent<PlayerController>();
+        DebugRegistry.Register("Current State", () => GetCurrentStateName());
     }
 
     void Start()
@@ -36,5 +37,14 @@ public class MovementStateManager : MonoBehaviour
     {
         currentState = state;
         state.EnterState(this);
+    }
+
+    public string GetCurrentStateName()
+    {
+        if (currentState != null)
+        {
+            return currentState.GetType().Name;
+        }
+        return "NoState";
     }
 }

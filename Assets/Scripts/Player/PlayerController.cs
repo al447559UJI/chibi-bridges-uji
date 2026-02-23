@@ -5,33 +5,32 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private PlayerData playerData;
+    [SerializeField] private BoxCollider2D bodyCollider;
+
+    public bool wantsJump { get; private set; }
+    public bool isGrounded { get; private set; }
+    public bool isFalling { get; private set; }
+    public float lastJumpPressedTime { get; private set; }
+    public float horizontalInput { get; private set; }
+    public Rigidbody2D rb { get; private set; }
+
     private float feetCollision = 0.05f;
+    private bool isJumpPressed;
+    private float lastJumpStartTime;
+    private float lastGroundedTime;
+    private Vector2 bodySize;
 
     private InputAction moveAction;
     private InputAction jumpAction;
-    public bool wantsJump;
-    private bool isJumpPressed;
-
-    [SerializeField] private PlayerData playerData;
-
-    [SerializeField] private double debugCurrentSpeedX;
-    [SerializeField] private double debugCurrentSpeedY;
-
-
-    public bool isGrounded { get; private set; }
-    public bool isFalling { get; private set; }
-    public float lastJumpPressedTime;
-    private float lastJumpStartTime;
-    private float lastGroundedTime;
-    public float horizontalInput;
-    public Rigidbody2D rb { get; private set; }
-    [SerializeField] private BoxCollider2D bodyCollider;
-    private Vector2 bodySize;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         bodyCollider = GetComponent<BoxCollider2D>();
+
+        DebugRegistry.Register("Speed X", () => Math.Truncate(100 * rb.linearVelocityX) / 100);
+        DebugRegistry.Register("Speed Y", () => Math.Truncate(100 * rb.linearVelocityY) / 100);
     }
 
     void Start()
@@ -61,9 +60,6 @@ public class PlayerController : MonoBehaviour
         CheckGrounded();
         HandleVariableJumpTime();
         HandleGravity();
-
-        debugCurrentSpeedX = Math.Truncate(100 * rb.linearVelocityX) / 100;
-        debugCurrentSpeedY = Math.Truncate(100 * rb.linearVelocityY) / 100;
     }
 
     public void Move()
@@ -83,7 +79,6 @@ public class PlayerController : MonoBehaviour
     }
     public void Jump()
     {
-        //Debug.Log("Executed Jump");
         rb.linearVelocity = new Vector2(rb.linearVelocityX, playerData.jumpForce);
         lastJumpStartTime = Time.time;
     }

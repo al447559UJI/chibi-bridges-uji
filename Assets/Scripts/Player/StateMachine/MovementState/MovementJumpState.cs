@@ -4,7 +4,6 @@ public class MovementJumpState : MovementBaseState
 {
     public override void EnterState(MovementStateManager player)
     {
-        //Debug.Log("Entered Jump State");
         player.controller.Jump();
     }
 

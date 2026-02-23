@@ -4,7 +4,7 @@ public class MovementIdleState : MovementBaseState
 {
     public override void EnterState(MovementStateManager player)
     {
-        //Debug.Log("Entered Idle State");
+        
     }
 
     public override void ExitState(MovementStateManager player)
