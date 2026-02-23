@@ -1,23 +1,23 @@
 using UnityEngine;
 
-public class PlayerFallState : PlayerBaseState
+public class MovementFallState : MovementBaseState
 {
-    public override void EnterState(PlayerStateManager player)
+    public override void EnterState(MovementStateManager player)
     {
         //Debug.Log("Entered Fall State");
     }
 
-    public override void ExitState(PlayerStateManager player)
+    public override void ExitState(MovementStateManager player)
     {
 
     }
 
-    public override void FixedUpdateState(PlayerStateManager player)
+    public override void FixedUpdateState(MovementStateManager player)
     {
         player.controller.Move();
     }
 
-    public override void UpdateState(PlayerStateManager player)
+    public override void UpdateState(MovementStateManager player)
     {
         if (player.controller.isGrounded)
         {

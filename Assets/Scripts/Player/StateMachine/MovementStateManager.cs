@@ -1,15 +1,15 @@
 using System;
 using UnityEngine;
 
-public class PlayerStateManager : MonoBehaviour
+public class MovementStateManager : MonoBehaviour
 {
-    PlayerBaseState currentState;
+    MovementBaseState currentState;
     public PlayerController controller;
 
-    public PlayerIdleState idleState = new PlayerIdleState();
-    public PlayerMoveState moveState = new PlayerMoveState();
-    public PlayerJumpState jumpState = new PlayerJumpState();
-    public PlayerFallState fallState = new PlayerFallState();
+    public MovementIdleState idleState = new MovementIdleState();
+    public MovementMoveState moveState = new MovementMoveState();
+    public MovementJumpState jumpState = new MovementJumpState();
+    public MovementFallState fallState = new MovementFallState();
 
     void Awake()
     {
@@ -32,7 +32,7 @@ public class PlayerStateManager : MonoBehaviour
         currentState.FixedUpdateState(this);
     }
 
-    public void SwitchState(PlayerBaseState state)
+    public void SwitchState(MovementBaseState state)
     {
         currentState = state;
         state.EnterState(this);

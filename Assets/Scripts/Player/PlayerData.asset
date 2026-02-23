@@ -16,11 +16,12 @@ MonoBehaviour:
   acceleration: 20
   deceleration: 16
   jumpForce: 17
-  jumpBufferTime: 0.2
-  variableJumpTime: 0.175
+  jumpBufferTime: 0.1
+  variableJumpTime: 0.2
   variableJumpTimeVelocityMultiplier: 0.5
   jumpHangThreshold: 0.75
   fastFallMultiplier: 3
   originalGravityScale: 3
   jumpHangGravityMultiplier: 0.5
   maxFallSpeed: 20
+  coyoteTimeThreshold: 0.1
