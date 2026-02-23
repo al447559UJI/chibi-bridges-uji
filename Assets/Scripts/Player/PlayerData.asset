@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d7dc2206b966e21a53eaea10d3e03f, type: 3}
+  m_Name: PlayerData
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerData
+  maxSpeed: 10
+  acceleration: 20
+  deceleration: 16
+  jumpForce: 17
+  jumpBufferTime: 0.2
+  variableJumpTime: 0.175
+  variableJumpTimeVelocityMultiplier: 0.5
+  jumpHangThreshold: 0.75
+  fastFallMultiplier: 3
+  originalGravityScale: 3
+  jumpHangGravityMultiplier: 0.5
+  maxFallSpeed: 20
