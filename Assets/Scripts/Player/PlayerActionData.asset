@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13cada6c96b79683abfc8cdd966b8131, type: 3}
   m_Name: PlayerActionData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerActionData
-  meleeDamage: 0
-  meleeCooldown: 0
-  shootDamage: 0
-  shootCooldown: 0
-  buildRange: 0
+  meleeDamage: 1
+  meleeCooldown: 0.25
+  shootDamage: 1
+  shootCooldown: 0.25
+  buildRange: 100
