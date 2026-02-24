@@ -5,24 +5,28 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private PlayerData playerData;
-    [SerializeField] private BoxCollider2D bodyCollider;
+    [SerializeField] private PlayerMovementData movementData;
+    [SerializeField] private PlayerActionData actionData;
 
     public bool wantsJump { get; private set; }
     public bool isGrounded { get; private set; }
     public bool isFalling { get; private set; }
     public float lastJumpPressedTime { get; private set; }
     public float horizontalInput { get; private set; }
+    public bool IsMeleeAttackPressed { get; private set; }
     public Rigidbody2D rb { get; private set; }
 
+    private BoxCollider2D bodyCollider;
     private float feetCollision = 0.05f;
     private bool isJumpPressed;
     private float lastJumpStartTime;
     private float lastGroundedTime;
+    private float lastMeleeAttackTime;
     private Vector2 bodySize;
 
     private InputAction moveAction;
     private InputAction jumpAction;
+    private InputAction meleeAttackAction;
 
     void Awake()
     {
@@ -37,6 +41,7 @@ public class PlayerController : MonoBehaviour
     {
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
+        meleeAttackAction = InputSystem.actions.FindAction("Attack");
 
         bodySize = bodyCollider.bounds.size;
         bodySize.y -= feetCollision;
@@ -47,12 +52,12 @@ public class PlayerController : MonoBehaviour
         horizontalInput = moveAction.ReadValue<Vector2>().x;
         wantsJump = jumpAction.WasPressedThisFrame();
         isJumpPressed = jumpAction.IsPressed();
+        IsMeleeAttackPressed = meleeAttackAction.IsPressed();
 
         if (wantsJump)
         {
             lastJumpPressedTime = Time.time;
         }
-
     }
 
     void FixedUpdate()
@@ -64,11 +69,11 @@ public class PlayerController : MonoBehaviour
 
     public void Move()
     {
-        float targetSpeed = horizontalInput * playerData.maxSpeed;
+        float targetSpeed = horizontalInput * movementData.maxSpeed;
         float speedDifference = targetSpeed - rb.linearVelocityX;
 
         // Use acceleration when input exists, deceleration when stopping
-        float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? playerData.acceleration : playerData.deceleration;
+        float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? movementData.acceleration : movementData.deceleration;
 
         float movement = accelRate * speedDifference * Time.fixedDeltaTime;
 
@@ -79,18 +84,18 @@ public class PlayerController : MonoBehaviour
     }
     public void Jump()
     {
-        rb.linearVelocity = new Vector2(rb.linearVelocityX, playerData.jumpForce);
+        rb.linearVelocity = new Vector2(rb.linearVelocityX, movementData.jumpForce);
         lastJumpStartTime = Time.time;
     }
 
     public bool IsBufferedJumpAvailable()
     {
-        return Time.time - lastJumpPressedTime <= playerData.jumpBufferTime;
+        return Time.time - lastJumpPressedTime <= movementData.jumpBufferTime;
     }
 
     public bool HasExceededVariableJumpTime()
     {
-        return Time.time - lastJumpStartTime > playerData.variableJumpTime;
+        return Time.time - lastJumpStartTime > movementData.variableJumpTime;
     }
 
     private void CheckGrounded()
@@ -115,7 +120,7 @@ public class PlayerController : MonoBehaviour
     {
         if (rb.linearVelocityY > 0 && !isJumpPressed && HasExceededVariableJumpTime())
         {
-            rb.linearVelocityY *= playerData.variableJumpTimeVelocityMultiplier;
+            rb.linearVelocityY *= movementData.variableJumpTimeVelocityMultiplier;
         }
     }
 
@@ -125,21 +130,31 @@ public class PlayerController : MonoBehaviour
         isFalling = rb.linearVelocityY < 0;
 
         if (isFalling)
-            rb.gravityScale = playerData.originalGravityScale * playerData.fastFallMultiplier;
+            rb.gravityScale = movementData.originalGravityScale * movementData.fastFallMultiplier;
         else
-            rb.gravityScale = playerData.originalGravityScale;
+            rb.gravityScale = movementData.originalGravityScale;
 
-        if (!isGrounded && absVelocityY < playerData.jumpHangThreshold)
+        if (!isGrounded && absVelocityY < movementData.jumpHangThreshold)
         {
-            rb.gravityScale = playerData.originalGravityScale * playerData.jumpHangGravityMultiplier;
+            rb.gravityScale = movementData.originalGravityScale * movementData.jumpHangGravityMultiplier;
         }
 
-        rb.linearVelocityY = Mathf.Max(rb.linearVelocityY , -playerData.maxFallSpeed);
+        rb.linearVelocityY = Mathf.Max(rb.linearVelocityY , -movementData.maxFallSpeed);
     }
 
     public bool HasCoyoteTimeRemaining()
     {
-        return Time.time - lastGroundedTime <= playerData.coyoteTimeThreshold;
+        return Time.time - lastGroundedTime <= movementData.coyoteTimeThreshold;
+    }
+
+    public void MeleeAttack()
+    {
+        lastMeleeAttackTime = Time.time;
+    }
+
+    public bool IsMeleeCooldownActive()
+    {
+        return Time.time - lastMeleeAttackTime <= actionData.meleeCooldown;
     }
 
 }

@@ -1,27 +1,27 @@
-using System;
 using UnityEngine;
 
-public class MovementStateManager : MonoBehaviour
+public class ActionStateManager : MonoBehaviour
 {
-    private MovementBaseState currentState;
+    private ActionBaseState currentState;
     public PlayerController controller;
 
-    public MovementIdleState idleState = new MovementIdleState();
-    public MovementMoveState moveState = new MovementMoveState();
-    public MovementJumpState jumpState = new MovementJumpState();
-    public MovementFallState fallState = new MovementFallState();
+    public ActionBuildState buildState = new ActionBuildState();
+    public ActionInactiveState inactiveState = new ActionInactiveState();
+    public ActionMeleeState meleeState = new ActionMeleeState();
+    public ActionShootState shootState = new ActionShootState();
 
     void Awake()
     {
         controller = GetComponent<PlayerController>();
-        DebugRegistry.Register("Current Movement", () => GetCurrentStateName());
+        DebugRegistry.Register("Current Action", () => GetCurrentStateName());
     }
 
     void Start()
     {
-        currentState = idleState;
+        currentState = inactiveState;
         currentState.EnterState(this);
     }
+
 
     void Update()
     {
@@ -33,7 +33,7 @@ public class MovementStateManager : MonoBehaviour
         currentState.FixedUpdateState(this);
     }
 
-    public void SwitchState(MovementBaseState state)
+    public void SwitchState(ActionBaseState state)
     {
         currentState = state;
         state.EnterState(this);
