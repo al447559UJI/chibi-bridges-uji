@@ -14,26 +14,26 @@ public class MovementIdleState : MovementBaseState
 
     public override void FixedUpdateState(MovementStateManager player)
     {
-        player.controller.Move();
+        player.controller.movement.Move();
     }
 
     public override void UpdateState(MovementStateManager player)
     {
-        if (player.controller.horizontalInput != 0f)
+        if (player.controller.input.horizontalInput != 0f)
         {
             player.SwitchState(player.moveState);
         }
-        if (player.controller.isFalling)
+        if (player.controller.movement.isFalling)
         {
             player.SwitchState(player.fallState);
         }
-        if (player.controller.wantsJump)
+        if (player.controller.input.wantsJump)
         {
-            if (player.controller.isGrounded)
+            if (player.controller.movement.isGrounded)
             {
                 player.SwitchState(player.jumpState);
             }
-            else if (player.controller.HasCoyoteTimeRemaining())
+            else if (player.controller.movement.HasCoyoteTimeRemaining())
             {
                 //TODO: Test this scenario
                 player.SwitchState(player.jumpState);

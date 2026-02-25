@@ -4,7 +4,7 @@ public class MovementJumpState : MovementBaseState
 {
     public override void EnterState(MovementStateManager player)
     {
-        player.controller.Jump();
+        player.controller.movement.Jump();
     }
 
     public override void ExitState(MovementStateManager player)
@@ -19,7 +19,7 @@ public class MovementJumpState : MovementBaseState
 
     public override void UpdateState(MovementStateManager player)
     {
-        if (!player.controller.isGrounded)
+        if (!player.controller.movement.isGrounded)
         {
             player.SwitchState(player.fallState);
         }

@@ -15,25 +15,25 @@ public class MovementMoveState : MovementBaseState
     public override void FixedUpdateState(MovementStateManager player)
     {
         // If linear velocity is between deadzone (0.01f) and there isn't horizontal input, switch to Idle
-        if (Mathf.Abs(player.controller.rb.linearVelocityX) < 0.01f && player.controller.horizontalInput == 0)
+        if (Mathf.Abs(player.controller.movement.rb.linearVelocityX) < 0.01f && player.controller.input.horizontalInput == 0)
         {
             player.SwitchState(player.idleState);
         }
         else
         {
-            player.controller.Move();
+            player.controller.movement.Move();
         }
     }
 
     public override void UpdateState(MovementStateManager player)
     {
-        if (player.controller.wantsJump)
+        if (player.controller.input.wantsJump)
         {
-            if (player.controller.isGrounded)
+            if (player.controller.movement.isGrounded)
             {
                 player.SwitchState(player.jumpState);
             }
-            else if (player.controller.HasCoyoteTimeRemaining())
+            else if (player.controller.movement.HasCoyoteTimeRemaining())
             {
                 player.SwitchState(player.jumpState);
             }

@@ -14,18 +14,18 @@ public class MovementFallState : MovementBaseState
 
     public override void FixedUpdateState(MovementStateManager player)
     {
-        player.controller.Move();
+        player.controller.movement.Move();
     }
 
     public override void UpdateState(MovementStateManager player)
     {
-        if (player.controller.isGrounded)
+        if (player.controller.movement.isGrounded)
         {
-            if (player.controller.IsBufferedJumpAvailable())
+            if (player.controller.movement.IsBufferedJumpAvailable())
             {
                 player.SwitchState(player.jumpState);
             }
-            else if (player.controller.horizontalInput != 0f)
+            else if (player.controller.input.horizontalInput != 0f)
             {
                 player.SwitchState(player.moveState);
             }

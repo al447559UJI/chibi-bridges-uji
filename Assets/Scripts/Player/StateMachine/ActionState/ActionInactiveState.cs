@@ -19,7 +19,7 @@ public class ActionInactiveState: ActionBaseState
 
     public override void UpdateState(ActionStateManager player)
     {
-        if (player.controller.IsMeleeAttackPressed)
+        if (player.controller.input.IsMeleeAttackPressed)
         {
             player.SwitchState(player.meleeState);
         }
