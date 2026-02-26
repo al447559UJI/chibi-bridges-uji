@@ -5,10 +5,8 @@ public class PlayerActionData : ScriptableObject
 {
     [Header("Melee attack parameters")]
     public int meleeDamage;
+    [Range(0.22f, 1.5f)]
     public float meleeCooldown;
-    public float meleeAttackDuration;
-    public float meleeHitboxStartTime;
-    public float meleeHitboxEndTime;
 
     [Header("Shoot attack parameters")]
     public int shootDamage;

@@ -3,19 +3,19 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private PlayerMovementData movementData;
+    [SerializeField] private PlayerMovementData data;
     [SerializeField] private LayerMask groundLayer;
 
     public bool isGrounded { get; private set; }
     public bool isFalling { get; private set; }
 
     public Rigidbody2D rb { get; private set; }
+
     private BoxCollider2D bodyCollider;
     private float feetCollision = 0.05f;
     private float lastJumpStartTime;
     private float lastGroundedTime;
     private Vector2 bodySize;
-
     private PlayerInput input;
 
     void Awake()
@@ -34,6 +34,12 @@ public class PlayerMovement : MonoBehaviour
         bodySize.y -= feetCollision;
     }
 
+    void Update()
+    {
+            if (input.horizontal > 0) transform.localScale = new Vector3(1, 1, 1);
+            else if (input.horizontal < 0) transform.localScale = new Vector3(-1, 1, 1);
+    }
+
     void FixedUpdate()
     {
         CheckGrounded();
@@ -43,11 +49,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move()
     {
-        float targetSpeed = input.horizontalInput * movementData.maxSpeed;
+        float targetSpeed = input.horizontal * data.maxSpeed;
         float speedDifference = targetSpeed - rb.linearVelocityX;
 
         // Use acceleration when input exists, deceleration when stopping
-        float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? movementData.acceleration : movementData.deceleration;
+        float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? data.acceleration : data.deceleration;
 
         float movement = accelRate * speedDifference * Time.fixedDeltaTime;
 
@@ -58,13 +64,15 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Jump()
     {
-        rb.linearVelocity = new Vector2(rb.linearVelocityX, movementData.jumpForce);
+        rb.linearVelocity = new Vector2(rb.linearVelocityX, data.jumpForce);
         lastJumpStartTime = Time.time;
+        input.UnlockHorizontalMovement();
+
     }
 
     public bool IsBufferedJumpAvailable()
     {
-        return Time.time - input.lastJumpPressedTime <= movementData.jumpBufferTime;
+        return Time.time - input.lastJumpPressedTime <= data.jumpBufferTime;
     }
 
     private void CheckGrounded()
@@ -89,13 +97,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (rb.linearVelocityY > 0 && !input.isJumpPressed && HasExceededVariableJumpTime())
         {
-            rb.linearVelocityY *= movementData.variableJumpTimeVelocityMultiplier;
+            rb.linearVelocityY *= data.variableJumpTimeVelocityMultiplier;
         }
     }
 
     public bool HasExceededVariableJumpTime()
     {
-        return Time.time - lastJumpStartTime > movementData.variableJumpTime;
+        return Time.time - lastJumpStartTime > data.variableJumpTime;
     }
 
     private void HandleGravity()
@@ -104,20 +112,20 @@ public class PlayerMovement : MonoBehaviour
         isFalling = rb.linearVelocityY < 0;
 
         if (isFalling)
-            rb.gravityScale = movementData.originalGravityScale * movementData.fastFallMultiplier;
+            rb.gravityScale = data.originalGravityScale * data.fastFallMultiplier;
         else
-            rb.gravityScale = movementData.originalGravityScale;
+            rb.gravityScale = data.originalGravityScale;
 
-        if (!isGrounded && absVelocityY < movementData.jumpHangThreshold)
+        if (!isGrounded && absVelocityY < data.jumpHangThreshold)
         {
-            rb.gravityScale = movementData.originalGravityScale * movementData.jumpHangGravityMultiplier;
+            rb.gravityScale = data.originalGravityScale * data.jumpHangGravityMultiplier;
         }
 
-        rb.linearVelocityY = Mathf.Max(rb.linearVelocityY, -movementData.maxFallSpeed);
+        rb.linearVelocityY = Mathf.Max(rb.linearVelocityY, -data.maxFallSpeed);
     }
 
     public bool HasCoyoteTimeRemaining()
     {
-        return Time.time - lastGroundedTime <= movementData.coyoteTimeThreshold;
+        return Time.time - lastGroundedTime <= data.coyoteTimeThreshold;
     }
 }

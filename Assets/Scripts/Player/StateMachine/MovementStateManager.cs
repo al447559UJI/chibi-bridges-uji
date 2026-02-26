@@ -5,15 +5,18 @@ public class MovementStateManager : MonoBehaviour
 {
     private MovementBaseState currentState;
     public PlayerController controller;
+    public ActionStateManager actionStateManager;
 
     public MovementIdleState idleState = new MovementIdleState();
     public MovementMoveState moveState = new MovementMoveState();
     public MovementJumpState jumpState = new MovementJumpState();
     public MovementFallState fallState = new MovementFallState();
 
+    
     void Awake()
     {
         controller = GetComponent<PlayerController>();
+        actionStateManager = GetComponent<ActionStateManager>();
         DebugRegistry.Register("Current Movement", () => GetCurrentStateName());
     }
 
@@ -35,6 +38,7 @@ public class MovementStateManager : MonoBehaviour
 
     public void SwitchState(MovementBaseState state)
     {
+        currentState.ExitState(this);
         currentState = state;
         state.EnterState(this);
     }

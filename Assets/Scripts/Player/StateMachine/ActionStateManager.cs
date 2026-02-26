@@ -35,6 +35,7 @@ public class ActionStateManager : MonoBehaviour
 
     public void SwitchState(ActionBaseState state)
     {
+        currentState.ExitState(this);
         currentState = state;
         state.EnterState(this);
     }

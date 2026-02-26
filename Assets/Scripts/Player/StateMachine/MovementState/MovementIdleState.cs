@@ -19,7 +19,7 @@ public class MovementIdleState : MovementBaseState
 
     public override void UpdateState(MovementStateManager player)
     {
-        if (player.controller.input.horizontalInput != 0f)
+        if (player.controller.input.horizontal != 0f)
         {
             player.SwitchState(player.moveState);
         }

@@ -1,27 +1,37 @@
 using UnityEngine;
 
-public class ActionMeleeState: ActionBaseState
+public class ActionMeleeState : ActionBaseState
 {
     public override void EnterState(ActionStateManager player)
     {
-        player.controller.actions.MeleeAttack();
+        player.controller.actions.PlayMeleeAnimation();
     }
 
     public override void ExitState(ActionStateManager player)
     {
-        
+        player.controller.actions.HideMeleeVisual();
     }
 
     public override void FixedUpdateState(ActionStateManager player)
     {
-        
+
     }
 
     public override void UpdateState(ActionStateManager player)
     {
-        if (!player.controller.input.IsMeleeAttackPressed)
+
+        if (player.controller.input.IsMeleeAttackPressed)
         {
-            player.SwitchState(player.inactiveState);
+            if (!player.controller.actions.IsMeleeActive())
+            {
+                player.controller.actions.PlayMeleeAnimation();
+            }
+        } else
+        {
+            if (!player.controller.actions.IsMeleeActive())
+            {
+                player.SwitchState(player.inactiveState);
+            }
         }
     }
 }

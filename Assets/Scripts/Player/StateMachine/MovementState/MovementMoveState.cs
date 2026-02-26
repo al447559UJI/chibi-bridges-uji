@@ -15,7 +15,7 @@ public class MovementMoveState : MovementBaseState
     public override void FixedUpdateState(MovementStateManager player)
     {
         // If linear velocity is between deadzone (0.01f) and there isn't horizontal input, switch to Idle
-        if (Mathf.Abs(player.controller.movement.rb.linearVelocityX) < 0.01f && player.controller.input.horizontalInput == 0)
+        if (Mathf.Abs(player.controller.movement.rb.linearVelocityX) < 0.01f && player.controller.input.horizontal == 0)
         {
             player.SwitchState(player.idleState);
         }
