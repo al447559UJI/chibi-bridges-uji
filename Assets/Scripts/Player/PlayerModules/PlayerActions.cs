@@ -5,13 +5,13 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private PlayerActionData data;
     [SerializeField] private PlayerMeleeVisual meleeVisual;
     [SerializeField] private PlayerMeleeHitbox meleeHitbox;
-
-
-    public bool isMeleeActive {get; private set; }
+    [SerializeField] private Transform firePoint;
     
     private PlayerInput input;
     private PlayerMovement movement;
     private float lastMeleeAnimationStartTime;
+    private float lastShootStartTime;
+    private bool isMeleeActive;
 
     void Awake()
     {
@@ -50,5 +50,22 @@ public class PlayerActions : MonoBehaviour
     public void HideMeleeVisual()
     {
         meleeVisual.Hide();
+    }
+
+    public void Shoot()
+    {
+        if (Time.time - lastShootStartTime >= data.shootCooldown)
+        {
+            lastShootStartTime = Time.time;
+            GameObject bulletGameObject = PlayerBulletPool.instance.GetPooledObject();
+
+            if (bulletGameObject != null)
+            {
+                bulletGameObject.transform.position = firePoint.position;
+                bulletGameObject.SetActive(true);
+    
+                bulletGameObject.GetComponent<PlayerBullet>().Initialize(movement.facingDirection, data.projectileSpeed);
+            }
+        }
     }
 }

@@ -27,7 +27,7 @@ public class MovementIdleState : MovementBaseState
         {
             player.SwitchState(player.fallState);
         }
-        if (player.controller.input.wantsJump)
+        if (player.controller.input.jumpPressedThisFrame)
         {
             if (player.controller.movement.isGrounded)
             {

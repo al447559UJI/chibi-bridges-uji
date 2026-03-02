@@ -27,7 +27,7 @@ public class MovementMoveState : MovementBaseState
 
     public override void UpdateState(MovementStateManager player)
     {
-        if (player.controller.input.wantsJump)
+        if (player.controller.input.jumpPressedThisFrame)
         {
             if (player.controller.movement.isGrounded)
             {

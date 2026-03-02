@@ -20,7 +20,7 @@ public class ActionMeleeState : ActionBaseState
     public override void UpdateState(ActionStateManager player)
     {
 
-        if (player.controller.input.IsMeleeAttackPressed)
+        if (player.controller.input.isMeleePressed)
         {
             if (!player.controller.actions.IsMeleeActive())
             {

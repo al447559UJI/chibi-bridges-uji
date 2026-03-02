@@ -25,7 +25,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Attack",
+                    "name": "Melee",
                     "type": "Button",
                     "id": "6c2ab1b8-8984-453a-af3d-a3c78ae1679a",
                     "expectedControlType": "",
@@ -91,6 +91,15 @@
                     "name": "DebugMenu",
                     "type": "Button",
                     "id": "d83ca3a2-1000-4cd8-be8b-968545ed06b5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Shoot",
+                    "type": "Button",
+                    "id": "bb4b546b-156e-4691-8cfc-964fb5d0e008",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -270,7 +279,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Attack",
+                    "action": "Melee",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -281,7 +290,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Attack",
+                    "action": "Melee",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -292,7 +301,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Touch",
-                    "action": "Attack",
+                    "action": "Melee",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -303,7 +312,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "Attack",
+                    "action": "Melee",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -314,7 +323,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "Attack",
+                    "action": "Melee",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -325,7 +334,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Attack",
+                    "action": "Melee",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -491,6 +500,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "DebugMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b99acb5e-ec17-47b0-982c-6793ab6bd044",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -5,59 +5,69 @@ using UnityEngine.InputSystem;
 public class PlayerInput : MonoBehaviour
 {
     public float horizontal { get; private set; }
-    public bool wantsJump { get; private set; }
-    public bool IsMeleeAttackPressed { get; private set; }
+    public bool attackPressedThisFrame { get; private set; }
+    public bool jumpPressedThisFrame { get; private set; }
+    public bool shootPressedThisFrame { get; private set; }
+    public bool isMeleePressed { get; private set; }
     public bool isJumpPressed { get; private set; }
-    public bool wantsAttack { get; private set; }
-
-
+    public bool isShootPressed { get; private set; }
 
     public float lastJumpPressedTime { get; private set; }
     public float lastMeleeAttackTime { get; private set; }
+    public float lastShootTime { get; private set; }
 
     private bool lockHorizontal = false;
     private bool lockJump = false;
 
     private InputAction moveAction;
     private InputAction jumpAction;
-    private InputAction meleeAttackAction;
+    private InputAction meleeAction;
+    private InputAction shootAction;
 
     void Start()
     {
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
-        meleeAttackAction = InputSystem.actions.FindAction("Attack");
+        meleeAction = InputSystem.actions.FindAction("Melee");
+        shootAction = InputSystem.actions.FindAction("Shoot");
 
-        DebugRegistry.Register("IsHorizontal Locked", () => lockHorizontal);
+        DebugRegistry.Register("shootPressed", () => isShootPressed);
 
     }
 
     void Update()
     {
-        IsMeleeAttackPressed = meleeAttackAction.IsPressed();
-        wantsAttack = meleeAttackAction.WasPressedThisFrame();
+        isMeleePressed = meleeAction.IsPressed();
+        isShootPressed = shootAction.IsPressed();
+        shootPressedThisFrame = shootAction.WasPressedThisFrame();
+        attackPressedThisFrame = meleeAction.WasPressedThisFrame();
 
         if (lockJump)
         {
             isJumpPressed = false;
-            wantsJump = false;
+            jumpPressedThisFrame = false;
         }
         else
         {
             isJumpPressed = jumpAction.IsPressed();
-            wantsJump = jumpAction.WasPressedThisFrame();
+            jumpPressedThisFrame = jumpAction.WasPressedThisFrame();
         }
 
         horizontal = lockHorizontal ? 0 : horizontal = moveAction.ReadValue<Vector2>().x;
 
-        if (wantsJump)
+        if (jumpPressedThisFrame)
         {
             lastJumpPressedTime = Time.time;
         }
 
-        if (wantsAttack)
+        if (attackPressedThisFrame)
         {
             lastMeleeAttackTime = Time.time;
+        }
+
+        if (shootPressedThisFrame)
+        {
+            lastShootTime = Time.time;
         }
     }
 
@@ -65,7 +75,6 @@ public class PlayerInput : MonoBehaviour
     {
         lockHorizontal = true;
     }
-
 
     public void LockJump()
     {

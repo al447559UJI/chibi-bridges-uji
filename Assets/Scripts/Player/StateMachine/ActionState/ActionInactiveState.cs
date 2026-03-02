@@ -19,9 +19,12 @@ public class ActionInactiveState: ActionBaseState
 
     public override void UpdateState(ActionStateManager player)
     {
-        if (player.controller.input.IsMeleeAttackPressed)
+        if (player.controller.input.isMeleePressed)
         {
             player.SwitchState(player.meleeState);
+        } else if (player.controller.input.isShootPressed)
+        {
+            player.SwitchState(player.shootState);
         }
     }
 }

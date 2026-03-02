@@ -14,9 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerActionData
   meleeDamage: 1
   meleeCooldown: 0.7
-  meleeAttackDuration: 0
-  meleeHitboxStartTime: 0
-  meleeHitboxEndTime: 0
   shootDamage: 1
   shootCooldown: 0.25
+  projectileSpeed: 15
   buildRange: 100

@@ -6,10 +6,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private PlayerMovementData data;
     [SerializeField] private LayerMask groundLayer;
 
+    public Rigidbody2D rb { get; private set; }    
     public bool isGrounded { get; private set; }
     public bool isFalling { get; private set; }
-
-    public Rigidbody2D rb { get; private set; }
+    public int facingDirection {get; private set;} = 1; // 1 = right, -1 = left.
 
     private BoxCollider2D bodyCollider;
     private float feetCollision = 0.05f;
@@ -36,8 +36,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-            if (input.horizontal > 0) transform.localScale = new Vector3(1, 1, 1);
-            else if (input.horizontal < 0) transform.localScale = new Vector3(-1, 1, 1);
+        // TODO: Not sure if these are correct.
+        if (input.horizontal < 0 && facingDirection == 1)
+        {
+            Flip();
+        } else if (input.horizontal > 0 && facingDirection == -1)
+        {
+            Flip();
+        }
     }
 
     void FixedUpdate()
@@ -127,5 +133,11 @@ public class PlayerMovement : MonoBehaviour
     public bool HasCoyoteTimeRemaining()
     {
         return Time.time - lastGroundedTime <= data.coyoteTimeThreshold;
+    }
+
+    private void Flip()
+    {
+        facingDirection = -facingDirection;
+        transform.Rotate(0f, 180f, 0f);
     }
 }

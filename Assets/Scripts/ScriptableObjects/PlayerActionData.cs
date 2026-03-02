@@ -11,6 +11,7 @@ public class PlayerActionData : ScriptableObject
     [Header("Shoot attack parameters")]
     public int shootDamage;
     public float shootCooldown;
+    public float projectileSpeed;
 
     [Header("Build mode parameters")]
     public float buildRange;
