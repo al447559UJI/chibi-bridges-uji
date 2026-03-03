@@ -6,6 +6,7 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private PlayerMeleeVisual meleeVisual;
     [SerializeField] private PlayerMeleeHitbox meleeHitbox;
     [SerializeField] private Transform firePoint;
+    [SerializeField] private SpriteRenderer poleIndicator;
     
     private PlayerInput input;
     private PlayerMovement movement;
@@ -67,5 +68,15 @@ public class PlayerActions : MonoBehaviour
                 bulletGameObject.GetComponent<PlayerBullet>().Initialize(movement.facingDirection, data.projectileSpeed);
             }
         }
+    }
+
+    public void ShowPoleIndicator()
+    {
+        poleIndicator.enabled = true;
+    }
+
+    public void HidePoleIndicator()
+    {
+        poleIndicator.enabled = false;
     }
 }

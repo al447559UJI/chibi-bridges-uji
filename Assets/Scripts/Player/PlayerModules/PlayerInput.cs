@@ -8,13 +8,15 @@ public class PlayerInput : MonoBehaviour
     public bool attackPressedThisFrame { get; private set; }
     public bool jumpPressedThisFrame { get; private set; }
     public bool shootPressedThisFrame { get; private set; }
+    public bool buildModePressedThisFrame { get; private set; }
     public bool isMeleePressed { get; private set; }
     public bool isJumpPressed { get; private set; }
     public bool isShootPressed { get; private set; }
 
     public float lastJumpPressedTime { get; private set; }
-    public float lastMeleeAttackTime { get; private set; }
-    public float lastShootTime { get; private set; }
+    public float lastMeleePressedTime { get; private set; }
+    public float lastShootPressedTime { get; private set; }
+    public float lastBuildModePressedTime { get; private set; }
 
     private bool lockHorizontal = false;
     private bool lockJump = false;
@@ -23,6 +25,7 @@ public class PlayerInput : MonoBehaviour
     private InputAction jumpAction;
     private InputAction meleeAction;
     private InputAction shootAction;
+    private InputAction buildModeAction;
 
     void Start()
     {
@@ -30,6 +33,7 @@ public class PlayerInput : MonoBehaviour
         jumpAction = InputSystem.actions.FindAction("Jump");
         meleeAction = InputSystem.actions.FindAction("Melee");
         shootAction = InputSystem.actions.FindAction("Shoot");
+        buildModeAction = InputSystem.actions.FindAction("BuildMode");
 
         DebugRegistry.Register("shootPressed", () => isShootPressed);
 
@@ -41,6 +45,7 @@ public class PlayerInput : MonoBehaviour
         isShootPressed = shootAction.IsPressed();
         shootPressedThisFrame = shootAction.WasPressedThisFrame();
         attackPressedThisFrame = meleeAction.WasPressedThisFrame();
+        buildModePressedThisFrame = buildModeAction.WasPressedThisFrame();
 
         if (lockJump)
         {
@@ -62,12 +67,12 @@ public class PlayerInput : MonoBehaviour
 
         if (attackPressedThisFrame)
         {
-            lastMeleeAttackTime = Time.time;
+            lastMeleePressedTime = Time.time;
         }
 
         if (shootPressedThisFrame)
         {
-            lastShootTime = Time.time;
+            lastShootPressedTime = Time.time;
         }
     }
 
