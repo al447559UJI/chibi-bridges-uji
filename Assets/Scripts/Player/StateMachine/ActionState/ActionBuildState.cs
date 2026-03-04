@@ -29,6 +29,7 @@ public class ActionBuildState: ActionBaseState
         }
         else if (player.controller.input.buildModePressedThisFrame)
         {
+            player.controller.actions.Build();
             player.SwitchState(player.inactiveState);
         }
     }

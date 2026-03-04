@@ -9,14 +9,18 @@ public class PoleIndicator : MonoBehaviour
     [Tooltip("Sprite color when the player is not allowed to build")]
     [SerializeField] private Color red; 
 
-    public bool canBuild {get; private set;}
+    private Transform poleSpawnPoint;
 
     private SpriteRenderer spriteRenderer;
+    private PlayerActions player;
+
 
 
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        player = GetComponentInParent<PlayerActions>();
+        poleSpawnPoint = GetComponentInChildren<Transform>();
     }
 
     void Start()
@@ -26,7 +30,7 @@ public class PoleIndicator : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collision)
     {
-        if (canBuild)
+        if (player.canBuild)
         {
             DenyBuild();
         }
@@ -39,18 +43,41 @@ public class PoleIndicator : MonoBehaviour
 
     private void AllowBuild()
     {
-        canBuild = true;
+        player.CanBuild(true);
+        //canBuild = true;
         SetColor(green);
     }
 
     private void DenyBuild()
     {
-        canBuild = false;
+        player.CanBuild(false);
+        //canBuild = false;
         SetColor(red);
     }
 
     private void SetColor(Color color)
     {
         spriteRenderer.color = color;
+    }
+
+    public void Show()
+    {
+        spriteRenderer.enabled = true;
+    }
+
+    public void Hide()
+    {
+        spriteRenderer.enabled = false;
+    }
+
+    public Vector3 GetSpawnPoint()
+    {
+        
+
+        return new Vector3(
+            poleSpawnPoint.position.x,
+            poleSpawnPoint.position.y + 5.5f, // TODO: Dont hardcode this
+            0f
+        );
     }
 }

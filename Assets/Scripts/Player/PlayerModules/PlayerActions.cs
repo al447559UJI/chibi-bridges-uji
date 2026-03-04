@@ -6,13 +6,16 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private PlayerMeleeVisual meleeVisual;
     [SerializeField] private PlayerMeleeHitbox meleeHitbox;
     [SerializeField] private Transform firePoint;
-    [SerializeField] private SpriteRenderer poleIndicator;
+    [SerializeField] private PoleIndicator poleIndicator;
+    [SerializeField] private GameObject pole;
     
     private PlayerInput input;
     private PlayerMovement movement;
     private float lastMeleeAnimationStartTime;
     private float lastShootStartTime;
     private bool isMeleeActive;
+    
+    public bool canBuild {get; private set;}
 
     void Awake()
     {
@@ -58,25 +61,43 @@ public class PlayerActions : MonoBehaviour
         if (Time.time - lastShootStartTime >= data.shootCooldown)
         {
             lastShootStartTime = Time.time;
-            GameObject bulletGameObject = PlayerBulletPool.instance.GetPooledObject();
+            GameObject newBullet = PlayerBulletPool.instance.GetPooledObject();
 
-            if (bulletGameObject != null)
+            if (newBullet != null)
             {
-                bulletGameObject.transform.position = firePoint.position;
-                bulletGameObject.SetActive(true);
+                newBullet.transform.position = firePoint.position;
+                newBullet.SetActive(true);
     
-                bulletGameObject.GetComponent<PlayerBullet>().Initialize(movement.facingDirection, data.projectileSpeed);
+                newBullet.GetComponent<PlayerBullet>().Initialize(movement.facingDirection, data.projectileSpeed);
             }
         }
     }
 
     public void ShowPoleIndicator()
     {
-        poleIndicator.enabled = true;
+        poleIndicator.Show();
     }
 
     public void HidePoleIndicator()
     {
-        poleIndicator.enabled = false;
+        poleIndicator.Hide();
+    }
+
+    public void CanBuild(bool value)
+    {
+        canBuild = value;
+    }
+
+    public void Build()
+    {
+        if (canBuild)
+        {
+                                                // Add the Y distance between the origin of the poleIndicator and the spawnpoint.
+            GameObject newPole = Instantiate(pole, poleIndicator.GetSpawnPoint(), Quaternion.identity);
+            if (newPole != null)
+            {
+                newPole.GetComponent<Pole>().Initialize(movement.facingDirection);
+            }
+        }
     }
 }
