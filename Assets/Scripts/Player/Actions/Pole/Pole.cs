@@ -1,0 +1,77 @@
+using UnityEngine;
+
+enum PoleState
+{
+    FALL,
+    ROTATE,
+    STOP
+}
+
+public class Pole : MonoBehaviour
+{
+    [Tooltip("Position of the PoleAnchor GameObject.")]
+    [SerializeField] private Transform anchorPoint;
+    [Tooltip("PoleData ScriptableObject")]
+    [SerializeField] private PoleData data;
+
+    private PoleState state;
+
+    private JointMotor2D motor;
+    private HingeJoint2D hinge;
+    private Rigidbody2D rb;
+    private int direction = 1;
+
+    void Awake()
+    {
+        hinge = GetComponent<HingeJoint2D>();
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    void Start()
+    {
+        motor = new JointMotor2D
+        {
+            motorSpeed = direction * data.motorSpeed,
+            maxMotorTorque = data.maxMotorTorque
+        };
+
+        hinge.motor = motor;
+        hinge.useMotor = false;
+        hinge.enabled = false;
+
+        state = PoleState.FALL;
+
+        rb.gravityScale = data.gravityScale;
+    }
+    public void Anchor(Vector2 anchorPoint)
+    {
+        hinge.enabled = true;
+        hinge.anchor = transform.InverseTransformPoint(anchorPoint);
+        hinge.connectedAnchor = anchorPoint;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") && state == PoleState.FALL)
+        {
+            hinge.useMotor = true;
+        }
+
+        switch (state)
+        {
+            case PoleState.FALL:
+                state = PoleState.ROTATE;
+            break;
+            case PoleState.ROTATE:
+                state = PoleState.STOP;
+                hinge.useMotor = false;
+            break;
+        }
+    }
+
+    public void Initialize(int dir)
+    {
+        direction = dir;
+    }
+}
