@@ -9,36 +9,39 @@ enum PoleState
 
 public class Pole : MonoBehaviour
 {
-
+    [Tooltip("Position of the PoleAnchor GameObject.")]
     [SerializeField] private Transform anchorPoint;
+    [Tooltip("PoleData ScriptableObject")]
+    [SerializeField] private PoleData data;
 
     private PoleState state;
 
     private JointMotor2D motor;
     private HingeJoint2D hinge;
-    private int direction;
+    private Rigidbody2D rb;
+    private int direction = 1;
 
     void Awake()
     {
         hinge = GetComponent<HingeJoint2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Start()
     {
-
         motor = new JointMotor2D
         {
-            motorSpeed = direction * 100f,
-            maxMotorTorque = 200f
+            motorSpeed = direction * data.motorSpeed,
+            maxMotorTorque = data.maxMotorTorque
         };
 
-        hinge.autoConfigureConnectedAnchor = false;
-        hinge.connectedBody = null;
         hinge.motor = motor;
         hinge.useMotor = false;
         hinge.enabled = false;
 
         state = PoleState.FALL;
+
+        rb.gravityScale = data.gravityScale;
     }
     public void Anchor(Vector2 anchorPoint)
     {
@@ -50,26 +53,20 @@ public class Pole : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") && state == PoleState.FALL)
         {
+            hinge.useMotor = true;
+        }
 
-            if (state == PoleState.FALL)
-            {
-                hinge.useMotor = true;
-            }
-            else
-            {
+        switch (state)
+        {
+            case PoleState.FALL:
+                state = PoleState.ROTATE;
+            break;
+            case PoleState.ROTATE:
+                state = PoleState.STOP;
                 hinge.useMotor = false;
-            }
-        }
-
-        if (state == PoleState.FALL)
-        {
-            state = PoleState.ROTATE;
-        }
-        else if (state == PoleState.ROTATE)
-        {
-            state = PoleState.STOP;
+            break;
         }
     }
 
@@ -77,5 +74,4 @@ public class Pole : MonoBehaviour
     {
         direction = dir;
     }
-
 }

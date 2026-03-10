@@ -190,6 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pole
   anchorPoint: {fileID: 1584889955323612065}
+  data: {fileID: 11400000, guid: 5fe4f59291eb9a2e5b85c4df023b13da, type: 2}
 --- !u!50 &3263162336721166189
 Rigidbody2D:
   serializedVersion: 5

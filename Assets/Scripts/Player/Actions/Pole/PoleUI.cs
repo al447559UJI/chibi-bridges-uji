@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PoleIndicator : MonoBehaviour
+public class PoleUI : MonoBehaviour
 {
 
     [Tooltip("Sprite color when the player is allowed to build")]
@@ -44,14 +44,12 @@ public class PoleIndicator : MonoBehaviour
     private void AllowBuild()
     {
         player.CanBuild(true);
-        //canBuild = true;
         SetColor(green);
     }
 
     private void DenyBuild()
     {
         player.CanBuild(false);
-        //canBuild = false;
         SetColor(red);
     }
 
@@ -72,8 +70,6 @@ public class PoleIndicator : MonoBehaviour
 
     public Vector3 GetSpawnPoint()
     {
-        
-
         return new Vector3(
             poleSpawnPoint.position.x,
             poleSpawnPoint.position.y + 5.5f, // TODO: Dont hardcode this

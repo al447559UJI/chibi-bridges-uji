@@ -6,7 +6,7 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private PlayerMeleeVisual meleeVisual;
     [SerializeField] private PlayerMeleeHitbox meleeHitbox;
     [SerializeField] private Transform firePoint;
-    [SerializeField] private PoleIndicator poleIndicator;
+    [SerializeField] private PoleUI poleIndicator;
     [SerializeField] private GameObject pole;
     
     private PlayerInput input;
@@ -92,7 +92,6 @@ public class PlayerActions : MonoBehaviour
     {
         if (canBuild)
         {
-                                                // Add the Y distance between the origin of the poleIndicator and the spawnpoint.
             GameObject newPole = Instantiate(pole, poleIndicator.GetSpawnPoint(), Quaternion.identity);
             if (newPole != null)
             {
