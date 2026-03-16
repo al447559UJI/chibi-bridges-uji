@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IDamageable
 {
     [SerializeField] private EnemyData data;
     [SerializeField] private LayerMask groundLayer;
@@ -9,6 +9,8 @@ public class EnemyController : MonoBehaviour
     private Vector2 bodySize;
 
     private float currentDirectionTimer;
+    private int currentHealth;
+
     private bool isGrounded;
     private int currentDirection = 1; // 1 = Right, -1 = Left.
     private float feetCollision = 0.05f;
@@ -25,6 +27,7 @@ public class EnemyController : MonoBehaviour
     {
         bodySize = bodyCollider.bounds.size;
         currentDirectionTimer = data.directionTimer;
+        currentHealth = data.health;
     }
 
     void FixedUpdate()
@@ -101,5 +104,20 @@ public class EnemyController : MonoBehaviour
         );
 
         return hit.collider == null;
+    }
+
+    public void Damage(int damageAmount)
+    {
+        currentHealth -= damageAmount;
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 }

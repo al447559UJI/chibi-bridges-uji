@@ -68,7 +68,7 @@ public class PlayerActions : MonoBehaviour
                 newBullet.transform.position = firePoint.position;
                 newBullet.SetActive(true);
     
-                newBullet.GetComponent<PlayerBullet>().Initialize(movement.facingDirection, data.projectileSpeed);
+                newBullet.GetComponent<PlayerBullet>().Initialize(movement.facingDirection, data.projectileSpeed, data.shootDamage);
             }
         }
     }
@@ -95,7 +95,7 @@ public class PlayerActions : MonoBehaviour
             GameObject newPole = Instantiate(pole, poleIndicator.GetSpawnPoint(), Quaternion.identity);
             if (newPole != null)
             {
-                newPole.GetComponent<Pole>().Initialize(movement.facingDirection);
+                newPole.GetComponent<Pole>().Initialize(movement.facingDirection, data.poleDamage);
             }
         }
     }

@@ -6,6 +6,7 @@ public class PlayerMeleeVisual: MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private PlayerActions actions;
+    private BoxCollider2D hitbox;
 
     public bool isMeleeAnimationPlaying = false;
 

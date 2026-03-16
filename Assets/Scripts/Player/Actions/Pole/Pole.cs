@@ -20,6 +20,7 @@ public class Pole : MonoBehaviour
     private HingeJoint2D hinge;
     private Rigidbody2D rb;
     private int direction = 1;
+    private int damageAmount;
 
     void Awake()
     {
@@ -43,6 +44,7 @@ public class Pole : MonoBehaviour
 
         rb.gravityScale = data.gravityScale;
     }
+
     public void Anchor(Vector2 anchorPoint)
     {
         hinge.enabled = true;
@@ -62,16 +64,28 @@ public class Pole : MonoBehaviour
         {
             case PoleState.FALL:
                 state = PoleState.ROTATE;
-            break;
+                break;
             case PoleState.ROTATE:
+                CheckEnemyCollision(collision);
                 state = PoleState.STOP;
                 hinge.useMotor = false;
-            break;
+                break;
+        }
+
+    }
+
+    private void CheckEnemyCollision(Collision2D collision)
+    {
+        IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
+        if (damageable != null)
+        {
+            damageable.Damage(damageAmount);
         }
     }
 
-    public void Initialize(int dir)
+    public void Initialize(int dir, int damage)
     {
         direction = dir;
+        damageAmount = damage;
     }
 }
