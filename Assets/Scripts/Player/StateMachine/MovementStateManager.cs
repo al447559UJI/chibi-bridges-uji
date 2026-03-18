@@ -5,7 +5,6 @@ public class MovementStateManager : MonoBehaviour
 {
     private MovementBaseState currentState;
     public PlayerController controller;
-    public ActionStateManager actionStateManager;
 
     public MovementIdleState idleState = new MovementIdleState();
     public MovementMoveState moveState = new MovementMoveState();
@@ -16,7 +15,6 @@ public class MovementStateManager : MonoBehaviour
     void Awake()
     {
         controller = GetComponent<PlayerController>();
-        actionStateManager = GetComponent<ActionStateManager>();
         DebugRegistry.Register("Current Movement", () => GetCurrentStateName());
     }
 

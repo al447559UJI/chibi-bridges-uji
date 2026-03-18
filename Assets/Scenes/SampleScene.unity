@@ -469,6 +469,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  feetCollider: {fileID: 1597429829}
 --- !u!114 &90332385
 MonoBehaviour:
   m_ObjectHideFlags: 0

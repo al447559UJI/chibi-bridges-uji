@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Space(15)]
+    [SerializeField] private BoxCollider2D feetCollider;
     [SerializeField] private PlayerMovementData data;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private BoxCollider2D feetCollider;
 
     public Rigidbody2D rb { get; private set; }    
     public bool isGrounded { get; private set; }

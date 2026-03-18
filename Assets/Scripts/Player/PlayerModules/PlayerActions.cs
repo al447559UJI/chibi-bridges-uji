@@ -2,11 +2,15 @@ using UnityEngine;
 
 public class PlayerActions : MonoBehaviour
 {
-    [SerializeField] private PlayerActionData data;
+    [Header("Child References")]
     [SerializeField] private PlayerMeleeAttack meleeAttack;
     [SerializeField] private Transform firePoint;
     [SerializeField] private PoleUI poleUI;
+
+    [Header("Data & Prefabs")]
+    [SerializeField] private PlayerActionData data;    
     [SerializeField] private GameObject pole;
+    [Header("Layer Settings")]
     [SerializeField] private LayerMask damageableLayer;
 
     private PlayerMovement movement;
