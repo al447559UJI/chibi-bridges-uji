@@ -3,19 +3,19 @@ using UnityEngine;
 public class PlayerActions : MonoBehaviour
 {
     [SerializeField] private PlayerActionData data;
-    [SerializeField] private PlayerMeleeVisual meleeVisual;
+    [SerializeField] private PlayerMeleeAttack meleeAttack;
     [SerializeField] private Transform firePoint;
     [SerializeField] private PoleUI poleUI;
     [SerializeField] private GameObject pole;
-    [SerializeField] private BoxCollider2D meleeHitbox;
-    
+    [SerializeField] private LayerMask damageableLayer;
+
     private PlayerInput input;
     private PlayerMovement movement;
     private float lastMeleeAnimationStartTime;
     private float lastShootStartTime;
     private bool isMeleeActive;
-    
-    public bool canBuild {get; private set;}
+
+    public bool canBuild { get; private set; }
 
     void Awake()
     {
@@ -25,34 +25,18 @@ public class PlayerActions : MonoBehaviour
 
     public void MeleeAttack()
     {
-
+        if (Time.time - lastMeleeAnimationStartTime >= data.meleeCooldown)
+        {
+            lastMeleeAnimationStartTime = Time.time;
+            isMeleeActive = true;
+            meleeAttack.Render();
+            meleeAttack.InitializeHitbox(data.meleeDamage, damageableLayer);
+        }
         if (movement.isGrounded)
         {
             input.LockHorizontalMovement();
             input.LockJump();
         }
-        if (Time.time - lastMeleeAnimationStartTime >= data.meleeCooldown)
-        {
-            lastMeleeAnimationStartTime = Time.time;
-            isMeleeActive = true;
-            meleeVisual.Render();
-        }
-    }
-
-    private void InitializeMeleeHitbox()
-    {
-        Physics2D.BoxCastAll(
-            meleeHitbox.transform.position,
-            meleeHitbox.size,
-            0f,
-            Vector2.right
-            );
-    }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(meleeHitbox.transform.position, meleeHitbox.size);
     }
 
     public void OnMeleeAnimationEnded()
@@ -69,7 +53,7 @@ public class PlayerActions : MonoBehaviour
 
     public void HideMeleeVisual()
     {
-        meleeVisual.Hide();
+        meleeAttack.Hide();
     }
 
     public void Shoot()
@@ -83,7 +67,7 @@ public class PlayerActions : MonoBehaviour
             {
                 newBullet.transform.position = firePoint.position;
                 newBullet.SetActive(true);
-    
+
                 newBullet.GetComponent<PlayerBullet>().Initialize(movement.facingDirection, data.projectileSpeed, data.shootDamage);
             }
         }

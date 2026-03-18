@@ -486,7 +486,9 @@ MonoBehaviour:
   firePoint: {fileID: 969946716}
   poleUI: {fileID: 702878362}
   pole: {fileID: 6285149721415366652, guid: fdd988168a0213c9cb80c9ef9f877986, type: 3}
-  meleeHitbox: {fileID: 468385900}
+  damageableLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &450538998
 GameObject:
   m_ObjectHideFlags: 0

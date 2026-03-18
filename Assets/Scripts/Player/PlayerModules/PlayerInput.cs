@@ -35,7 +35,7 @@ public class PlayerInput : MonoBehaviour
         shootAction = InputSystem.actions.FindAction("Shoot");
         buildModeAction = InputSystem.actions.FindAction("BuildMode");
 
-        DebugRegistry.Register("shootPressed", () => isShootPressed);
+        DebugRegistry.Register("lockHorizontal", () => lockHorizontal);
 
     }
 
