@@ -483,10 +483,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerActions
   data: {fileID: 11400000, guid: ec3007f7f8b9647a09dcc4667a4f80ba, type: 2}
   meleeVisual: {fileID: 1614503315}
-  meleeHitbox: {fileID: 468385899}
   firePoint: {fileID: 969946716}
-  poleIndicator: {fileID: 702878362}
+  poleUI: {fileID: 702878362}
   pole: {fileID: 6285149721415366652, guid: fdd988168a0213c9cb80c9ef9f877986, type: 3}
+  meleeHitbox: {fileID: 468385900}
 --- !u!1 &450538998
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,11 +789,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2387924976511182517, guid: 81790f0d4ff44058a82b5ca0fe617709, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.180785
+      value: -10.76
       objectReference: {fileID: 0}
     - target: {fileID: 2387924976511182517, guid: 81790f0d4ff44058a82b5ca0fe617709, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.2721982
+      value: -0.23
       objectReference: {fileID: 0}
     - target: {fileID: 2387924976511182517, guid: 81790f0d4ff44058a82b5ca0fe617709, type: 3}
       propertyPath: m_LocalPosition.z
@@ -933,7 +933,7 @@ GameObject:
   - component: {fileID: 702878362}
   - component: {fileID: 702878363}
   m_Layer: 5
-  m_Name: PoleIndicator
+  m_Name: PoleUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

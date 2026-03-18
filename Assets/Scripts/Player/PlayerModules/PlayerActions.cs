@@ -4,10 +4,10 @@ public class PlayerActions : MonoBehaviour
 {
     [SerializeField] private PlayerActionData data;
     [SerializeField] private PlayerMeleeVisual meleeVisual;
-    [SerializeField] private PlayerMeleeHitbox meleeHitbox;
     [SerializeField] private Transform firePoint;
-    [SerializeField] private PoleUI poleIndicator;
+    [SerializeField] private PoleUI poleUI;
     [SerializeField] private GameObject pole;
+    [SerializeField] private BoxCollider2D meleeHitbox;
     
     private PlayerInput input;
     private PlayerMovement movement;
@@ -23,7 +23,7 @@ public class PlayerActions : MonoBehaviour
         movement = GetComponent<PlayerMovement>();
     }
 
-    public void PlayMeleeAnimation()
+    public void MeleeAttack()
     {
 
         if (movement.isGrounded)
@@ -37,6 +37,22 @@ public class PlayerActions : MonoBehaviour
             isMeleeActive = true;
             meleeVisual.Render();
         }
+    }
+
+    private void InitializeMeleeHitbox()
+    {
+        Physics2D.BoxCastAll(
+            meleeHitbox.transform.position,
+            meleeHitbox.size,
+            0f,
+            Vector2.right
+            );
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(meleeHitbox.transform.position, meleeHitbox.size);
     }
 
     public void OnMeleeAnimationEnded()
@@ -75,12 +91,12 @@ public class PlayerActions : MonoBehaviour
 
     public void ShowPoleIndicator()
     {
-        poleIndicator.Show();
+        poleUI.Show();
     }
 
     public void HidePoleIndicator()
     {
-        poleIndicator.Hide();
+        poleUI.Hide();
     }
 
     public void CanBuild(bool value)
@@ -92,7 +108,7 @@ public class PlayerActions : MonoBehaviour
     {
         if (canBuild)
         {
-            GameObject newPole = Instantiate(pole, poleIndicator.GetSpawnPoint(), Quaternion.identity);
+            GameObject newPole = Instantiate(pole, poleUI.GetSpawnPoint(), Quaternion.identity);
             if (newPole != null)
             {
                 newPole.GetComponent<Pole>().Initialize(movement.facingDirection, data.poleDamage);

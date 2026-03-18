@@ -4,7 +4,7 @@ public class ActionMeleeState : ActionBaseState
 {
     public override void EnterState(ActionStateManager player)
     {
-        player.controller.actions.PlayMeleeAnimation();
+        player.controller.actions.MeleeAttack();
     }
 
     public override void ExitState(ActionStateManager player)
@@ -24,7 +24,7 @@ public class ActionMeleeState : ActionBaseState
         {
             if (!player.controller.actions.IsMeleeActive())
             {
-                player.controller.actions.PlayMeleeAnimation();
+                player.controller.actions.MeleeAttack();
             }
         } else
         {
