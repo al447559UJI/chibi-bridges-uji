@@ -43,13 +43,13 @@ public class PoleUI : MonoBehaviour
 
     private void AllowBuild()
     {
-        player.CanBuild(true);
+        player.SetCanBuild(true);
         SetColor(green);
     }
 
     private void DenyBuild()
     {
-        player.CanBuild(false);
+        player.SetCanBuild(false);
         SetColor(red);
     }
 

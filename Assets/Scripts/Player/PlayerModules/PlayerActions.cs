@@ -9,18 +9,22 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private GameObject pole;
     [SerializeField] private LayerMask damageableLayer;
 
-    private PlayerInput input;
     private PlayerMovement movement;
     private float lastMeleeAnimationStartTime;
     private float lastShootStartTime;
-    private bool isMeleeActive;
+    private bool isMeleeAnimationPlaying;
 
     public bool canBuild { get; private set; }
 
     void Awake()
     {
-        input = GetComponent<PlayerInput>();
         movement = GetComponent<PlayerMovement>();
+    }
+
+    public void AirMeleeAttack()
+    {
+        meleeAttack.Render();
+        meleeAttack.InitializeHitbox(data.meleeDamage, damageableLayer);
     }
 
     public void MeleeAttack()
@@ -28,27 +32,20 @@ public class PlayerActions : MonoBehaviour
         if (Time.time - lastMeleeAnimationStartTime >= data.meleeCooldown)
         {
             lastMeleeAnimationStartTime = Time.time;
-            isMeleeActive = true;
+            isMeleeAnimationPlaying = true;
             meleeAttack.Render();
             meleeAttack.InitializeHitbox(data.meleeDamage, damageableLayer);
-        }
-        if (movement.isGrounded)
-        {
-            input.LockHorizontalMovement();
-            input.LockJump();
         }
     }
 
     public void OnMeleeAnimationEnded()
     {
-        input.UnlockHorizontalMovement();
-        input.UnlockJump();
-        isMeleeActive = false;
+        isMeleeAnimationPlaying = false;
     }
 
-    public bool IsMeleeActive()
+    public bool IsMeleeAnimationPlaying()
     {
-        return isMeleeActive;
+        return isMeleeAnimationPlaying;
     }
 
     public void HideMeleeVisual()
@@ -67,8 +64,10 @@ public class PlayerActions : MonoBehaviour
             {
                 newBullet.transform.position = firePoint.position;
                 newBullet.SetActive(true);
-
-                newBullet.GetComponent<PlayerBullet>().Initialize(movement.facingDirection, data.projectileSpeed, data.shootDamage);
+                newBullet.GetComponent<PlayerBullet>().Initialize(
+                    movement.facingDirection, 
+                    data.projectileSpeed, 
+                    data.shootDamage);
             }
         }
     }
@@ -83,7 +82,7 @@ public class PlayerActions : MonoBehaviour
         poleUI.Hide();
     }
 
-    public void CanBuild(bool value)
+    public void SetCanBuild(bool value)
     {
         canBuild = value;
     }

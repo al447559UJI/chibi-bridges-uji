@@ -34,9 +34,6 @@ public class PlayerInput : MonoBehaviour
         meleeAction = InputSystem.actions.FindAction("Melee");
         shootAction = InputSystem.actions.FindAction("Shoot");
         buildModeAction = InputSystem.actions.FindAction("BuildMode");
-
-        DebugRegistry.Register("lockHorizontal", () => lockHorizontal);
-
     }
 
     void Update()

@@ -21,7 +21,14 @@ public class ActionInactiveState : ActionBaseState
     {
         if (player.controller.input.isMeleePressed)
         {
-            player.SwitchState(player.meleeState);
+            if (player.controller.movement.isGrounded)
+            {
+                player.SwitchState(player.meleeState);
+            }
+            else
+            {
+                player.SwitchState(player.airMeleeState);
+            }
         }
         else if (player.controller.input.isShootPressed)
         {

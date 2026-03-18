@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ActionBuildState: ActionBaseState
+public class ActionBuildState : ActionBaseState
 {
     public override void EnterState(ActionStateManager player)
     {
@@ -14,14 +14,21 @@ public class ActionBuildState: ActionBaseState
 
     public override void FixedUpdateState(ActionStateManager player)
     {
-        
+
     }
 
     public override void UpdateState(ActionStateManager player)
     {
         if (player.controller.input.isMeleePressed)
         {
-            player.SwitchState(player.meleeState);
+            if (player.controller.movement.isGrounded)
+            {
+                player.SwitchState(player.meleeState);
+            }
+            else
+            {
+                player.SwitchState(player.airMeleeState);
+            }
         }
         else if (player.controller.input.isShootPressed)
         {

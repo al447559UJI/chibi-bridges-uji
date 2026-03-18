@@ -8,7 +8,6 @@ public class PlayerMeleeAttack : MonoBehaviour
     private PlayerActions actions;
     private BoxCollider2D hitbox;
 
-    public bool isMeleeAnimationPlaying = false;
 
     void Awake()
     {
@@ -16,8 +15,6 @@ public class PlayerMeleeAttack : MonoBehaviour
         hitbox = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         actions = GetComponentInParent<PlayerActions>();
-
-        DebugRegistry.Register("isMeleeAnimationPlaying", () => isMeleeAnimationPlaying);
     }
 
     void Start()
@@ -27,8 +24,8 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     public void InitializeHitbox(int damage, LayerMask damageableLayer)
     {
-        // In case hitboxes break later
-        //Vector2 size = Vector2.Scale(hitbox.size, hitbox.transform.lossyScale);
+        // In case hitboxes break later, try this:
+        // Vector2 size = Vector2.Scale(hitbox.size, hitbox.transform.lossyScale);
 
         Collider2D[] hits = Physics2D.OverlapBoxAll(
             hitbox.transform.position,
@@ -47,6 +44,31 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     }
 
+    public void Render()
+    {
+        spriteRenderer.enabled = true;
+        animator.enabled = true;
+        animator.Play("Melee");
+    }
+
+    public void Hide()
+    {
+        spriteRenderer.enabled = false;
+        animator.enabled = false;
+    }
+
+    // Animation Event: Called at the end of the melee animation clip.
+    public void OnMeleeAnimationEnded()
+    {
+        actions.OnMeleeAnimationEnded();
+    }
+
+    // Animation Event: Called at the start of the melee animation clip.
+    public void OnMeleeAnimationStarted()
+    {
+
+    }
+
     void OnDrawGizmos()
     {
         if (hitbox != null)
@@ -59,30 +81,4 @@ public class PlayerMeleeAttack : MonoBehaviour
             );
         }
     }
-
-    public void Render()
-    {
-        spriteRenderer.enabled = true;
-        animator.enabled = true;
-        animator.Play("Melee");
-    }
-
-    public void Hide()
-    {
-        actions.OnMeleeAnimationEnded(); // Should remove this
-        spriteRenderer.enabled = false;
-        animator.enabled = false;
-    }
-
-    public void MeleeAnimationEnded() // Called by Animator
-    {
-        isMeleeAnimationPlaying = false;
-        actions.OnMeleeAnimationEnded();
-    }
-
-    public void MeleeAnimationStarted()
-    {
-        isMeleeAnimationPlaying = true;
-    }
-
 }
