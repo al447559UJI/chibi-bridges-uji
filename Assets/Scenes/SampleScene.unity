@@ -369,7 +369,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStateManager
   controller: {fileID: 90332379}
-  actionStateManager: {fileID: 0}
 --- !u!114 &90332379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,11 +464,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12a0c5d834c4a09c584e0bfb2042bf1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  feetCollider: {fileID: 1597429829}
   data: {fileID: 11400000, guid: 0a291f8eaa5347ff79e7886f44c606cd, type: 2}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  feetCollider: {fileID: 1597429829}
 --- !u!114 &90332385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,10 +481,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b14947ba1c25e155b960194e60a8d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerActions
-  data: {fileID: 11400000, guid: ec3007f7f8b9647a09dcc4667a4f80ba, type: 2}
   meleeAttack: {fileID: 1614503315}
   firePoint: {fileID: 969946716}
   poleUI: {fileID: 702878362}
+  data: {fileID: 11400000, guid: ec3007f7f8b9647a09dcc4667a4f80ba, type: 2}
   pole: {fileID: 6285149721415366652, guid: fdd988168a0213c9cb80c9ef9f877986, type: 3}
   damageableLayer:
     serializedVersion: 2
@@ -701,11 +700,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2387924976511182517, guid: 81790f0d4ff44058a82b5ca0fe617709, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.76
+      value: 1.54
       objectReference: {fileID: 0}
     - target: {fileID: 2387924976511182517, guid: 81790f0d4ff44058a82b5ca0fe617709, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.23
+      value: -3.37
       objectReference: {fileID: 0}
     - target: {fileID: 2387924976511182517, guid: 81790f0d4ff44058a82b5ca0fe617709, type: 3}
       propertyPath: m_LocalPosition.z

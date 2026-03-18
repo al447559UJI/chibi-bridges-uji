@@ -16,3 +16,7 @@ MonoBehaviour:
   acceleration: 10
   deceleration: 10
   directionTimer: 1
+  health: 5
+  shootDamage: 1
+  meleeDamage: 1
+  searchDistance: 1000

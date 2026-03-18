@@ -1,13 +1,23 @@
+using System.Collections;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
+enum EnemyState
+{
+    PATROL,
+    SHOOT
+}
 public class EnemyController : MonoBehaviour, IDamageable
 {
     [SerializeField] private EnemyData data;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask playerLayer;
     private Rigidbody2D rb;
     private BoxCollider2D bodyCollider;
     private Vector2 bodySize;
-
+    private EnemyState state;
     private float currentDirectionTimer;
     private int currentHealth;
 
@@ -19,8 +29,6 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         rb = GetComponent<Rigidbody2D>();
         bodyCollider = GetComponent<BoxCollider2D>();
-
-        DebugRegistry.Register("IsGrounded Enemy", () => isGrounded);
     }
 
     void Start()
@@ -28,17 +36,30 @@ public class EnemyController : MonoBehaviour, IDamageable
         bodySize = bodyCollider.bounds.size;
         currentDirectionTimer = data.directionTimer;
         currentHealth = data.health;
+
+        state = EnemyState.PATROL;
     }
 
     void FixedUpdate()
     {
-        Move();
-        CheckGrounded();
-        UpdateTimer();
-        if (isGrounded && IsOnPlatformEdge())
+
+        switch (state)
         {
-            Flip();
+            case EnemyState.PATROL:
+                Move();
+                CheckGrounded();
+                UpdateTimer();
+                if (isGrounded && IsOnPlatformEdge())
+                {
+                    Flip();
+                }
+                SearchPlayer();
+                break;
+            case EnemyState.SHOOT:
+                StartCoroutine(Shoot(data.shootDamage));
+                break;
         }
+
     }
 
     private void Move()
@@ -91,7 +112,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         Bounds bounds = bodyCollider.bounds;
 
-        Vector2 bottomLeft  = new Vector2(bounds.min.x, bounds.min.y);
+        Vector2 bottomLeft = new Vector2(bounds.min.x, bounds.min.y);
         Vector2 bottomRight = new Vector2(bounds.max.x, bounds.min.y);
 
         Vector2 rayOrigin = (currentDirection == 1) ? bottomRight : bottomLeft;
@@ -119,5 +140,39 @@ public class EnemyController : MonoBehaviour, IDamageable
     public void Die()
     {
         Destroy(gameObject);
+    }
+
+    private void SearchPlayer()
+    {
+
+        Vector2 direction = (currentDirection == 1) ? Vector2.right : Vector2.left;
+        RaycastHit2D hit = Physics2D.Raycast(
+            transform.position,
+            direction,
+            data.searchDistance,
+            playerLayer
+        );
+        if (hit.collider != null)
+        {
+            state = EnemyState.SHOOT;
+        }
+    }
+
+    private IEnumerator Shoot(int damage)
+    {
+        rb.linearVelocity = Vector2.zero;
+        Debug.Log("Enemy shot the player for " + damage + " damage.");
+        yield return new WaitForSeconds(1);
+        state = EnemyState.PATROL;
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Vector2 direction = (currentDirection == 1) ? Vector2.right : Vector2.left;
+        Gizmos.DrawRay(transform.position, direction * data.searchDistance);
+        #if UNITY_EDITOR
+            Handles.Label(transform.position + Vector3.up * 1.5f, state.ToString());
+        #endif
     }
 }

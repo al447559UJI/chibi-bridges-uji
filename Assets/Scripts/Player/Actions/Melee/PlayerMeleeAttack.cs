@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMeleeAttack : MonoBehaviour
@@ -41,7 +40,6 @@ public class PlayerMeleeAttack : MonoBehaviour
                 damageable.Damage(damage);
             }
         }
-
     }
 
     public void Render()
