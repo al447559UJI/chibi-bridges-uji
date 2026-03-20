@@ -20,10 +20,12 @@ public class EnemyController : MonoBehaviour, IDamageable
     private EnemyState state;
     private float currentDirectionTimer;
     private int currentHealth;
-
     private bool isGrounded;
+    private float lastShootTime;
+
     private int currentDirection = 1; // 1 = Right, -1 = Left.
     private float feetCollision = 0.05f;
+    private bool playerDetected = false;
 
     void Awake()
     {
@@ -43,6 +45,12 @@ public class EnemyController : MonoBehaviour, IDamageable
     void FixedUpdate()
     {
 
+        SearchPlayer();
+        if (playerDetected && state == EnemyState.PATROL)
+        {
+            state = EnemyState.SHOOT;
+        }
+
         switch (state)
         {
             case EnemyState.PATROL:
@@ -53,10 +61,13 @@ public class EnemyController : MonoBehaviour, IDamageable
                 {
                     Flip();
                 }
-                SearchPlayer();
                 break;
             case EnemyState.SHOOT:
-                StartCoroutine(Shoot(data.shootDamage));
+                rb.linearVelocity = Vector2.zero;
+                if (Time.time - lastShootTime > (data.reactionCooldown + data.shootCooldown))
+                {
+                    StartCoroutine(Shoot(data.shootDamage));
+                }
                 break;
         }
 
@@ -144,7 +155,6 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     private void SearchPlayer()
     {
-
         Vector2 direction = (currentDirection == 1) ? Vector2.right : Vector2.left;
         RaycastHit2D hit = Physics2D.Raycast(
             transform.position,
@@ -152,18 +162,28 @@ public class EnemyController : MonoBehaviour, IDamageable
             data.searchDistance,
             playerLayer
         );
+
         if (hit.collider != null)
         {
-            state = EnemyState.SHOOT;
+            playerDetected = true;
+        }
+        else
+        {
+            playerDetected = false;
         }
     }
 
     private IEnumerator Shoot(int damage)
     {
-        rb.linearVelocity = Vector2.zero;
-        Debug.Log("Enemy shot the player for " + damage + " damage.");
-        yield return new WaitForSeconds(1);
-        state = EnemyState.PATROL;
+        lastShootTime = Time.time;
+        Debug.Log("(!) " + name + " detected Player.");
+        yield return new WaitForSeconds(data.reactionCooldown);
+        Debug.Log(name + " shot the player for " + damage + " damage.");
+        yield return new WaitForSeconds(data.shootCooldown);
+        if (!playerDetected)
+        {
+            state = EnemyState.PATROL;
+        }
     }
 
     void OnDrawGizmos()
@@ -171,8 +191,8 @@ public class EnemyController : MonoBehaviour, IDamageable
         Gizmos.color = Color.red;
         Vector2 direction = (currentDirection == 1) ? Vector2.right : Vector2.left;
         Gizmos.DrawRay(transform.position, direction * data.searchDistance);
-        #if UNITY_EDITOR
-            Handles.Label(transform.position + Vector3.up * 1.5f, state.ToString());
-        #endif
+#if UNITY_EDITOR
+        Handles.Label(transform.position + Vector3.up * 1.5f, state.ToString());
+#endif
     }
 }
