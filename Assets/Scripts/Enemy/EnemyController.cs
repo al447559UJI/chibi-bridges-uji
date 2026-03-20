@@ -13,7 +13,9 @@ public class EnemyController : MonoBehaviour, IDamageable
 {
     [SerializeField] private EnemyData data;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private LayerMask playerLayer;
+    [Tooltip("Every layer the enemy will be able to see.")]
+    [SerializeField] private LayerMask detectionLayers;
+
     private Rigidbody2D rb;
     private BoxCollider2D bodyCollider;
     private Vector2 bodySize;
@@ -21,11 +23,11 @@ public class EnemyController : MonoBehaviour, IDamageable
     private float currentDirectionTimer;
     private int currentHealth;
     private bool isGrounded;
-    private float lastShootTime;
 
     private int currentDirection = 1; // 1 = Right, -1 = Left.
     private float feetCollision = 0.05f;
     private bool playerDetected = false;
+    private bool isShooting = false;
 
     void Awake()
     {
@@ -57,6 +59,7 @@ public class EnemyController : MonoBehaviour, IDamageable
                 Move();
                 CheckGrounded();
                 UpdateTimer();
+                CheckWall();
                 if (isGrounded && IsOnPlatformEdge())
                 {
                     Flip();
@@ -64,13 +67,12 @@ public class EnemyController : MonoBehaviour, IDamageable
                 break;
             case EnemyState.SHOOT:
                 rb.linearVelocity = Vector2.zero;
-                if (Time.time - lastShootTime > (data.reactionCooldown + data.shootCooldown))
+                if (!isShooting)
                 {
                     StartCoroutine(Shoot(data.shootDamage));
                 }
                 break;
         }
-
     }
 
     private void Move()
@@ -119,15 +121,31 @@ public class EnemyController : MonoBehaviour, IDamageable
         isGrounded = hit.collider != null;
     }
 
+    private void CheckWall()
+    {
+        Bounds bounds = GetBounds();
+        Vector2 rayOrigin = GetForwardCenter(bounds);
+        Vector2 direction = GetForwardDirection();
+
+        RaycastHit2D hit = Physics2D.Raycast(
+            rayOrigin,
+            direction,
+            feetCollision,
+            groundLayer
+        );
+
+        if (hit.collider != null)
+        {
+            Flip();
+        }
+
+    }
+
     private bool IsOnPlatformEdge()
     {
-        Bounds bounds = bodyCollider.bounds;
-
-        Vector2 bottomLeft = new Vector2(bounds.min.x, bounds.min.y);
-        Vector2 bottomRight = new Vector2(bounds.max.x, bounds.min.y);
-
-        Vector2 rayOrigin = (currentDirection == 1) ? bottomRight : bottomLeft;
-
+        Bounds bounds = GetBounds();
+        Vector2 rayOrigin = GetForwardBottom(bounds);
+        
         RaycastHit2D hit = Physics2D.Raycast(
             rayOrigin,
             Vector2.down,
@@ -155,27 +173,20 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     private void SearchPlayer()
     {
-        Vector2 direction = (currentDirection == 1) ? Vector2.right : Vector2.left;
+        Vector2 direction = GetForwardDirection();
         RaycastHit2D hit = Physics2D.Raycast(
             transform.position,
             direction,
             data.searchDistance,
-            playerLayer
+            detectionLayers
         );
 
-        if (hit.collider != null)
-        {
-            playerDetected = true;
-        }
-        else
-        {
-            playerDetected = false;
-        }
+        playerDetected = hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Player");
     }
 
     private IEnumerator Shoot(int damage)
     {
-        lastShootTime = Time.time;
+        isShooting = true;
         Debug.Log("(!) " + name + " detected Player.");
         yield return new WaitForSeconds(data.reactionCooldown);
         Debug.Log(name + " shot the player for " + damage + " damage.");
@@ -184,6 +195,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         {
             state = EnemyState.PATROL;
         }
+        isShooting = false;
     }
 
     void OnDrawGizmos()
@@ -194,5 +206,29 @@ public class EnemyController : MonoBehaviour, IDamageable
 #if UNITY_EDITOR
         Handles.Label(transform.position + Vector3.up * 1.5f, state.ToString());
 #endif
+    }
+
+    private Vector2 GetForwardDirection()
+    {
+        return (currentDirection == 1) ? Vector2.right : Vector2.left;
+    }
+
+    private Vector2 GetForwardCenter(Bounds bounds)
+    {
+        return (currentDirection == 1)
+            ? new Vector2(bounds.max.x, bounds.center.y)
+            : new Vector2(bounds.min.x, bounds.center.y);
+    }
+
+    private Vector2 GetForwardBottom(Bounds bounds)
+    {
+        return (currentDirection == 1)
+            ? new Vector2(bounds.max.x, bounds.min.y)
+            : new Vector2(bounds.min.x, bounds.min.y);
+    }
+
+    private Bounds GetBounds()
+    {
+        return bodyCollider.bounds;
     }
 }
