@@ -7,6 +7,7 @@ public class ActionStateManager : MonoBehaviour
 
     public ActionBuildState buildState = new ActionBuildState();
     public ActionInactiveState inactiveState = new ActionInactiveState();
+    public ActionAirMeleeState airMeleeState = new ActionAirMeleeState();
     public ActionMeleeState meleeState = new ActionMeleeState();
     public ActionShootState shootState = new ActionShootState();
 

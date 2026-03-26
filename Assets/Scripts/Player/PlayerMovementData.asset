@@ -15,7 +15,7 @@ MonoBehaviour:
   maxSpeed: 10
   acceleration: 20
   deceleration: 16
-  jumpForce: 15
+  jumpForce: 14
   jumpBufferTime: 0.1
   variableJumpTime: 0.2
   variableJumpTimeVelocityMultiplier: 0.5

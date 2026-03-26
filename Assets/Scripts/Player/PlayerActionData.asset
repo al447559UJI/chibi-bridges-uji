@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerActionData
   meleeDamage: 1
   meleeCooldown: 0.7
-  shootDamage: 1
+  shootDamage: 2
   shootCooldown: 0.25
   projectileSpeed: 15
   buildRange: 100
+  poleDamage: 1000

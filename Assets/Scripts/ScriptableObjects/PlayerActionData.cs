@@ -15,4 +15,5 @@ public class PlayerActionData : ScriptableObject
 
     [Header("Build mode parameters")]
     public float buildRange;
+    public int poleDamage = 1000;
 }

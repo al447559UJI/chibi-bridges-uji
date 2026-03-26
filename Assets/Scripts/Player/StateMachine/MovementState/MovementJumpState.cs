@@ -19,9 +19,6 @@ public class MovementJumpState : MovementBaseState
 
     public override void UpdateState(MovementStateManager player)
     {
-        if (!player.controller.movement.isGrounded)
-        {
-            player.SwitchState(player.fallState);
-        }
+        player.SwitchState(player.fallState);
     }
 }
