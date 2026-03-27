@@ -5,6 +5,7 @@ public class PlayerBullet : MonoBehaviour
     
     [SerializeField] private float lifetime = 3f; 
     private int damageAmount;
+    private DamageType damageType;
     private float spawnTime;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
@@ -27,6 +28,7 @@ public class PlayerBullet : MonoBehaviour
     {
         rb.linearVelocityX = direction * speed;
         damageAmount = damage;
+        damageType = DamageType.BULLET;
         spawnTime = Time.time;
 
         if (direction < 0)
@@ -40,7 +42,7 @@ public class PlayerBullet : MonoBehaviour
         IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
         if (damageable != null)
         {
-            damageable.Damage(damageAmount);
+            damageable.Damage(damageAmount, damageType);
         }
 
         gameObject.SetActive(false);
