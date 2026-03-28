@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 90332375}
   - component: {fileID: 90332374}
   - component: {fileID: 90332381}
+  - component: {fileID: 90332386}
   - component: {fileID: 90332379}
   - component: {fileID: 90332383}
   - component: {fileID: 90332384}
@@ -489,6 +490,28 @@ MonoBehaviour:
   damageableLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!95 &90332386
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90332372}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 39692e4e540c16bd7b12117a7d75121c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &450538998
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,6 +1064,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e61d646626cbeaa0f86734cf55e7046a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  scrapCollectEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &816860812
 BoxCollider2D:
   m_ObjectHideFlags: 0
