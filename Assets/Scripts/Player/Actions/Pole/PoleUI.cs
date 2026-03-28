@@ -30,10 +30,7 @@ public class PoleUI : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collision)
     {
-        if (player.canBuild)
-        {
-            DenyBuild();
-        }
+        DenyBuild();
     }
 
     void OnTriggerExit2D(Collider2D collision)
@@ -43,17 +40,15 @@ public class PoleUI : MonoBehaviour
 
     private void AllowBuild()
     {
-        player.SetCanBuild(true);
-        SetColor(green);
+        player.SetPolePositionValid(true);
     }
 
     private void DenyBuild()
     {
-        player.SetCanBuild(false);
-        SetColor(red);
+        player.SetPolePositionValid(false);
     }
 
-    private void SetColor(Color color)
+    public void SetColor(Color color)
     {
         spriteRenderer.color = color;
     }

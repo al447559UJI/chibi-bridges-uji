@@ -1,12 +1,19 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ScrapController : MonoBehaviour, IDamageable
 {
+    public UnityEvent scrapCollectEvent;
+
+    void Start()
+    {
+        scrapCollectEvent.AddListener(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerActions>().GiveScrap);
+    }
     public void Damage(int damageAmount, DamageType damageType)
     {
         if (damageType == DamageType.MELEE)
         {
-            Debug.Log("Give Player 50 scrap");
+            scrapCollectEvent.Invoke();
             Die();
         }
     }
@@ -15,5 +22,6 @@ public class ScrapController : MonoBehaviour, IDamageable
     {
         Destroy(gameObject);
     }
+
 
 }

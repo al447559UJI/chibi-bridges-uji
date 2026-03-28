@@ -8,7 +8,7 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private PoleUI poleUI;
 
     [Header("Data & Prefabs")]
-    [SerializeField] private PlayerActionData data;    
+    [SerializeField] private PlayerActionData data;
     [SerializeField] private GameObject pole;
     [Header("Layer Settings")]
     [SerializeField] private LayerMask damageableLayer;
@@ -17,12 +17,18 @@ public class PlayerActions : MonoBehaviour
     private float lastMeleeAnimationStartTime;
     private float lastShootStartTime;
     private bool isMeleeAnimationPlaying;
+    private bool isPolePositionValid;
 
-    public bool canBuild { get; private set; }
-
+    public int currentScrapAmount { get; private set; }
     void Awake()
     {
         movement = GetComponent<PlayerMovement>();
+    }
+
+    void Start()
+    {
+        DebugRegistry.Register("Current scrap", () => currentScrapAmount);
+        currentScrapAmount = data.initialScrapAmount;
     }
 
     public void AirMeleeAttack()
@@ -61,17 +67,24 @@ public class PlayerActions : MonoBehaviour
     {
         if (Time.time - lastShootStartTime >= data.shootCooldown)
         {
-            lastShootStartTime = Time.time;
-            GameObject newBullet = PlayerBulletPool.instance.GetPooledObject();
-
-            if (newBullet != null)
+            if (currentScrapAmount >= data.shootCost)
             {
-                newBullet.transform.position = firePoint.position;
-                newBullet.SetActive(true);
-                newBullet.GetComponent<PlayerBullet>().Initialize(
-                    movement.facingDirection, 
-                    data.projectileSpeed, 
-                    data.shootDamage);
+                lastShootStartTime = Time.time;
+                GameObject newBullet = PlayerBulletPool.instance.GetPooledObject();
+
+                if (newBullet != null)
+                {
+                    newBullet.transform.position = firePoint.position;
+                    newBullet.SetActive(true);
+                    newBullet.GetComponent<PlayerBullet>().Initialize(
+                        movement.facingDirection,
+                        data.projectileSpeed,
+                        data.shootDamage);
+                }
+            }
+            else
+            {
+                Debug.Log("Not enough scrap! " + currentScrapAmount + " remaining.");
             }
         }
     }
@@ -86,20 +99,57 @@ public class PlayerActions : MonoBehaviour
         poleUI.Hide();
     }
 
-    public void SetCanBuild(bool value)
+    public void SetPolePositionValid(bool isPositionValid)
     {
-        canBuild = value;
+
+        if (isPositionValid && CanAffordPole())
+        {
+            poleUI.SetColor(Color.green);
+        }
+        else
+        {
+            poleUI.SetColor(Color.red);
+
+        }
+
+        isPolePositionValid = isPositionValid;
+
     }
 
+    /// <summary>
+    /// Builds a pole at the current indicator position if placement is valid and has enough scrap.
+    /// </summary>
     public void Build()
     {
-        if (canBuild)
+        if (CanAffordPole() && isPolePositionValid)
         {
             GameObject newPole = Instantiate(pole, poleUI.GetSpawnPoint(), Quaternion.identity);
             if (newPole != null)
             {
+                SpendScrap(data.poleCost);
                 newPole.GetComponent<Pole>().Initialize(movement.facingDirection, data.poleDamage);
             }
         }
     }
+
+    public void GiveScrap()
+    {
+        currentScrapAmount += data.scrapCollectAmount;
+    }
+
+    private void SpendScrap(int amount)
+    {
+        currentScrapAmount -= amount;
+
+        if (!CanAffordPole())
+        {
+            poleUI.SetColor(Color.red);
+        }
+    }
+
+    private bool CanAffordPole()
+    {
+        return currentScrapAmount >= data.poleCost;
+    }
+
 }
