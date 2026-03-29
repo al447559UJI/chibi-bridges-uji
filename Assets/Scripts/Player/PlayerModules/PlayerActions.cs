@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerActions : MonoBehaviour
 {
@@ -20,15 +21,20 @@ public class PlayerActions : MonoBehaviour
     private bool isPolePositionValid;
 
     public int currentScrapAmount { get; private set; }
+
+    public UnityEvent<int> onScrapChanged;
+    
     void Awake()
     {
         movement = GetComponent<PlayerMovement>();
+
+        // This has to be set before the HUD loads so the UI displays the correct number.
+        currentScrapAmount = data.initialScrapAmount;
     }
 
     void Start()
     {
         DebugRegistry.Register("Current scrap", () => currentScrapAmount);
-        currentScrapAmount = data.initialScrapAmount;
     }
 
     public void AirMeleeAttack()
@@ -135,12 +141,14 @@ public class PlayerActions : MonoBehaviour
     public void GiveScrap()
     {
         currentScrapAmount += data.scrapCollectAmount;
+        onScrapChanged.Invoke(currentScrapAmount);
     }
 
     private void SpendScrap(int amount)
     {
         currentScrapAmount -= amount;
-
+        onScrapChanged.Invoke(currentScrapAmount);
+        
         if (!CanAffordPole())
         {
             poleUI.SetColor(Color.red);

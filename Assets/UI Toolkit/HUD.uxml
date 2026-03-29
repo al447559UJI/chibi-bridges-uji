@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/HUD.uss?fileID=7433441132597879392&amp;guid=41a58b2dd2826ae46b6230290e1d4476&amp;type=3#HUD"/>
+    <ui:VisualElement name="HUDContainer" class="HUDContainer" style="flex-grow: 1;">
+        <ui:VisualElement name="ScrapIcon" class="ScrapIcon"/>
+        <ui:Label text="999 Scrap remaining" name="ScrapText" class="ScrapText"/>
+    </ui:VisualElement>
+</ui:UXML>

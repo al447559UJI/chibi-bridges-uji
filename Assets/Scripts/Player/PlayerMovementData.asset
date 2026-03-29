@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d7dc2206b966e21a53eaea10d3e03f, type: 3}
   m_Name: PlayerMovementData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  maxSpeed: 10
-  acceleration: 20
-  deceleration: 16
+  maxSpeed: 8
+  acceleration: 15
+  deceleration: 18
   jumpForce: 14
   jumpBufferTime: 0.1
   variableJumpTime: 0.2
