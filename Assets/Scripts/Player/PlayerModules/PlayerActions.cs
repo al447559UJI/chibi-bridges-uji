@@ -23,6 +23,7 @@ public class PlayerActions : MonoBehaviour
     public int currentScrapAmount { get; private set; }
 
     public UnityEvent<int> onScrapChanged;
+    public UnityEvent onScrapGiven;
     
     void Awake()
     {
@@ -142,6 +143,7 @@ public class PlayerActions : MonoBehaviour
     {
         currentScrapAmount += data.scrapCollectAmount;
         onScrapChanged.Invoke(currentScrapAmount);
+        onScrapGiven.Invoke();
     }
 
     private void SpendScrap(int amount)

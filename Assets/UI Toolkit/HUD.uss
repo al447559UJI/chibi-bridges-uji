@@ -22,3 +22,16 @@
     color: rgb(223, 230, 224);
     font-size: 18px;
 }
+
+.plus-scrap-default {
+}
+
+.plus-scrap-up {
+    translate: 0 -100px;
+    opacity: 0;
+}
+
+.plus-scrap-invisible {
+    opacity: 1;
+    display: none;
+}
