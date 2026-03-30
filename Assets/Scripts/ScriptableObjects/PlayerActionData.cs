@@ -3,6 +3,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerActionData", menuName = "Scriptable Objects/PlayerActionData")]
 public class PlayerActionData : ScriptableObject
 {
+    [Header("Debug toggles")]
+    public bool debugGodMode = false;
+    public bool debugInfiniteAmmo = false;
+    
     [Header("Melee attack parameters")]
     public int meleeDamage;
     [Range(0.22f, 1.5f)]
@@ -18,6 +22,9 @@ public class PlayerActionData : ScriptableObject
     public float buildRange;
     public int poleDamage = 1000;
     public int poleCost = 100;
+
+    [Header("Health parameters")]
+    public int maxHealth = 100;
 
     [Header("Scrap parameters")]
     public int maxScrapAmount = 1000;

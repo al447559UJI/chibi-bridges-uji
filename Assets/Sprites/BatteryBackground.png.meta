@@ -1,22 +1,10 @@
 fileFormatVersion: 2
-guid: fa7e1bd2d45b8b838a13b6a411c51e14
+guid: af32dab61e4db99c49ab2c0ad5d889d8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8676071690732855234
-    second: HeartAnimation_0
-  - first:
-      213: -1280457976045784819
-    second: HeartAnimation_1
-  - first:
-      213: 5943419644385777785
-    second: HeartAnimation_2
-  - first:
-      213: -7738685238194268173
-    second: HeartAnimation_3
-  - first:
-      213: 2804894986586644849
-    second: HeartAnimation_4
+      213: -6423609379137881015
+    second: BatteryBackground_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -112,56 +100,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HeartAnimation_0
+      name: BatteryBackground_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 33
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e30ab0cd3c6689780800000000000000
-      internalID: -8676071690732855234
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HeartAnimation_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d01b9f34146ea3ee0800000000000000
-      internalID: -1280457976045784819
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HeartAnimation_2
-      rect:
-        serializedVersion: 2
-        x: 66
-        y: 0
-        width: 28
+        width: 48
         height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -171,52 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 97851be4da44b7250800000000000000
-      internalID: 5943419644385777785
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HeartAnimation_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3f71fd4f6caaa9490800000000000000
-      internalID: -7738685238194268173
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HeartAnimation_4
-      rect:
-        serializedVersion: 2
-        x: 127
-        y: 0
-        width: 33
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 17165cb112dfce620800000000000000
-      internalID: 2804894986586644849
+      spriteID: 94c7e9cad41cad6a0800000000000000
+      internalID: -6423609379137881015
       vertices: []
       indices: 
       edges: []
@@ -235,11 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      HeartAnimation_0: -8676071690732855234
-      HeartAnimation_1: -1280457976045784819
-      HeartAnimation_2: 5943419644385777785
-      HeartAnimation_3: -7738685238194268173
-      HeartAnimation_4: 2804894986586644849
+      BatteryBackground_0: -6423609379137881015
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

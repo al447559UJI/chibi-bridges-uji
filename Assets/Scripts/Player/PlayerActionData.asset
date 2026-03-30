@@ -12,15 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13cada6c96b79683abfc8cdd966b8131, type: 3}
   m_Name: PlayerActionData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerActionData
+  debugGodMode: 0
+  debugInfiniteAmmo: 0
   meleeDamage: 1
   meleeCooldown: 0.7
   shootDamage: 2
   shootCooldown: 0.25
-  shootCost: 1
+  shootCost: 5
   projectileSpeed: 15
   buildRange: 100
   poleDamage: 1000
   poleCost: 100
+  maxHealth: 100
   maxScrapAmount: 1000
   initialScrapAmount: 100
   scrapCollectAmount: 100

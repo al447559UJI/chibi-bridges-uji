@@ -1,7 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerActions : MonoBehaviour
+public class PlayerActions : MonoBehaviour, IDamageable
 {
     [Header("Child References")]
     [SerializeField] private PlayerMeleeAttack meleeAttack;
@@ -19,13 +20,15 @@ public class PlayerActions : MonoBehaviour
     private float lastShootStartTime;
     private bool isMeleeAnimationPlaying;
     private bool isPolePositionValid;
+    private int currentHealth;
 
     public int currentScrapAmount { get; private set; }
 
     public UnityEvent<int> onScrapChanged;
     public UnityEvent<string> onScrapGiven;
     public UnityEvent<string> onScrapSpent;
-    
+    public UnityEvent<int> onHealthChanged;
+
     void Awake()
     {
         movement = GetComponent<PlayerMovement>();
@@ -36,7 +39,7 @@ public class PlayerActions : MonoBehaviour
 
     void Start()
     {
-        DebugRegistry.Register("Current scrap", () => currentScrapAmount);
+        currentHealth = data.maxHealth;
     }
 
     public void AirMeleeAttack()
@@ -73,9 +76,10 @@ public class PlayerActions : MonoBehaviour
 
     public void Shoot()
     {
+
         if (Time.time - lastShootStartTime >= data.shootCooldown)
         {
-            if (currentScrapAmount >= data.shootCost)
+            if (currentScrapAmount >= data.shootCost || data.debugInfiniteAmmo)
             {
                 lastShootStartTime = Time.time;
                 GameObject newBullet = PlayerBulletPool.instance.GetPooledObject();
@@ -150,10 +154,12 @@ public class PlayerActions : MonoBehaviour
 
     private void SpendScrap(int amount)
     {
+        if (data.debugInfiniteAmmo) return;
+
         currentScrapAmount -= amount;
         onScrapChanged.Invoke(currentScrapAmount);
         onScrapSpent.Invoke($"-{amount} Scrap");
-        
+
         if (!CanAffordPole())
         {
             poleUI.SetColor(Color.red);
@@ -165,4 +171,23 @@ public class PlayerActions : MonoBehaviour
         return currentScrapAmount >= data.poleCost;
     }
 
+    public void Damage(int damageAmount, DamageType damageType)
+    {
+        if (data.debugGodMode) return;
+        
+        currentHealth -= damageAmount;
+        currentHealth = Math.Max(currentHealth, 0);
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+
+        onHealthChanged.Invoke(currentHealth);
+    }
+
+    public void Die()
+    {
+        Debug.Log("You died!");
+    }
 }
