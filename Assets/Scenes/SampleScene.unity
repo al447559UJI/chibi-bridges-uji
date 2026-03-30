@@ -275,7 +275,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -496,6 +496,9 @@ MonoBehaviour:
   onScrapGiven:
     m_PersistentCalls:
       m_Calls: []
+  onScrapSpent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!95 &90332386
 Animator:
   serializedVersion: 7
@@ -528,11 +531,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 92511416859549059, guid: 20adba761bdb6e3eb8a8cd7c9b8312d1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.0164847
+      value: 5.77
       objectReference: {fileID: 0}
     - target: {fileID: 92511416859549059, guid: 20adba761bdb6e3eb8a8cd7c9b8312d1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.4044566
+      value: -3.4400003
       objectReference: {fileID: 0}
     - target: {fileID: 92511416859549059, guid: 20adba761bdb6e3eb8a8cd7c9b8312d1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1194,11 +1197,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 92511416859549059, guid: 20adba761bdb6e3eb8a8cd7c9b8312d1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.9186115
+      value: 4.1
       objectReference: {fileID: 0}
     - target: {fileID: 92511416859549059, guid: 20adba761bdb6e3eb8a8cd7c9b8312d1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.3033543
+      value: -3.34
       objectReference: {fileID: 0}
     - target: {fileID: 92511416859549059, guid: 20adba761bdb6e3eb8a8cd7c9b8312d1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -58172,11 +58175,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 92511416859549059, guid: 20adba761bdb6e3eb8a8cd7c9b8312d1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.53
+      value: 1.82
       objectReference: {fileID: 0}
     - target: {fileID: 92511416859549059, guid: 20adba761bdb6e3eb8a8cd7c9b8312d1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.37
+      value: -3.34
       objectReference: {fileID: 0}
     - target: {fileID: 92511416859549059, guid: 20adba761bdb6e3eb8a8cd7c9b8312d1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -58234,7 +58237,7 @@ SceneRoots:
   - {fileID: 1442872652}
   - {fileID: 1019904530}
   - {fileID: 1661164328}
-  - {fileID: 5753921139427178895}
   - {fileID: 1588549055}
+  - {fileID: 5753921139427178895}
   - {fileID: 1094979575}
   - {fileID: 159078047}

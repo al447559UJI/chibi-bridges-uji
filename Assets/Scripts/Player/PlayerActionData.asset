@@ -16,6 +16,11 @@ MonoBehaviour:
   meleeCooldown: 0.7
   shootDamage: 2
   shootCooldown: 0.25
+  shootCost: 1
   projectileSpeed: 15
   buildRange: 100
   poleDamage: 1000
+  poleCost: 100
+  maxScrapAmount: 1000
+  initialScrapAmount: 100
+  scrapCollectAmount: 100

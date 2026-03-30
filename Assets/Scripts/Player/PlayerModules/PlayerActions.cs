@@ -23,7 +23,8 @@ public class PlayerActions : MonoBehaviour
     public int currentScrapAmount { get; private set; }
 
     public UnityEvent<int> onScrapChanged;
-    public UnityEvent onScrapGiven;
+    public UnityEvent<string> onScrapGiven;
+    public UnityEvent<string> onScrapSpent;
     
     void Awake()
     {
@@ -81,6 +82,7 @@ public class PlayerActions : MonoBehaviour
 
                 if (newBullet != null)
                 {
+                    SpendScrap(data.shootCost);
                     newBullet.transform.position = firePoint.position;
                     newBullet.SetActive(true);
                     newBullet.GetComponent<PlayerBullet>().Initialize(
@@ -143,13 +145,14 @@ public class PlayerActions : MonoBehaviour
     {
         currentScrapAmount += data.scrapCollectAmount;
         onScrapChanged.Invoke(currentScrapAmount);
-        onScrapGiven.Invoke();
+        onScrapGiven.Invoke($"+{data.scrapCollectAmount} Scrap");
     }
 
     private void SpendScrap(int amount)
     {
         currentScrapAmount -= amount;
         onScrapChanged.Invoke(currentScrapAmount);
+        onScrapSpent.Invoke($"-{amount} Scrap");
         
         if (!CanAffordPole())
         {

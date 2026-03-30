@@ -23,5 +23,4 @@ public class ScrapController : MonoBehaviour, IDamageable
         Destroy(gameObject);
     }
 
-
 }
