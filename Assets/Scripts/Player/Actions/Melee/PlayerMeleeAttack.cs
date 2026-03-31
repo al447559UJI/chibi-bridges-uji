@@ -6,6 +6,7 @@ public class PlayerMeleeAttack : MonoBehaviour
     private Animator animator;
     private PlayerActions actions;
     private BoxCollider2D hitbox;
+    private DamageType damageType;
 
 
     void Awake()
@@ -19,6 +20,7 @@ public class PlayerMeleeAttack : MonoBehaviour
     void Start()
     {
         Hide();
+        damageType = DamageType.MELEE;
     }
 
     public void InitializeHitbox(int damage, LayerMask damageableLayer)
@@ -37,7 +39,7 @@ public class PlayerMeleeAttack : MonoBehaviour
             IDamageable damageable = hit.gameObject.GetComponent<IDamageable>();
             if (damageable != null)
             {
-                damageable.Damage(damage);
+                damageable.Damage(damage, damageType);
             }
         }
     }

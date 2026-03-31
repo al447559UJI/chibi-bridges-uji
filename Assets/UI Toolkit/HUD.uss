@@ -1,0 +1,49 @@
+:root {
+}
+
+.hud-container {
+    background-color: rgba(34, 34, 40, 0);
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    flex-direction: row;
+    align-items: center;
+}
+
+.scrap-icon {
+    width: 32px;
+    height: 32px;
+    background-image: url("project://database/Assets/Sprites/Recycle.png?fileID=2800000&guid=6088e3ff9a349ff26bf978c1e530eb93&type=3#Recycle");
+    margin-right: 10px;
+}
+
+.scrap-text {
+    -unity-font-definition: url("project://database/Assets/Fonts/NotJamChunkySans.ttf?fileID=12800000&guid=b534870695be2dc60a4f54898c782cbf&type=3#NotJamChunkySans");
+    color: rgb(223, 230, 224);
+    font-size: 18px;
+}
+
+.plus-scrap-default {
+    font-size: 18px;
+    -unity-font-definition: url("project://database/Assets/Fonts/NotJamChunkySans.ttf?fileID=12800000&guid=b534870695be2dc60a4f54898c782cbf&type=3#NotJamChunkySans");
+    color: rgb(155, 161, 95);
+    position: absolute;
+    left: 25px;
+}
+
+.label-scrap-up {
+    translate: 0 -100px;
+    opacity: 0;
+    transition-property: translate, opacity;
+    transition-duration: 0.7s, 0.7s;
+}
+
+
+
+.minus-scrap-default {
+    font-size: 18px;
+    -unity-font-definition: url("project://database/Assets/Fonts/NotJamChunkySans.ttf?fileID=12800000&guid=b534870695be2dc60a4f54898c782cbf&type=3#NotJamChunkySans");
+    color: rgb(133, 68, 74);
+    position: absolute;
+    left: 25px;
+}

@@ -21,6 +21,7 @@ public class Pole : MonoBehaviour
     private Rigidbody2D rb;
     private int direction = 1;
     private int damageAmount;
+    private DamageType damageType;
 
     void Awake()
     {
@@ -41,6 +42,7 @@ public class Pole : MonoBehaviour
         hinge.enabled = false;
 
         state = PoleState.FALL;
+        damageType = DamageType.MELEE;
 
         rb.gravityScale = data.gravityScale;
     }
@@ -79,7 +81,7 @@ public class Pole : MonoBehaviour
         IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
         if (damageable != null)
         {
-            damageable.Damage(damageAmount);
+            damageable.Damage(damageAmount, damageType);
         }
     }
 

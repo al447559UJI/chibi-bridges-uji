@@ -156,7 +156,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         return hit.collider == null;
     }
 
-    public void Damage(int damageAmount)
+    public void Damage(int damageAmount, DamageType damageType)
     {
         currentHealth -= damageAmount;
 

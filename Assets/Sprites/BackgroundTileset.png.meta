@@ -1,0 +1,1110 @@
+fileFormatVersion: 2
+guid: 7e57c310f3e6936719cfadecbdce5088
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5306501987304934638
+    second: BackgroundTileset_0
+  - first:
+      213: -289038533832729146
+    second: BackgroundTileset_1
+  - first:
+      213: 8589662592058232969
+    second: BackgroundTileset_2
+  - first:
+      213: -3678565376124798810
+    second: BackgroundTileset_3
+  - first:
+      213: 3688205950161616019
+    second: BackgroundTileset_4
+  - first:
+      213: -2974319747403318798
+    second: BackgroundTileset_5
+  - first:
+      213: 7980623699011070072
+    second: BackgroundTileset_6
+  - first:
+      213: 1117512517458708179
+    second: BackgroundTileset_7
+  - first:
+      213: 4960022409907895162
+    second: BackgroundTileset_8
+  - first:
+      213: 7743946063221288240
+    second: BackgroundTileset_9
+  - first:
+      213: -5044020123061864848
+    second: BackgroundTileset_10
+  - first:
+      213: 8728550443001176994
+    second: BackgroundTileset_11
+  - first:
+      213: 7154775058192281771
+    second: BackgroundTileset_12
+  - first:
+      213: 381845863239919668
+    second: BackgroundTileset_13
+  - first:
+      213: 5340082941656845850
+    second: BackgroundTileset_14
+  - first:
+      213: 9156840544499470165
+    second: BackgroundTileset_15
+  - first:
+      213: 7670480809067545574
+    second: BackgroundTileset_16
+  - first:
+      213: -5159434795355363382
+    second: BackgroundTileset_17
+  - first:
+      213: 8307769381678101703
+    second: BackgroundTileset_18
+  - first:
+      213: 5848229997374667150
+    second: BackgroundTileset_19
+  - first:
+      213: -2394516898274826201
+    second: BackgroundTileset_20
+  - first:
+      213: 5080048498731694288
+    second: BackgroundTileset_21
+  - first:
+      213: -819781054608642807
+    second: BackgroundTileset_22
+  - first:
+      213: 732402018129452225
+    second: BackgroundTileset_23
+  - first:
+      213: 6082819883886996571
+    second: BackgroundTileset_24
+  - first:
+      213: -2658444803696812659
+    second: BackgroundTileset_25
+  - first:
+      213: -3791514781633778897
+    second: BackgroundTileset_26
+  - first:
+      213: 662782946279248917
+    second: BackgroundTileset_27
+  - first:
+      213: 8476313499255579823
+    second: BackgroundTileset_28
+  - first:
+      213: 5140904177755454056
+    second: BackgroundTileset_29
+  - first:
+      213: -7968160045704218361
+    second: BackgroundTileset_30
+  - first:
+      213: -8300551606680484061
+    second: BackgroundTileset_31
+  - first:
+      213: -7326698622949383425
+    second: BackgroundTileset_32
+  - first:
+      213: -6294722336050553356
+    second: BackgroundTileset_33
+  - first:
+      213: 1726254612895348703
+    second: BackgroundTileset_34
+  - first:
+      213: 8632878891403833365
+    second: BackgroundTileset_35
+  - first:
+      213: -1501370956437218819
+    second: BackgroundTileset_36
+  - first:
+      213: 5074480027809916614
+    second: BackgroundTileset_37
+  - first:
+      213: -2804528852635889164
+    second: BackgroundTileset_38
+  - first:
+      213: -7933477347227568766
+    second: BackgroundTileset_39
+  - first:
+      213: -6895840424775743233
+    second: BackgroundTileset_40
+  - first:
+      213: -8082284298692754144
+    second: BackgroundTileset_41
+  - first:
+      213: 8100726753730696390
+    second: BackgroundTileset_42
+  - first:
+      213: 4490614741726124255
+    second: BackgroundTileset_43
+  - first:
+      213: -9175368500197445098
+    second: BackgroundTileset_44
+  - first:
+      213: -7810857747936378390
+    second: BackgroundTileset_45
+  - first:
+      213: -6142673528374320260
+    second: BackgroundTileset_46
+  - first:
+      213: -1877689800498758954
+    second: BackgroundTileset_47
+  - first:
+      213: 3441340905475864254
+    second: BackgroundTileset_48
+  - first:
+      213: 7645883644869178333
+    second: BackgroundTileset_49
+  - first:
+      213: -3595815156281609491
+    second: BackgroundTileset_50
+  - first:
+      213: -4918411533113353960
+    second: BackgroundTileset_51
+  - first:
+      213: -5226255433860059881
+    second: BackgroundTileset_52
+  - first:
+      213: -2070965007011229137
+    second: BackgroundTileset_53
+  - first:
+      213: 1078946437215017173
+    second: BackgroundTileset_54
+  - first:
+      213: 4346179743209112872
+    second: BackgroundTileset_55
+  - first:
+      213: 6171208496292703039
+    second: BackgroundTileset_56
+  - first:
+      213: -5406488538949588205
+    second: BackgroundTileset_57
+  - first:
+      213: 3044408296749330821
+    second: BackgroundTileset_58
+  - first:
+      213: -1566211768474141062
+    second: BackgroundTileset_59
+  - first:
+      213: -5151302558187984531
+    second: BackgroundTileset_60
+  - first:
+      213: 2746079797714537287
+    second: BackgroundTileset_61
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BackgroundTileset_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eec0731417b74a940800000000000000
+      internalID: 5306501987304934638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cd10802cf02dfbf0800000000000000
+      internalID: -289038533832729146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98097141e9c943770800000000000000
+      internalID: 8589662592058232969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a8b701c74c13fcc0800000000000000
+      internalID: -3678565376124798810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39c7ddd45c32f2330800000000000000
+      internalID: 3688205950161616019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f97897c2f719b6d0800000000000000
+      internalID: -2974319747403318798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8786e9998fed0ce60800000000000000
+      internalID: 7980623699011070072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d6cd2bb6b3328f00800000000000000
+      internalID: 1117512517458708179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_8
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7b798c3a1a85d440800000000000000
+      internalID: 4960022409907895162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_9
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03de6125ae5087b60800000000000000
+      internalID: 7743946063221288240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_10
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 076b9f42c6a000ab0800000000000000
+      internalID: -5044020123061864848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_11
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a3e92fc16a022970800000000000000
+      internalID: 8728550443001176994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_12
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba0306ff10eda4360800000000000000
+      internalID: 7154775058192281771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_13
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4382e5d1ac69c4500800000000000000
+      internalID: 381845863239919668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1e44987429cb1a40800000000000000
+      internalID: 5340082941656845850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_15
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55f09cfc5f1a31f70800000000000000
+      internalID: 9156840544499470165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_16
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e30ce8e7a5037a60800000000000000
+      internalID: 7670480809067545574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_17
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac7ad05b3610668b0800000000000000
+      internalID: -5159434795355363382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_18
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c43ac67c302b4370800000000000000
+      internalID: 8307769381678101703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_19
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e89fc468236192150800000000000000
+      internalID: 5848229997374667150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_20
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 728a8a55197f4ced0800000000000000
+      internalID: -2394516898274826201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d8b8a0c135ff7640800000000000000
+      internalID: 5080048498731694288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_22
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90de476697d8f94f0800000000000000
+      internalID: -819781054608642807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_23
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cc926b41c30a2a00800000000000000
+      internalID: 732402018129452225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_24
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5c64cbc4748a6450800000000000000
+      internalID: 6082819883886996571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_25
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8d1bac398e4b1bd0800000000000000
+      internalID: -2658444803696812659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_26
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2b6318f465d16bc0800000000000000
+      internalID: -3791514781633778897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_27
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 514592cf39da23900800000000000000
+      internalID: 662782946279248917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa42af7d73ae1a570800000000000000
+      internalID: 8476313499255579823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_29
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86a7f6bac19285740800000000000000
+      internalID: 5140904177755454056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_30
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 709f652d7a86b6190800000000000000
+      internalID: -7968160045704218361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_31
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 327030cba448ecc80800000000000000
+      internalID: -8300551606680484061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_32
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff222c2cb66525a90800000000000000
+      internalID: -7326698622949383425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_33
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fd5dffd267a4a8a0800000000000000
+      internalID: -6294722336050553356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackgroundTileset_34
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd7b181ac63e4f710800000000000000
+      internalID: 1726254612895348703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 0659594ef0de7f7f08ec2b83b9e0450a
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      BackgroundTileset_0: 5306501987304934638
+      BackgroundTileset_1: -289038533832729146
+      BackgroundTileset_10: -5044020123061864848
+      BackgroundTileset_11: 8728550443001176994
+      BackgroundTileset_12: 7154775058192281771
+      BackgroundTileset_13: 381845863239919668
+      BackgroundTileset_14: 5340082941656845850
+      BackgroundTileset_15: 9156840544499470165
+      BackgroundTileset_16: 7670480809067545574
+      BackgroundTileset_17: -5159434795355363382
+      BackgroundTileset_18: 8307769381678101703
+      BackgroundTileset_19: 5848229997374667150
+      BackgroundTileset_2: 8589662592058232969
+      BackgroundTileset_20: -2394516898274826201
+      BackgroundTileset_21: 5080048498731694288
+      BackgroundTileset_22: -819781054608642807
+      BackgroundTileset_23: 732402018129452225
+      BackgroundTileset_24: 6082819883886996571
+      BackgroundTileset_25: -2658444803696812659
+      BackgroundTileset_26: -3791514781633778897
+      BackgroundTileset_27: 662782946279248917
+      BackgroundTileset_28: 8476313499255579823
+      BackgroundTileset_29: 5140904177755454056
+      BackgroundTileset_3: -3678565376124798810
+      BackgroundTileset_30: -7968160045704218361
+      BackgroundTileset_31: -8300551606680484061
+      BackgroundTileset_32: -7326698622949383425
+      BackgroundTileset_33: -6294722336050553356
+      BackgroundTileset_34: 1726254612895348703
+      BackgroundTileset_4: 3688205950161616019
+      BackgroundTileset_5: -2974319747403318798
+      BackgroundTileset_6: 7980623699011070072
+      BackgroundTileset_7: 1117512517458708179
+      BackgroundTileset_8: 4960022409907895162
+      BackgroundTileset_9: 7743946063221288240
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
