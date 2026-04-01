@@ -6,12 +6,14 @@ public class PlayerController : MonoBehaviour
     public PlayerInput input { get; private set; }
     public PlayerMovement movement { get; private set; }
     public PlayerActions actions { get; private set; }
+    public PlayerHealth health { get; private set; }
 
     void Awake()
     {
         input = GetComponent<PlayerInput>();
         movement = GetComponent<PlayerMovement>();
         actions = GetComponent<PlayerActions>();
+        health = GetComponent<PlayerHealth>();
     }
 
 }

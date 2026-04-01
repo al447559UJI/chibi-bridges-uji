@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -8,15 +9,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private PlayerMovementData data;
     [SerializeField] private LayerMask groundLayer;
 
-    public Rigidbody2D rb { get; private set; }    
+    public Rigidbody2D rb { get; private set; }
     public bool isGrounded { get; private set; }
     public bool isFalling { get; private set; }
-    public int facingDirection {get; private set;} = 1; // 1 = right, -1 = left.
-
-    private float feetCollision = 0.05f;
     private float lastJumpStartTime;
     private float lastGroundedTime;
     private PlayerInput input;
+    private float feetCollision = 0.05f;
+    public int facingDirection { get; private set; } = 1; // 1 = right, -1 = left.
+    public bool isKnockbackActive { get; private set; } = false;
 
     void Awake()
     {
@@ -25,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
         DebugRegistry.Register("Speed X", () => Math.Truncate(100 * rb.linearVelocityX) / 100);
         DebugRegistry.Register("Speed Y", () => Math.Truncate(100 * rb.linearVelocityY) / 100);
-        DebugRegistry.Register("IsGrounded",() => isGrounded);
+        DebugRegistry.Register("IsGrounded", () => isGrounded);
     }
 
     void Update()
@@ -34,7 +35,8 @@ public class PlayerMovement : MonoBehaviour
         if (input.horizontal < 0 && facingDirection == 1)
         {
             Flip();
-        } else if (input.horizontal > 0 && facingDirection == -1)
+        }
+        else if (input.horizontal > 0 && facingDirection == -1)
         {
             Flip();
         }
@@ -133,4 +135,35 @@ public class PlayerMovement : MonoBehaviour
         facingDirection = -facingDirection;
         transform.Rotate(0f, 180f, 0f);
     }
+
+    public void HurtKnockback(int direction)
+    {
+        if (direction != -1 && direction != 1)
+        {
+            Debug.LogError($"HurKnockback direction is now allowed (-1, 1), direction = {direction}");
+            return;
+        }
+        else
+        {
+            StartCoroutine(HandleKnockback());
+        }
+
+    }
+
+    public IEnumerator HandleKnockback()
+    {
+        input.LockJump();
+        input.LockHorizontalMovement();
+        rb.linearVelocity = Vector2.zero;
+
+        rb.linearVelocity = new Vector2(
+        rb.linearVelocityX + -facingDirection * data.knockbackForce,
+        rb.linearVelocityY + data.knockbackForce
+        );
+
+        yield return new WaitForSeconds(data.knockbackTime);
+        input.UnlockJump();
+        input.UnlockHorizontalMovement();
+    }
+
 }

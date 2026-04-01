@@ -9,7 +9,7 @@ public class ScrapController : MonoBehaviour, IDamageable
     {
         scrapCollectEvent.AddListener(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerActions>().GiveScrap);
     }
-    public void Damage(int damageAmount, DamageType damageType)
+    public void Damage(int damageAmount, DamageType damageType, int direction)
     {
         if (damageType == DamageType.MELEE)
         {

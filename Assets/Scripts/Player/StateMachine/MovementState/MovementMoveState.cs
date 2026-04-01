@@ -38,5 +38,9 @@ public class MovementMoveState : MovementBaseState
                 player.SwitchState(player.jumpState);
             }
         }
+        if (player.controller.movement.isKnockbackActive)
+        {
+            player.SwitchState(player.hurtState);
+        }
     }
 }

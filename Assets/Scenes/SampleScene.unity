@@ -245,6 +245,7 @@ GameObject:
   - component: {fileID: 90332385}
   - component: {fileID: 90332378}
   - component: {fileID: 90332382}
+  - component: {fileID: 90332387}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -499,9 +500,6 @@ MonoBehaviour:
   onScrapSpent:
     m_PersistentCalls:
       m_Calls: []
-  onHealthChanged:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!95 &90332386
 Animator:
   serializedVersion: 7
@@ -524,6 +522,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &90332387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90332372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40e77b2aa5855e237bcd2ae9612d39c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  data: {fileID: 11400000, guid: 4851a5af9d8140229b7f0ecf556d0a43, type: 2}
+  onHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &159078047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7713,7 +7727,7 @@ MonoBehaviour:
   - {fileID: -7738685238194268173, guid: fa7e1bd2d45b8b838a13b6a411c51e14, type: 3}
   - {fileID: 2804894986586644849, guid: fa7e1bd2d45b8b838a13b6a411c51e14, type: 3}
   fps: 10
-  player: {fileID: 90332385}
+  player: {fileID: 90332387}
 --- !u!114 &1347588667
 MonoBehaviour:
   m_ObjectHideFlags: 0

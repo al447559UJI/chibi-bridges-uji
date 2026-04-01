@@ -81,7 +81,7 @@ public class Pole : MonoBehaviour
         IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
         if (damageable != null)
         {
-            damageable.Damage(damageAmount, damageType);
+            damageable.Damage(damageAmount, damageType, direction);
         }
     }
 

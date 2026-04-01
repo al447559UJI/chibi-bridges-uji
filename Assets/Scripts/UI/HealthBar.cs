@@ -5,7 +5,7 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Sprite[] frames;
     [SerializeField] private float fps = 10f;
-    [SerializeField] private PlayerActions player;
+    [SerializeField] private PlayerHealth player;
     private VisualElement container;
     private VisualElement heart;
     private Label label;

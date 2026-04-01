@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
@@ -42,7 +43,7 @@ public class PlayerBullet : MonoBehaviour
         IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
         if (damageable != null)
         {
-            damageable.Damage(damageAmount, damageType);
+            damageable.Damage(damageAmount, damageType, Math.Sign(rb.linearVelocityX));
         }
 
         gameObject.SetActive(false);

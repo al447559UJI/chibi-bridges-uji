@@ -15,6 +15,8 @@ MonoBehaviour:
   maxSpeed: 8
   acceleration: 15
   deceleration: 18
+  knockbackForce: 20
+  knockbackTime: 0.2
   jumpForce: 14
   jumpBufferTime: 0.1
   variableJumpTime: 0.2

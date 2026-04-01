@@ -4,7 +4,6 @@ using UnityEngine;
 public class PlayerActionData : ScriptableObject
 {
     [Header("Debug toggles")]
-    public bool debugGodMode = false;
     public bool debugInfiniteAmmo = false;
     
     [Header("Melee attack parameters")]
@@ -22,9 +21,6 @@ public class PlayerActionData : ScriptableObject
     public float buildRange;
     public int poleDamage = 1000;
     public int poleCost = 100;
-
-    [Header("Health parameters")]
-    public int maxHealth = 100;
 
     [Header("Scrap parameters")]
     public int maxScrapAmount = 1000;

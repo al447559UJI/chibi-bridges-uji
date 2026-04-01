@@ -7,6 +7,8 @@ public class PlayerMovementData : ScriptableObject
     public float maxSpeed;
     public float acceleration;
     public float deceleration;
+    public float knockbackForce;
+    public float knockbackTime;
 
     [Header("Jump parameters")]
     public float jumpForce;

@@ -10,6 +10,7 @@ public class MovementStateManager : MonoBehaviour
     public MovementMoveState moveState = new MovementMoveState();
     public MovementJumpState jumpState = new MovementJumpState();
     public MovementFallState fallState = new MovementFallState();
+    public MovementHurtState hurtState = new MovementHurtState();
 
     
     void Awake()
