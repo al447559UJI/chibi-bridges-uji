@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthData
   debugGodMode: 0
   maxHealth: 100
-  invencibleTime: 1
+  invencibleTime: 1.25
+  flickerPercentage: 30
+  flickerSpeed: 0.067

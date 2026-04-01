@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -27,7 +26,6 @@ public class PlayerActions : MonoBehaviour
     public UnityEvent<string> onScrapGiven;
     public UnityEvent<string> onScrapSpent;
 
-    private bool isInvencible = false;
     void Awake()
     {
         movement = GetComponent<PlayerMovement>();
