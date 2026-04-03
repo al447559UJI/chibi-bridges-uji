@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class MovementHurtState : MovementBaseState
 {
+    public override MovementStateType Type => MovementStateType.HURT;
+
     public override void EnterState(MovementStateManager player)
     {
 

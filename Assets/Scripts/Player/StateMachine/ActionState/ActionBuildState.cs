@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class ActionBuildState : ActionBaseState
 {
+    public override ActionStateType Type => ActionStateType.BUILD;
+
     public override void EnterState(ActionStateManager player)
     {
         player.controller.actions.ShowPoleIndicator();

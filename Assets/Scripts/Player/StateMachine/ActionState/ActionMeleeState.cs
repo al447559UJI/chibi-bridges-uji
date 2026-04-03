@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class ActionMeleeState : ActionBaseState
 {
+    public override ActionStateType Type => ActionStateType.MELEE;
+
     public override void EnterState(ActionStateManager player)
     {
         player.controller.actions.MeleeAttack();

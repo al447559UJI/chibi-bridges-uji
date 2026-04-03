@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class MovementIdleState : MovementBaseState
 {
+    public override MovementStateType Type => MovementStateType.IDLE;
+
     public override void EnterState(MovementStateManager player)
     {
         

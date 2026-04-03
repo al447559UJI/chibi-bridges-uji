@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class MovementFallState : MovementBaseState
 {
+    public override MovementStateType Type => MovementStateType.FALL;
+
     public override void EnterState(MovementStateManager player)
     {
 

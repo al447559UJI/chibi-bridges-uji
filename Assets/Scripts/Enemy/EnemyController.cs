@@ -194,7 +194,6 @@ public class EnemyController : MonoBehaviour, IDamageable
     private IEnumerator Shoot(int damage)
     {
         isShooting = true;
-        Debug.Log("(!) " + name + " detected Player.");
         statusBubble.PlayWarningAnimation();
         yield return new WaitForSeconds(data.reactionCooldown);
         statusBubble.PlayEmptyAnimation();

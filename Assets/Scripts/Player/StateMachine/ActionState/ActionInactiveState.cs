@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class ActionInactiveState : ActionBaseState
 {
+    public override ActionStateType Type => ActionStateType.INACTIVE;
+
     public override void EnterState(ActionStateManager player)
     {
 

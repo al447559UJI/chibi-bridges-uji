@@ -1,0 +1,32 @@
+:root {
+}
+
+.build-ui-down-default {
+    flex-grow: 1;
+    background-image: url("project://database/Assets/Sprites/BuildUIDown.png?fileID=2800000&guid=4292f4fa496155e899b798efc07f60f7&type=3#BuildUIDown");
+    transition-duration: 0.25s;
+    opacity: 0.75;
+}
+
+.build-ui-up-default {
+    flex-grow: 1;
+    background-image: url("project://database/Assets/Sprites/BuildUIUp.png?fileID=2800000&guid=59bfce5b019132dcd9e8c5d8055cf5b8&type=3#BuildUIUp");
+    transition-duration: 0.25s;
+    opacity: 0.75;
+}
+
+.build-ui-up-inactive {
+    translate: 0 -100%;
+}
+
+.build-ui-down-inactive {
+    translate: 0 105%;
+}
+
+.build-ui-up-active {
+    translate: 0 -40%;
+}
+
+.build-ui-down-active {
+    translate: 0 50%;
+}

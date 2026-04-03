@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class ActionShootState : ActionBaseState
 {
+    public override ActionStateType Type => ActionStateType.SHOOT;
+
     public override void EnterState(ActionStateManager player)
     {
         player.controller.actions.Shoot();

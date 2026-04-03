@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class ActionAirMeleeState : ActionBaseState
 {
+    public override ActionStateType Type => ActionStateType.AIR_MELEE;
+
     public override void EnterState(ActionStateManager player)
     {
         player.controller.actions.AirMeleeAttack();
