@@ -22,6 +22,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     private BoxCollider2D bodyCollider;
     private Vector2 bodySize;
     private EnemyState state;
+    private EnemyStatusBubble statusBubble;
     private float currentDirectionTimer;
     private int currentHealth;
     private bool isGrounded;
@@ -36,6 +37,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         rb = GetComponent<Rigidbody2D>();
         bodyCollider = GetComponent<BoxCollider2D>();
+        statusBubble = GetComponentInChildren<EnemyStatusBubble>();
     }
 
     void Start()
@@ -193,7 +195,9 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         isShooting = true;
         Debug.Log("(!) " + name + " detected Player.");
+        statusBubble.PlayWarningAnimation();
         yield return new WaitForSeconds(data.reactionCooldown);
+        statusBubble.PlayEmptyAnimation();
         Debug.Log(name + " shot the player for " + damage + " damage.");
         yield return new WaitForSeconds(data.shootCooldown);
         if (!playerDetected)
