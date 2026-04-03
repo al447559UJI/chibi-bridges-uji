@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     private float lastJumpStartTime;
     private float lastGroundedTime;
     private PlayerInput input;
+    private Animator animator;
+
     private float feetCollision = 0.05f;
     public int facingDirection { get; private set; } = 1; // 1 = right, -1 = left.
     public bool isKnockbackActive { get; private set; } = false;
@@ -23,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         input = GetComponent<PlayerInput>();
+        animator = GetComponent<Animator>();
 
         DebugRegistry.Register("Speed X", () => Math.Truncate(100 * rb.linearVelocityX) / 100);
         DebugRegistry.Register("Speed Y", () => Math.Truncate(100 * rb.linearVelocityY) / 100);
@@ -155,6 +158,7 @@ public class PlayerMovement : MonoBehaviour
         input.LockJump();
         input.LockHorizontalMovement();
         rb.linearVelocity = Vector2.zero;
+        animator.SetBool("isKnockbackActive", true); // Turns off via animation events.
 
         rb.linearVelocity = new Vector2(
         rb.linearVelocityX + -facingDirection * data.knockbackForce,
@@ -164,6 +168,12 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(data.knockbackTime);
         input.UnlockJump();
         input.UnlockHorizontalMovement();
+    }
+
+    // Triggered via animation events.
+    public void ResetKnockbackAnimation()
+    {
+        animator.SetBool("isKnockbackActive", false);
     }
 
 }
