@@ -68,15 +68,22 @@ public class Pole : MonoBehaviour
                 state = PoleState.ROTATE;
                 break;
             case PoleState.ROTATE:
-                CheckEnemyCollision(collision);
-                state = PoleState.STOP;
-                hinge.useMotor = false;
+                if (collision != null && collision.gameObject.layer == LayerMask.NameToLayer("Damageable"))
+                {
+                    HandleEnemyCollision(collision);
+                }
+                else
+                {
+                    state = PoleState.STOP;
+                    hinge.useMotor = false;
+                    rb.bodyType = RigidbodyType2D.Static;
+                }
                 break;
         }
 
     }
 
-    private void CheckEnemyCollision(Collision2D collision)
+    private void HandleEnemyCollision(Collision2D collision)
     {
         IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
         if (damageable != null)

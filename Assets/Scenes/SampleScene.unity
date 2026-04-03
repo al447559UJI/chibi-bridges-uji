@@ -7415,8 +7415,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 753ebfde2df5e1e8cadfa86af948d9bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PoleIndicator
-  green: {r: 0, g: 1, b: 0, a: 1}
-  red: {r: 1, g: 0, b: 0, a: 1}
+  green: {fileID: 21300000, guid: 764f6727eb4644a6eb1162e4b97b7712, type: 3}
+  red: {fileID: 21300000, guid: e1aa764e8b34f4dae8e1893d980afcf4, type: 3}
 --- !u!70 &702878363
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -64308,11 +64308,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 92511416859549059, guid: 20adba761bdb6e3eb8a8cd7c9b8312d1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.0929036
+      value: 5.46
       objectReference: {fileID: 0}
     - target: {fileID: 92511416859549059, guid: 20adba761bdb6e3eb8a8cd7c9b8312d1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.6629982
+      value: 2.61
       objectReference: {fileID: 0}
     - target: {fileID: 92511416859549059, guid: 20adba761bdb6e3eb8a8cd7c9b8312d1, type: 3}
       propertyPath: m_LocalPosition.z

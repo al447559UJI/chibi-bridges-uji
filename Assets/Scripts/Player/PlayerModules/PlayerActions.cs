@@ -109,11 +109,11 @@ public class PlayerActions : MonoBehaviour
 
         if (isPositionValid && CanAffordPole())
         {
-            poleUI.SetColor(Color.green);
+            poleUI.SetGreenColor();
         }
         else
         {
-            poleUI.SetColor(Color.red);
+            poleUI.SetRedColor();
 
         }
 
@@ -153,7 +153,7 @@ public class PlayerActions : MonoBehaviour
 
         if (!CanAffordPole())
         {
-            poleUI.SetColor(Color.red);
+            poleUI.SetRedColor();
         }
     }
 
