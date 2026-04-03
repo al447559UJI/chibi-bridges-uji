@@ -9,13 +9,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private PlayerMovementData data;
     [SerializeField] private LayerMask groundLayer;
 
-    public Rigidbody2D rb { get; private set; }
-    public bool isGrounded { get; private set; }
-    public bool isFalling { get; private set; }
-    private float lastJumpStartTime;
-    private float lastGroundedTime;
     private PlayerInput input;
     private Animator animator;
+    public Rigidbody2D rb { get; private set; }
+    private float lastJumpStartTime;
+    private float lastGroundedTime;
+
+    public bool isGrounded { get; private set; }
+    public bool isFalling { get; private set; }
 
     private float feetCollision = 0.05f;
     public int facingDirection { get; private set; } = 1; // 1 = right, -1 = left.
