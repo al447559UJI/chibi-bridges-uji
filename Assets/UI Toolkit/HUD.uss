@@ -11,8 +11,8 @@
 }
 
 .scrap-icon {
-    width: 32px;
-    height: 32px;
+    width: 64px;
+    height: 64px;
     background-image: url("project://database/Assets/Sprites/Recycle.png?fileID=2800000&guid=6088e3ff9a349ff26bf978c1e530eb93&type=3#Recycle");
     margin-right: 10px;
 }
@@ -37,8 +37,6 @@
     transition-property: translate, opacity;
     transition-duration: 0.7s, 0.7s;
 }
-
-
 
 .minus-scrap-default {
     font-size: 18px;

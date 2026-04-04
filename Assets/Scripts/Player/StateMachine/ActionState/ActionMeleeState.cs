@@ -37,6 +37,7 @@ public class ActionMeleeState : ActionBaseState
             if (!player.controller.actions.IsMeleeAnimationPlaying())
             {
                 player.SwitchState(player.inactiveState);
+                return;
             }
         }
     }

@@ -28,15 +28,18 @@ public class MovementHurtState : MovementBaseState
                 if (player.controller.input.horizontal != 0f)
                 {
                     player.SwitchState(player.moveState);
+                    return;
                 }
                 else
                 {
                     player.SwitchState(player.idleState);
+                    return;
                 }
             }
             else
             {
                 player.SwitchState(player.fallState);
+                return;
             }
         }
 

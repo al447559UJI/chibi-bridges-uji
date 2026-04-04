@@ -13,7 +13,7 @@ public class PlayerInput : MonoBehaviour
     public bool isJumpPressed { get; private set; }
     public bool isShootPressed { get; private set; }
 
-    public float lastJumpPressedTime { get; private set; }
+    public float lastJumpPressedTime { get; private set; } = -1; // Prevent auto-jump right after loading scene.
     public float lastMeleePressedTime { get; private set; }
     public float lastShootPressedTime { get; private set; }
     public float lastBuildModePressedTime { get; private set; }

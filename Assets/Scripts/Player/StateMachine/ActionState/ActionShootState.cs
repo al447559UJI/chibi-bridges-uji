@@ -27,6 +27,7 @@ public class ActionShootState : ActionBaseState
         } else
         {
             player.SwitchState(player.inactiveState);
+            return;
         }
     }
 }

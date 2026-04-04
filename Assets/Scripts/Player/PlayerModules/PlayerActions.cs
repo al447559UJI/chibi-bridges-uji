@@ -114,7 +114,6 @@ public class PlayerActions : MonoBehaviour
         else
         {
             poleUI.SetRedColor();
-
         }
 
         isPolePositionValid = isPositionValid;

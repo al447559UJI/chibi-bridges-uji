@@ -17,13 +17,13 @@ MonoBehaviour:
   deceleration: 18
   knockbackForce: 20
   knockbackTime: 0.2
-  jumpForce: 14
+  jumpForce: 14.5
   jumpBufferTime: 0.1
   variableJumpTime: 0.2
   variableJumpTimeVelocityMultiplier: 0.5
   jumpHangThreshold: 0.75
   fastFallMultiplier: 3
-  originalGravityScale: 3
+  originalGravityScale: 3.5
   jumpHangGravityMultiplier: 0.5
   maxFallSpeed: 20
   coyoteTimeThreshold: 0.1

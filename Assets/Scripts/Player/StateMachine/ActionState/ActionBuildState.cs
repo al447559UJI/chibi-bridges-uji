@@ -26,20 +26,24 @@ public class ActionBuildState : ActionBaseState
             if (player.controller.movement.isGrounded)
             {
                 player.SwitchState(player.meleeState);
+                return;
             }
             else
             {
                 player.SwitchState(player.airMeleeState);
+                return;
             }
         }
         else if (player.controller.input.isShootPressed)
         {
             player.SwitchState(player.shootState);
+            return;
         }
         else if (player.controller.input.buildModePressedThisFrame)
         {
             player.controller.actions.Build();
             player.SwitchState(player.inactiveState);
+            return;
         }
     }
 }

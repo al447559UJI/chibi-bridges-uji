@@ -30,7 +30,6 @@ public class PlayerMovement : MonoBehaviour
 
         DebugRegistry.Register("Speed X", () => Math.Truncate(100 * rb.linearVelocityX) / 100);
         DebugRegistry.Register("Speed Y", () => Math.Truncate(100 * rb.linearVelocityY) / 100);
-        DebugRegistry.Register("IsGrounded", () => isGrounded);
     }
 
     void Update()
@@ -55,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move()
     {
+        animator.SetBool("isMoving", input.horizontal != 0);
+
         float targetSpeed = input.horizontal * data.maxSpeed;
         float speedDifference = targetSpeed - rb.linearVelocityX;
 
@@ -84,18 +85,16 @@ public class PlayerMovement : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.BoxCast(
             feetCollider.bounds.center,
-            feetCollider.size,
+            feetCollider.bounds.size,
             0f, // Angle
             Vector2.down, // Direction
             feetCollision,
             groundLayer
         );
         isGrounded = hit.collider != null;
+        animator.SetBool("isGrounded", isGrounded);
 
-        if (isGrounded)
-        {
-            lastGroundedTime = Time.time;
-        }
+        if (isGrounded) lastGroundedTime = Time.time;
     }
 
     private void HandleVariableJumpTime()
@@ -144,14 +143,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (direction != -1 && direction != 1)
         {
-            Debug.LogError($"HurKnockback direction is now allowed (-1, 1), direction = {direction}");
+            Debug.LogError($"HurKnockback direction is not allowed (-1, 1), direction = {direction}");
             return;
         }
         else
         {
             StartCoroutine(HandleKnockback());
         }
-
     }
 
     public IEnumerator HandleKnockback()

@@ -25,6 +25,7 @@ public class ActionAirMeleeState : ActionBaseState
         if (player.controller.movement.isGrounded)
         {
             player.SwitchState(player.inactiveState);
+            return;
         }
     }
 }
