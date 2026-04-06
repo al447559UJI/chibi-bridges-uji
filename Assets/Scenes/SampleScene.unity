@@ -246,6 +246,7 @@ GameObject:
   - component: {fileID: 90332378}
   - component: {fileID: 90332382}
   - component: {fileID: 90332387}
+  - component: {fileID: 90332388}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -356,6 +357,7 @@ Transform:
   - {fileID: 969946716}
   - {fileID: 702878360}
   - {fileID: 1597429828}
+  - {fileID: 1645104819}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &90332378
@@ -553,6 +555,20 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &90332388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90332372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c97bd65933b1ce64a456bd392da51b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerParticles
+  deathParticle: {fileID: 5029761163222346087, guid: 7f7aa186b764215ba83aec7da4587093, type: 3}
+  playerOrigin: {fileID: 1645104819}
 --- !u!1001 &159078047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64682,6 +64698,37 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 0.734375}
   m_EdgeRadius: 0
+--- !u!1 &1645104818
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1645104819}
+  m_Layer: 8
+  m_Name: PlayerOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1645104819
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645104818}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.02, y: -0.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 90332376}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1661164328
 PrefabInstance:
   m_ObjectHideFlags: 0

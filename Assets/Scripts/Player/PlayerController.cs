@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public PlayerMovement movement { get; private set; }
     public PlayerActions actions { get; private set; }
     public PlayerHealth health { get; private set; }
+    public PlayerParticles particles { get; private set; }
 
     private MovementStateManager movementStateManager;
     // private ActionStateManager actionStateManager;
@@ -27,7 +28,8 @@ public class PlayerController : MonoBehaviour
         movement = GetComponent<PlayerMovement>();
         actions = GetComponent<PlayerActions>();
         health = GetComponent<PlayerHealth>();
-
+        particles = GetComponent<PlayerParticles>();
+        
         movementStateManager = GetComponent<MovementStateManager>();
         // actionStateManager = GetComponent<ActionStateManager>();
     }
@@ -36,5 +38,7 @@ public class PlayerController : MonoBehaviour
     {
         movementStateManager.SwitchState(movementStateManager.deathState);
     }
+
+
 
 }

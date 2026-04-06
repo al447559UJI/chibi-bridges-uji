@@ -8,6 +8,7 @@ public class MovementDeathState : MovementBaseState
     {
         player.controller.movement.Stop();
         player.controller.input.LockInput(true);
+        player.controller.particles.SpawnDeathParticles();
     }
 
     public override void ExitState(MovementStateManager player)

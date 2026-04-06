@@ -130,7 +130,7 @@ public class PlayerActions : MonoBehaviour
             if (newPole != null)
             {
                 SpendScrap(data.poleCost);
-                newPole.GetComponent<Pole>().Initialize(movement.facingDirection, data.poleDamage);
+                newPole.GetComponent<Pole>()?.Initialize(movement.facingDirection, data.poleDamage);
             }
         }
     }
