@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4292f4fa496155e899b798efc07f60f7
+guid: 77484f9b9ed0774e8a29225ed8cbf8f5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8416470869240724738
-    second: BuildUIDown_0
+      213: -1038844986309743801
+    second: BuildUI_Bottom_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BuildUIDown_0
+      name: BuildUI_Bottom_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1920
-        height: 263
+        width: 3840
+        height: 520
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ef2cb783650b23b80800000000000000
-      internalID: -8416470869240724738
+      spriteID: 74bef4e2df74591f0800000000000000
+      internalID: -1038844986309743801
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BuildUIDown_0: -8416470869240724738
+      BuildUI_Bottom_0: -1038844986309743801
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

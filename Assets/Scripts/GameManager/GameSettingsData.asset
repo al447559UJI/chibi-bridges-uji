@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e48ee4a4512262a1aab5def7c1b1ec2c, type: 3}
-  m_Name: GameManagerData
-  m_EditorClassIdentifier: Assembly-CSharp::GameManagerData
+  m_Script: {fileID: 11500000, guid: a59e7c4b61d8830ecae227f9333cfe1b, type: 3}
+  m_Name: GameSettingsData
+  m_EditorClassIdentifier: Assembly-CSharp::GameSettingsData
+  uiScale: 3
   debugTimeScale: 1

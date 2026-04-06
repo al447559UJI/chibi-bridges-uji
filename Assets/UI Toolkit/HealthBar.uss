@@ -1,0 +1,75 @@
+:root {
+}
+
+.font-size-small {
+    font-size: 18px;
+    margin-top: 16px;
+    margin-right: 8px;
+    margin-bottom: 2px;
+    margin-left: 2px;
+}
+
+.font-size-medium {
+    font-size: 36px;
+    margin-top: 36px;
+    margin-right: 16px;
+    margin-bottom: 4px;
+    margin-left: 4px;
+}
+
+.font-size-large {
+    font-size: 48px;
+    margin-top: 48px;
+    margin-right: 22px;
+    margin-bottom: 6px;
+    margin-left: 6px;
+}
+
+.font-size-xl {
+    font-size: 60px;
+    margin-top: 62px;
+    margin-right: 27px;
+    margin-bottom: 7px;
+    margin-left: 7px;
+}
+
+.battery-small {
+    width: 96px;
+    height: 54px;
+}
+
+.battery-medium {
+    width: 192px;
+    height: 108px;
+}
+
+.battery-large {
+    width: 256px;
+    height: 144px;
+}
+
+.battery-xl {
+    width: 320px;
+    height: 180px;
+}
+
+.heart-small {
+    width: 64px;
+    height: 54px;
+}
+
+.heart-medium {
+    width: 128px;
+    height: 108px;
+}
+
+.heart-large {
+    width: 171px;
+    height: 144px;
+}
+
+.heart-xl {
+    width: 214px;
+    height: 180px;
+}
+

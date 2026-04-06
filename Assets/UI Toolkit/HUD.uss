@@ -13,18 +13,15 @@
 .scrap-icon {
     width: 64px;
     height: 64px;
-    background-image: url("project://database/Assets/Sprites/Recycle.png?fileID=2800000&guid=6088e3ff9a349ff26bf978c1e530eb93&type=3#Recycle");
-    margin-right: 10px;
+    background-image: url("project://database/Assets/Sprites/UI/Recycle.png?fileID=2800000&guid=6088e3ff9a349ff26bf978c1e530eb93&type=3#Recycle");
 }
 
 .scrap-text {
     -unity-font-definition: url("project://database/Assets/Fonts/NotJamChunkySans.ttf?fileID=12800000&guid=b534870695be2dc60a4f54898c782cbf&type=3#NotJamChunkySans");
     color: rgb(223, 230, 224);
-    font-size: 18px;
 }
 
 .plus-scrap-default {
-    font-size: 18px;
     -unity-font-definition: url("project://database/Assets/Fonts/NotJamChunkySans.ttf?fileID=12800000&guid=b534870695be2dc60a4f54898c782cbf&type=3#NotJamChunkySans");
     color: rgb(155, 161, 95);
     position: absolute;
@@ -39,9 +36,48 @@
 }
 
 .minus-scrap-default {
-    font-size: 18px;
     -unity-font-definition: url("project://database/Assets/Fonts/NotJamChunkySans.ttf?fileID=12800000&guid=b534870695be2dc60a4f54898c782cbf&type=3#NotJamChunkySans");
     color: rgb(133, 68, 74);
     position: absolute;
     left: 25px;
+}
+
+.font-size-small {
+    font-size: 18px;
+}
+
+.font-size-medium {
+    font-size: 36px;
+}
+
+.font-size-large {
+    font-size: 48px;
+}
+
+.font-size-xl {
+    font-size: 60px;
+}
+
+.icon-small {
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+}
+
+.icon-medium {
+    width: 48px;
+    height: 48px;
+    margin-right: 15px;
+}
+
+.icon-large {
+    width: 64px;
+    height: 64px;
+    margin-right: 20px;
+}
+
+.icon-xl {
+    width: 76px;
+    height: 76px;
+    margin-right: 24px;
 }

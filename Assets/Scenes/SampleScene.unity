@@ -64261,7 +64261,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94143ce281e92e79089ba7710aa49a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  data: {fileID: 11400000, guid: 6dc3d7d7256add1e199d5a3b31528a10, type: 2}
+  settings: {fileID: 11400000, guid: 51d487a7f52091ec1ad960154a14dc5c, type: 2}
+  OnUIScaleChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1567365783
 Transform:
   m_ObjectHideFlags: 0

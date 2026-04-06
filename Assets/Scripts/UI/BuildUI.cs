@@ -8,12 +8,26 @@ public class BuildUI : MonoBehaviour
     private VisualElement top;
     private VisualElement bottom;
 
+    private string topEnabledClass;
+    private string bottomEnabledClass;
+
+    private string topDisabledClass;
+    private string bottomDisabledClass;
+
 
     void Awake()
     {
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
         top = root.Q<VisualElement>("BuildUITop");
         bottom = root.Q<VisualElement>("BuildUIDown");
+    }
+
+    void Start()
+    {
+        topEnabledClass = CSSClasses.BuildUI[CSSClasses.BuildUIKeys.TOP_ENABLED];
+        bottomEnabledClass = CSSClasses.BuildUI[CSSClasses.BuildUIKeys.BOTTOM_ENABLED];
+        topDisabledClass = CSSClasses.BuildUI[CSSClasses.BuildUIKeys.TOP_DISABLED];
+        bottomDisabledClass = CSSClasses.BuildUI[CSSClasses.BuildUIKeys.BOTTOM_DISABLED];
     }
 
     void OnEnable()
@@ -36,17 +50,21 @@ public class BuildUI : MonoBehaviour
 
     private void ShowUI()
     {
-        top.AddToClassList("build-ui-up-active");
-        bottom.AddToClassList("build-ui-down-active");
-        top.RemoveFromClassList("build-ui-up-inactive");
-        bottom.RemoveFromClassList("build-ui-down-inactive");
+
+
+        top.AddToClassList(topEnabledClass);
+        bottom.AddToClassList(bottomEnabledClass);
+
+        top.RemoveFromClassList(topDisabledClass);
+        bottom.RemoveFromClassList(bottomDisabledClass);
     }
 
     private void HideUI()
     {
-        top.RemoveFromClassList("build-ui-up-active");
-        bottom.RemoveFromClassList("build-ui-down-active");
-        top.AddToClassList("build-ui-up-inactive");
-        bottom.AddToClassList("build-ui-down-inactive");
+        top.RemoveFromClassList(topEnabledClass);
+        bottom.RemoveFromClassList(bottomEnabledClass);
+
+        top.AddToClassList(topDisabledClass);
+        bottom.AddToClassList(bottomDisabledClass);
     }
 }

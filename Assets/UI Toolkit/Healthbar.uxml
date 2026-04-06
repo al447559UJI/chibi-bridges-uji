@@ -1,8 +1,9 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/HealthBar.uss?fileID=7433441132597879392&amp;guid=2bbe86aad48783a94b6dbee2be7163de&amp;type=3#HealthBar"/>
     <ui:VisualElement name="Container" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; margin-top: 10px; margin-left: 10px; flex-direction: row;">
-        <ui:VisualElement name="Heart" style="flex-grow: 1; width: 64px; height: 54px;"/>
-        <ui:VisualElement name="Battery" style="flex-grow: 1; width: 96px; height: 54px; margin-left: 10px; background-image: url(&quot;project://database/Assets/Sprites/BatteryBackground.png?fileID=2800000&amp;guid=af32dab61e4db99c49ab2c0ad5d889d8&amp;type=3#BatteryBackground&quot;);">
-            <ui:Label text="100%" name="HP" style="font-size: 18px; -unity-font-definition: url(&quot;project://database/Assets/Fonts/NotJamChunkySans.ttf?fileID=12800000&amp;guid=b534870695be2dc60a4f54898c782cbf&amp;type=3#NotJamChunkySans&quot;); -unity-text-align: upper-right; color: rgb(89, 110, 71); margin-top: 16px; margin-right: 8px;"/>
+        <ui:VisualElement name="Heart" class="heart-small" style="flex-grow: 1;"/>
+        <ui:VisualElement name="Battery" class="battery-small" style="flex-grow: 1; margin-left: 10px; background-image: url(&quot;project://database/Assets/Sprites/UI/BatteryBackground.png?fileID=2800000&amp;guid=af32dab61e4db99c49ab2c0ad5d889d8&amp;type=3#BatteryBackground&quot;);">
+            <ui:Label text="100%" name="HP" class="font-size-small" style="-unity-font-definition: url(&quot;project://database/Assets/Fonts/NotJamChunkySans.ttf?fileID=12800000&amp;guid=b534870695be2dc60a4f54898c782cbf&amp;type=3#NotJamChunkySans&quot;); -unity-text-align: upper-right; color: rgb(89, 110, 71);"/>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
