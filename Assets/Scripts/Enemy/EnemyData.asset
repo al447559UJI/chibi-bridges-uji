@@ -18,5 +18,7 @@ MonoBehaviour:
   directionTimer: 1
   health: 5
   shootDamage: 1
-  meleeDamage: 1
+  reactionCooldown: 0.75
+  shootCooldown: 1
+  meleeDamage: 50
   searchDistance: 5

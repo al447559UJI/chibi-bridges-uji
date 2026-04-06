@@ -27,7 +27,10 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         input = GetComponent<PlayerInput>();
         animator = GetComponent<Animator>();
+    }
 
+    void Start()
+    {
         DebugRegistry.Register("Speed X", () => Math.Truncate(100 * rb.linearVelocityX) / 100);
         DebugRegistry.Register("Speed Y", () => Math.Truncate(100 * rb.linearVelocityY) / 100);
     }
@@ -69,11 +72,16 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocityY
         );
     }
+
+    public void Stop()
+    {
+        rb.linearVelocity = Vector2.zero;
+    }
     public void Jump()
     {
         rb.linearVelocity = new Vector2(rb.linearVelocityX, data.jumpForce);
         lastJumpStartTime = Time.time;
-        input.UnlockHorizontalMovement();
+        input.LockHorizontalMovement(false);
     }
 
     public bool IsBufferedJumpAvailable()
@@ -154,9 +162,9 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator HandleKnockback()
     {
-        input.LockJump();
-        input.LockHorizontalMovement();
-        rb.linearVelocity = Vector2.zero;
+        input.LockJump(true);
+        input.LockHorizontalMovement(true);
+        Stop();
         animator.SetBool("isKnockbackActive", true); // Turns off via animation events.
 
         rb.linearVelocity = new Vector2(
@@ -165,8 +173,8 @@ public class PlayerMovement : MonoBehaviour
         );
 
         yield return new WaitForSeconds(data.knockbackTime);
-        input.UnlockJump();
-        input.UnlockHorizontalMovement();
+        input.LockJump(false);
+        input.LockHorizontalMovement(false);
     }
 
     // Triggered via animation events.

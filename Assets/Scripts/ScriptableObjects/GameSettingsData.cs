@@ -5,4 +5,5 @@ public class GameSettingsData : ScriptableObject
 {
     public UIScale uiScale = UIScale.SMALL;
     public float debugTimeScale = 1f;
+    public float deathTimer = 1f;
 }

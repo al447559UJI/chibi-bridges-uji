@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private PlayerMovement movement;
 
     public UnityEvent<int> onHealthChanged;
+    public UnityEvent onDeath;
 
     private bool isInvencible = false;
 
@@ -31,8 +32,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public void Damage(int damageAmount, DamageType damageType, int direction)
     {
-        Debug.Log("PlayerHealth Damage");
-
         if (data.debugGodMode || isInvencible) return;
 
         currentHealth -= damageAmount;
@@ -54,7 +53,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public void Die()
     {
-        Debug.Log("You died!");
+        onDeath.Invoke();
     }
 
 

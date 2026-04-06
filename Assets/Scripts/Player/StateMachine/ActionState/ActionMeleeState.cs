@@ -7,15 +7,15 @@ public class ActionMeleeState : ActionBaseState
     public override void EnterState(ActionStateManager player)
     {
         player.controller.actions.MeleeAttack();
-        player.controller.input.LockHorizontalMovement();
-        player.controller.input.LockJump();
+        player.controller.input.LockHorizontalMovement(true);
+        player.controller.input.LockJump(true);
     }
 
     public override void ExitState(ActionStateManager player)
     {
         player.controller.actions.HideMeleeVisual();
-        player.controller.input.UnlockHorizontalMovement();
-        player.controller.input.UnlockJump();
+        player.controller.input.LockHorizontalMovement(false);
+        player.controller.input.LockJump(false);
     }
 
     public override void FixedUpdateState(ActionStateManager player)

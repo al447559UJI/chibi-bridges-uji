@@ -550,6 +550,9 @@ MonoBehaviour:
   onHealthChanged:
     m_PersistentCalls:
       m_Calls: []
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &159078047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64262,6 +64265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   settings: {fileID: 11400000, guid: 51d487a7f52091ec1ad960154a14dc5c, type: 2}
+  player: {fileID: 90332379}
   OnUIScaleChanged:
     m_PersistentCalls:
       m_Calls: []
