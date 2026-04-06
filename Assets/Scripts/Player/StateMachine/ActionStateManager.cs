@@ -1,4 +1,14 @@
 using UnityEngine;
+using UnityEngine.Events;
+
+public enum ActionStateType
+{
+    BUILD,
+    INACTIVE,
+    AIR_MELEE,
+    MELEE,
+    SHOOT
+}
 
 public class ActionStateManager : MonoBehaviour
 {
@@ -10,6 +20,9 @@ public class ActionStateManager : MonoBehaviour
     public ActionAirMeleeState airMeleeState = new ActionAirMeleeState();
     public ActionMeleeState meleeState = new ActionMeleeState();
     public ActionShootState shootState = new ActionShootState();
+
+    public UnityEvent<ActionStateType> onStateEntered;
+    public UnityEvent<ActionStateType> onStateExited;
 
     void Awake()
     {
@@ -36,10 +49,17 @@ public class ActionStateManager : MonoBehaviour
 
     public void SwitchState(ActionBaseState state)
     {
+        if (currentState == state) return;
+
         currentState.ExitState(this);
+        onStateExited.Invoke(currentState.Type);
+
         currentState = state;
+
         state.EnterState(this);
+        onStateEntered.Invoke(state.Type);
     }
+    
 
     public string GetCurrentStateName()
     {

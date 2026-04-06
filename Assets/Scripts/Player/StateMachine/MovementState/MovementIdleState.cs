@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class MovementIdleState : MovementBaseState
 {
+    public override MovementStateType Type => MovementStateType.IDLE;
+
     public override void EnterState(MovementStateManager player)
     {
-        
+
     }
 
     public override void ExitState(MovementStateManager player)
@@ -19,25 +21,28 @@ public class MovementIdleState : MovementBaseState
 
     public override void UpdateState(MovementStateManager player)
     {
-        if (player.controller.input.horizontal != 0f)
+        if (player.controller.movement.isKnockbackActive)
         {
-            player.SwitchState(player.moveState);
+            player.SwitchState(player.hurtState);
+            return;
         }
         if (player.controller.movement.isFalling)
         {
             player.SwitchState(player.fallState);
+            return;
         }
         if (player.controller.input.jumpPressedThisFrame)
         {
-            if (player.controller.movement.isGrounded)
+            if (player.controller.movement.isGrounded || player.controller.movement.HasCoyoteTimeRemaining())
             {
                 player.SwitchState(player.jumpState);
+                return;
             }
-            else if (player.controller.movement.HasCoyoteTimeRemaining())
-            {
-                //TODO: Test this scenario
-                player.SwitchState(player.jumpState);
-            }
+        }
+        if (player.controller.input.horizontal != 0f)
+        {
+            player.SwitchState(player.moveState);
+            return;
         }
 
     }

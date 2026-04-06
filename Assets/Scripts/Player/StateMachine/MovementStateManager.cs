@@ -1,5 +1,14 @@
-using System;
 using UnityEngine;
+using UnityEngine.Events;
+
+public enum MovementStateType
+{
+    IDLE,
+    MOVE,
+    JUMP,
+    FALL,
+    HURT
+}
 
 public class MovementStateManager : MonoBehaviour
 {
@@ -10,8 +19,11 @@ public class MovementStateManager : MonoBehaviour
     public MovementMoveState moveState = new MovementMoveState();
     public MovementJumpState jumpState = new MovementJumpState();
     public MovementFallState fallState = new MovementFallState();
+    public MovementHurtState hurtState = new MovementHurtState();
 
-    
+    public UnityEvent<MovementStateType> onStateEntered;
+    public UnityEvent<MovementStateType> onStateExited;
+
     void Awake()
     {
         controller = GetComponent<PlayerController>();
@@ -36,9 +48,15 @@ public class MovementStateManager : MonoBehaviour
 
     public void SwitchState(MovementBaseState state)
     {
+        if (currentState == state) return;
+
         currentState.ExitState(this);
+        onStateExited.Invoke(currentState.Type);
+
         currentState = state;
+
         state.EnterState(this);
+        onStateEntered.Invoke(state.Type);
     }
 
     public string GetCurrentStateName()

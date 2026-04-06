@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerActions : MonoBehaviour, IDamageable
+public class PlayerActions : MonoBehaviour
 {
     [Header("Child References")]
     [SerializeField] private PlayerMeleeAttack meleeAttack;
@@ -20,14 +19,12 @@ public class PlayerActions : MonoBehaviour, IDamageable
     private float lastShootStartTime;
     private bool isMeleeAnimationPlaying;
     private bool isPolePositionValid;
-    private int currentHealth;
 
     public int currentScrapAmount { get; private set; }
 
     public UnityEvent<int> onScrapChanged;
     public UnityEvent<string> onScrapGiven;
     public UnityEvent<string> onScrapSpent;
-    public UnityEvent<int> onHealthChanged;
 
     void Awake()
     {
@@ -35,11 +32,6 @@ public class PlayerActions : MonoBehaviour, IDamageable
 
         // This has to be set before the HUD loads so the UI displays the correct number.
         currentScrapAmount = data.initialScrapAmount;
-    }
-
-    void Start()
-    {
-        currentHealth = data.maxHealth;
     }
 
     public void AirMeleeAttack()
@@ -117,16 +109,14 @@ public class PlayerActions : MonoBehaviour, IDamageable
 
         if (isPositionValid && CanAffordPole())
         {
-            poleUI.SetColor(Color.green);
+            poleUI.SetGreenColor();
         }
         else
         {
-            poleUI.SetColor(Color.red);
-
+            poleUI.SetRedColor();
         }
 
         isPolePositionValid = isPositionValid;
-
     }
 
     /// <summary>
@@ -162,32 +152,12 @@ public class PlayerActions : MonoBehaviour, IDamageable
 
         if (!CanAffordPole())
         {
-            poleUI.SetColor(Color.red);
+            poleUI.SetRedColor();
         }
     }
 
     private bool CanAffordPole()
     {
         return currentScrapAmount >= data.poleCost;
-    }
-
-    public void Damage(int damageAmount, DamageType damageType)
-    {
-        if (data.debugGodMode) return;
-        
-        currentHealth -= damageAmount;
-        currentHealth = Math.Max(currentHealth, 0);
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-
-        onHealthChanged.Invoke(currentHealth);
-    }
-
-    public void Die()
-    {
-        Debug.Log("You died!");
     }
 }

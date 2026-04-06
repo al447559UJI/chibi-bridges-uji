@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using System;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -20,9 +22,11 @@ public class EnemyController : MonoBehaviour, IDamageable
     private BoxCollider2D bodyCollider;
     private Vector2 bodySize;
     private EnemyState state;
+    private EnemyStatusBubble statusBubble;
     private float currentDirectionTimer;
     private int currentHealth;
     private bool isGrounded;
+    private int lastDirection;
 
     private int currentDirection = 1; // 1 = Right, -1 = Left.
     private float feetCollision = 0.05f;
@@ -33,6 +37,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         rb = GetComponent<Rigidbody2D>();
         bodyCollider = GetComponent<BoxCollider2D>();
+        statusBubble = GetComponentInChildren<EnemyStatusBubble>();
     }
 
     void Start()
@@ -89,6 +94,8 @@ public class EnemyController : MonoBehaviour, IDamageable
             rb.linearVelocityX + movement,
             rb.linearVelocityY
         );
+
+        lastDirection = Math.Sign(rb.linearVelocityX);
     }
 
     private void UpdateTimer()
@@ -145,7 +152,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         Bounds bounds = GetBounds();
         Vector2 rayOrigin = GetForwardBottom(bounds);
-        
+
         RaycastHit2D hit = Physics2D.Raycast(
             rayOrigin,
             Vector2.down,
@@ -156,7 +163,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         return hit.collider == null;
     }
 
-    public void Damage(int damageAmount, DamageType damageType)
+    public void Damage(int damageAmount, DamageType damageType, int direction)
     {
         currentHealth -= damageAmount;
 
@@ -187,8 +194,9 @@ public class EnemyController : MonoBehaviour, IDamageable
     private IEnumerator Shoot(int damage)
     {
         isShooting = true;
-        Debug.Log("(!) " + name + " detected Player.");
+        statusBubble.PlayWarningAnimation();
         yield return new WaitForSeconds(data.reactionCooldown);
+        statusBubble.PlayEmptyAnimation();
         Debug.Log(name + " shot the player for " + damage + " damage.");
         yield return new WaitForSeconds(data.shootCooldown);
         if (!playerDetected)
@@ -230,5 +238,10 @@ public class EnemyController : MonoBehaviour, IDamageable
     private Bounds GetBounds()
     {
         return bodyCollider.bounds;
+    }
+
+    public void MeleeAttack(IDamageable target)
+    {
+        target.Damage(data.meleeDamage, DamageType.MELEE, lastDirection);
     }
 }

@@ -3,11 +3,11 @@ using UnityEngine;
 public class PoleUI : MonoBehaviour
 {
 
-    [Tooltip("Sprite color when the player is allowed to build")]
-    [SerializeField] private Color green;
+    [Tooltip("Sprite shown when the player is allowed to build")]
+    [SerializeField] private Sprite green;
 
-    [Tooltip("Sprite color when the player is not allowed to build")]
-    [SerializeField] private Color red; 
+    [Tooltip("Sprite shown when the player is not allowed to build")]
+    [SerializeField] private Sprite red; 
 
     private Transform poleSpawnPoint;
 
@@ -48,9 +48,14 @@ public class PoleUI : MonoBehaviour
         player.SetPolePositionValid(false);
     }
 
-    public void SetColor(Color color)
+    public void SetGreenColor()
     {
-        spriteRenderer.color = color;
+        spriteRenderer.sprite = green;
+    }
+
+    public void SetRedColor()
+    {
+        spriteRenderer.sprite = red;
     }
 
     public void Show()

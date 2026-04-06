@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class MovementJumpState : MovementBaseState
 {
+    public override MovementStateType Type => MovementStateType.JUMP;
+
     public override void EnterState(MovementStateManager player)
     {
         player.controller.movement.Jump();

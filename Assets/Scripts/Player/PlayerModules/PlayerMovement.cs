@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -8,24 +9,27 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private PlayerMovementData data;
     [SerializeField] private LayerMask groundLayer;
 
-    public Rigidbody2D rb { get; private set; }    
-    public bool isGrounded { get; private set; }
-    public bool isFalling { get; private set; }
-    public int facingDirection {get; private set;} = 1; // 1 = right, -1 = left.
-
-    private float feetCollision = 0.05f;
+    private PlayerInput input;
+    private Animator animator;
+    public Rigidbody2D rb { get; private set; }
     private float lastJumpStartTime;
     private float lastGroundedTime;
-    private PlayerInput input;
+
+    public bool isGrounded { get; private set; }
+    public bool isFalling { get; private set; }
+
+    private float feetCollision = 0.05f;
+    public int facingDirection { get; private set; } = 1; // 1 = right, -1 = left.
+    public bool isKnockbackActive { get; private set; } = false;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         input = GetComponent<PlayerInput>();
+        animator = GetComponent<Animator>();
 
         DebugRegistry.Register("Speed X", () => Math.Truncate(100 * rb.linearVelocityX) / 100);
         DebugRegistry.Register("Speed Y", () => Math.Truncate(100 * rb.linearVelocityY) / 100);
-        DebugRegistry.Register("IsGrounded",() => isGrounded);
     }
 
     void Update()
@@ -34,7 +38,8 @@ public class PlayerMovement : MonoBehaviour
         if (input.horizontal < 0 && facingDirection == 1)
         {
             Flip();
-        } else if (input.horizontal > 0 && facingDirection == -1)
+        }
+        else if (input.horizontal > 0 && facingDirection == -1)
         {
             Flip();
         }
@@ -49,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move()
     {
+        animator.SetBool("isMoving", input.horizontal != 0);
+
         float targetSpeed = input.horizontal * data.maxSpeed;
         float speedDifference = targetSpeed - rb.linearVelocityX;
 
@@ -78,18 +85,16 @@ public class PlayerMovement : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.BoxCast(
             feetCollider.bounds.center,
-            feetCollider.size,
+            feetCollider.bounds.size,
             0f, // Angle
             Vector2.down, // Direction
             feetCollision,
             groundLayer
         );
         isGrounded = hit.collider != null;
+        animator.SetBool("isGrounded", isGrounded);
 
-        if (isGrounded)
-        {
-            lastGroundedTime = Time.time;
-        }
+        if (isGrounded) lastGroundedTime = Time.time;
     }
 
     private void HandleVariableJumpTime()
@@ -133,4 +138,41 @@ public class PlayerMovement : MonoBehaviour
         facingDirection = -facingDirection;
         transform.Rotate(0f, 180f, 0f);
     }
+
+    public void HurtKnockback(int direction)
+    {
+        if (direction != -1 && direction != 1)
+        {
+            Debug.LogError($"HurKnockback direction is not allowed (-1, 1), direction = {direction}");
+            return;
+        }
+        else
+        {
+            StartCoroutine(HandleKnockback());
+        }
+    }
+
+    public IEnumerator HandleKnockback()
+    {
+        input.LockJump();
+        input.LockHorizontalMovement();
+        rb.linearVelocity = Vector2.zero;
+        animator.SetBool("isKnockbackActive", true); // Turns off via animation events.
+
+        rb.linearVelocity = new Vector2(
+        rb.linearVelocityX + -facingDirection * data.knockbackForce,
+        rb.linearVelocityY + data.knockbackForce
+        );
+
+        yield return new WaitForSeconds(data.knockbackTime);
+        input.UnlockJump();
+        input.UnlockHorizontalMovement();
+    }
+
+    // Triggered via animation events.
+    public void ResetKnockbackAnimation()
+    {
+        animator.SetBool("isKnockbackActive", false);
+    }
+
 }

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class ActionAirMeleeState : ActionBaseState
 {
+    public override ActionStateType Type => ActionStateType.AIR_MELEE;
+
     public override void EnterState(ActionStateManager player)
     {
         player.controller.actions.AirMeleeAttack();
@@ -23,6 +25,7 @@ public class ActionAirMeleeState : ActionBaseState
         if (player.controller.movement.isGrounded)
         {
             player.SwitchState(player.inactiveState);
+            return;
         }
     }
 }

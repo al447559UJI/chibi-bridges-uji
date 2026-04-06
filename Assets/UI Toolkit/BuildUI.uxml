@@ -1,0 +1,5 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/BuildUI.uss?fileID=7433441132597879392&amp;guid=27c99f25680c851138672d95c0465a9f&amp;type=3#BuildUI"/>
+    <ui:VisualElement name="BuildUITop" class="build-ui-up-default build-ui-up-inactive"/>
+    <ui:VisualElement name="BuildUIDown" class="build-ui-down-default build-ui-down-inactive"/>
+</ui:UXML>

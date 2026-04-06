@@ -39,7 +39,7 @@ public class PlayerMeleeAttack : MonoBehaviour
             IDamageable damageable = hit.gameObject.GetComponent<IDamageable>();
             if (damageable != null)
             {
-                damageable.Damage(damage, damageType);
+                damageable.Damage(damage, damageType, 0);
             }
         }
     }
