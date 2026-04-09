@@ -3,8 +3,18 @@
 
 .button-base {
     -unity-font-definition: url("project://database/Assets/Fonts/NotJamChunkySans.ttf?fileID=12800000&guid=b534870695be2dc60a4f54898c782cbf&type=3#NotJamChunkySans");
-    font-size: 18px;
+    font-size: 48px;
     color: rgb(34, 34, 38);
     background-color: rgb(223, 230, 224);
-    width: 75%;
+    width: 50%;
+    transition-property: scale;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+    margin-bottom: 50px;
+    height: 5%;
+}
+
+.button-base:hover {
+    background-color: rgb(217, 194, 119);
+    scale: 1.1 1.1;
 }

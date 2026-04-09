@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a59e7c4b61d8830ecae227f9333cfe1b, type: 3}
   m_Name: GameSettingsData
   m_EditorClassIdentifier: Assembly-CSharp::GameSettingsData
-  uiScale: 0
+  uiScale: 3
   debugTimeScale: 1
   deathTimer: 1

@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/UI%20Toolkit/MainMenu/MainMenu.uss?fileID=7433441132597879392&amp;guid=6e0695ea6056fc690b074658a8ef6db8&amp;type=3#MainMenu"/>
     <ui:VisualElement name="Container" style="flex-grow: 1; align-items: center;">
         <ui:VisualElement name="Menu" style="flex-grow: 1; width: 50%; justify-content: center; align-items: center;">
-            <ui:Image source="project://database/Assets/Sprites/UI/MainMenu/Logo%20Placeholder.png?fileID=2800000&amp;guid=db17ec521615d6c41b96f2f796e2fcee&amp;type=3#Logo Placeholder" name="Logo"/>
+            <ui:Image source="project://database/Assets/Sprites/UI/MainMenu/Logo%20Placeholder.png?fileID=2800000&amp;guid=db17ec521615d6c41b96f2f796e2fcee&amp;type=3#Logo Placeholder" name="Logo" style="margin-bottom: 120px;"/>
             <ui:Button text="Start" name="StartButton" class="button-base"/>
             <ui:Button text="Options" name="OptionsButton" class="button-base"/>
             <ui:Button text="Quit" name="QuitButton" class="button-base"/>
