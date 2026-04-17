@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private BoxCollider2D feetCollider;
     [SerializeField] private PlayerMovementData data;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private AudioClip jumpSound;
 
     private PlayerInput input;
     private Animator animator;
@@ -82,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = new Vector2(rb.linearVelocityX, data.jumpForce);
         lastJumpStartTime = Time.time;
         input.LockHorizontalMovement(false);
+        SoundManager.instance.PlaySound(jumpSound, transform.position);
     }
 
     public bool IsBufferedJumpAvailable()
