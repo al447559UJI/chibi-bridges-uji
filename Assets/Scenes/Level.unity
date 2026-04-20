@@ -485,7 +485,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  jumpSound: {fileID: 8300000, guid: 25d5b7a7744e6954e984a4a50bb9189a, type: 3}
+  jumpSound: {fileID: 8300000, guid: b0b088c166cb991baaa9ab1d377dee47, type: 3}
 --- !u!114 &90332385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -506,6 +506,7 @@ MonoBehaviour:
   damageableLayer:
     serializedVersion: 2
     m_Bits: 64
+  shootSound: {fileID: 8300000, guid: 25d5b7a7744e6954e984a4a50bb9189a, type: 3}
   onScrapChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -550,6 +551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   data: {fileID: 11400000, guid: 4851a5af9d8140229b7f0ecf556d0a43, type: 2}
+  hurtSound: {fileID: 8300000, guid: 797444fa7925959eda86fa1a40b51c51, type: 3}
   onHealthChanged:
     m_PersistentCalls:
       m_Calls: []

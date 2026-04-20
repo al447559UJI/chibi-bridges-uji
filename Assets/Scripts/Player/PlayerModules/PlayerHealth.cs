@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     [Header("Data & Prefabs")]
     [SerializeField] private PlayerHealthData data;
+    [SerializeField] private AudioClip hurtSound;
     private SpriteRenderer spriteRenderer;
 
 
@@ -44,6 +45,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         else
         {
             movement.HurtKnockback(direction);
+            SoundManager.instance.PlaySound(hurtSound, transform.position);
             StartCoroutine(InvencibleTime());
             StartCoroutine(Flicker());
         }

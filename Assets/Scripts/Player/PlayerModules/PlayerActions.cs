@@ -13,6 +13,8 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private GameObject pole;
     [Header("Layer Settings")]
     [SerializeField] private LayerMask damageableLayer;
+    [Header("Sound Assets")]
+    [SerializeField] private AudioClip shootSound;
 
     private PlayerMovement movement;
     private float lastMeleeAnimationStartTime;
@@ -85,6 +87,7 @@ public class PlayerActions : MonoBehaviour
                         movement.facingDirection,
                         data.projectileSpeed,
                         data.shootDamage);
+                    SoundManager.instance.PlaySound(shootSound, transform.position, .5f);
                 }
             }
             else

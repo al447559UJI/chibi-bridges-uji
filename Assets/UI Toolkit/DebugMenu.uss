@@ -18,3 +18,7 @@ Label {
     margin: 0;
     padding: 0;
 }
+
+.debug-label-text {
+    font-size: 25px;
+}

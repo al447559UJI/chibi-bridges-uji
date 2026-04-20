@@ -3,10 +3,12 @@ using UnityEngine;
 public class MovementFallState : MovementBaseState
 {
     public override MovementStateType Type => MovementStateType.FALL;
+    private float enterTime;
+    private float minFallDuration = 0.1f;
 
     public override void EnterState(MovementStateManager player)
     {
-
+        enterTime = Time.time;
     }
 
     public override void ExitState(MovementStateManager player)
@@ -26,6 +28,11 @@ public class MovementFallState : MovementBaseState
             player.SwitchState(player.hurtState);
             return;
         }
+        if (Time.time - enterTime < minFallDuration)
+        {
+            return;
+        }
+
         if (player.controller.movement.isGrounded)
         {
             if (player.controller.movement.IsBufferedJumpAvailable())

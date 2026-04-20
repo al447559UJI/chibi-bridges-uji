@@ -42,6 +42,7 @@ public class DebugMenu : MonoBehaviour
     public void AddField(string name, Func<object> getter)
     {
         Label label = new Label();
+        label.AddToClassList("debug-label-text");
         container.Add(label);
 
         entries.Add(new DebugEntry
