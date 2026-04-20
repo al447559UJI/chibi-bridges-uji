@@ -18,6 +18,7 @@ MonoBehaviour:
   directionTimer: 1
   health: 5
   shootDamage: 1
+  projectileSpeed: 14
   reactionCooldown: 0.75
   shootCooldown: 1
   meleeDamage: 50

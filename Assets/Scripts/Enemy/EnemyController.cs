@@ -17,6 +17,8 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] private LayerMask groundLayer;
     [Tooltip("Every layer the enemy will be able to see.")]
     [SerializeField] private LayerMask detectionLayers;
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private Transform firePoint;
 
     private Rigidbody2D rb;
     private BoxCollider2D bodyCollider;
@@ -197,7 +199,8 @@ public class EnemyController : MonoBehaviour, IDamageable
         statusBubble.PlayWarningAnimation();
         yield return new WaitForSeconds(data.reactionCooldown);
         statusBubble.PlayEmptyAnimation();
-        Debug.Log(name + " shot the player for " + damage + " damage.");
+        // Debug.Log(name + " shot the player for " + damage + " damage.");
+        Shoot();
         yield return new WaitForSeconds(data.shootCooldown);
         if (!playerDetected)
         {
@@ -243,5 +246,13 @@ public class EnemyController : MonoBehaviour, IDamageable
     public void MeleeAttack(IDamageable target)
     {
         target.Damage(data.meleeDamage, DamageType.MELEE, lastDirection);
+    }
+
+    public void Shoot()
+    {
+        GameObject newBullet = Instantiate(bullet, firePoint.position, Quaternion.identity);
+        newBullet.GetComponent<EnemyBullet>()?.Initialize(
+            currentDirection, data.projectileSpeed, data.shootDamage
+        );
     }
 }
