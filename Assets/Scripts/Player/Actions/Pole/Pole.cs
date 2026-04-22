@@ -14,6 +14,8 @@ public class Pole : MonoBehaviour
     [Tooltip("PoleData ScriptableObject")]
     [SerializeField] private PoleData data;
 
+    public int destroyScrapAmount {get; private set;}
+
     private PoleState state;
 
     private JointMotor2D motor;
@@ -96,5 +98,10 @@ public class Pole : MonoBehaviour
     {
         direction = dir;
         damageAmount = damage;
+    }
+
+    public void DestroyPole()
+    {
+        Destroy(gameObject);
     }
 }

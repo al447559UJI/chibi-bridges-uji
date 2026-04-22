@@ -36,10 +36,17 @@ public class PlayerMeleeAttack : MonoBehaviour
 
         foreach (Collider2D hit in hits)
         {
+
             IDamageable damageable = hit.gameObject.GetComponent<IDamageable>();
             if (damageable != null)
             {
                 damageable.Damage(damage, damageType, 0);
+            }
+            PoleHitbox pole = hit.GetComponent<PoleHitbox>();
+            if (pole != null)
+            {
+                actions.GiveScrap(pole.destroyScrapAmount);
+                pole.DestroyPole();
             }
         }
     }

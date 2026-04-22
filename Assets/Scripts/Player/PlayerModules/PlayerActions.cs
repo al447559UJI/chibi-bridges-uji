@@ -138,9 +138,13 @@ public class PlayerActions : MonoBehaviour
         }
     }
 
-    public void GiveScrap()
+    /// <summary>
+    /// Gives the player the specified amount of scrap.
+    /// If the paramter is left empty, it defaults to PlayerActionData.scrapCollectAmount.
+    /// </summary>
+    public void GiveScrap(int amount = -1)
     {
-        currentScrapAmount += data.scrapCollectAmount;
+        currentScrapAmount += amount <= 0 ? data.scrapCollectAmount : amount;
         onScrapChanged.Invoke(currentScrapAmount);
         onScrapGiven.Invoke($"+{data.scrapCollectAmount} Scrap");
     }

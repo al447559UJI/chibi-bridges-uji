@@ -33,8 +33,13 @@ public class ScrapController : MonoBehaviour, IDamageable
 
     void Start()
     {
-        scrapCollectEvent.AddListener(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerActions>().GiveScrap);
+        scrapCollectEvent.AddListener(GivePlayerScrap);
         BeginAnimation();
+    }
+
+    private void GivePlayerScrap()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerActions>().GiveScrap();
     }
 
 #if UNITY_EDITOR
