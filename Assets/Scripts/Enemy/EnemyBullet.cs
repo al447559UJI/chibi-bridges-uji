@@ -5,6 +5,7 @@ public class EnemyBullet : MonoBehaviour
 {
 
     [SerializeField] private float lifetime = 3f;
+    [SerializeField] private GameObject hitParticle;
     private int damageAmount;
     private DamageType damageType;
     private float spawnTime;
@@ -48,11 +49,7 @@ public class EnemyBullet : MonoBehaviour
                 damageable.Damage(damageAmount, damageType, Math.Sign(rb.linearVelocityX));
             }
         }
+        Instantiate(hitParticle, transform.position, Quaternion.identity);
         Destroy(gameObject);
-    }
-
-    void OnDisable()
-    {
-        spriteRenderer.flipX = false;
     }
 }
