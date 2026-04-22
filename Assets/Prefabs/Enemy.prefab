@@ -213,6 +213,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 264
   bullet: {fileID: 7713078644292860561, guid: 4bb45c1df325532b5b639cf31907ddf6, type: 3}
+  killParticleEmiter: {fileID: 7654207000868994754, guid: 2e46888541f3d48ae8622b24316f661f, type: 3}
   firePoint: {fileID: 9028400676217977350}
 --- !u!1 &4488096494836379142
 GameObject:

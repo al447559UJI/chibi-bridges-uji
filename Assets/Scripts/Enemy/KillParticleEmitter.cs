@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class KillParticles : MonoBehaviour
+public class KillParticleEmitter : MonoBehaviour
 {
 
     [SerializeField] private GameObject particle;

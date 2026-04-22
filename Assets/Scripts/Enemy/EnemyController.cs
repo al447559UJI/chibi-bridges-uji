@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     [Tooltip("Every layer the enemy will be able to see.")]
     [SerializeField] private LayerMask detectionLayers;
     [SerializeField] private GameObject bullet;
+    [SerializeField] private GameObject killParticleEmiter;
     [SerializeField] private Transform firePoint;
 
     private Rigidbody2D rb;
@@ -177,6 +178,7 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     public void Die()
     {
+        Instantiate(killParticleEmiter, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
