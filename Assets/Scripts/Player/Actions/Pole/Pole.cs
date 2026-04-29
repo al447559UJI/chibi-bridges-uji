@@ -47,6 +47,7 @@ public class Pole : MonoBehaviour
         damageType = DamageType.MELEE;
 
         rb.gravityScale = data.gravityScale;
+        destroyScrapAmount = data.destroyScrapAmount;
     }
 
     public void Anchor(Vector2 anchorPoint)

@@ -39,7 +39,7 @@ public class ScrapController : MonoBehaviour, IDamageable
 
     private void GivePlayerScrap()
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerActions>().GiveScrap();
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScrap>().Give();
     }
 
 #if UNITY_EDITOR

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 public class PlayerActions : MonoBehaviour
 {
@@ -17,23 +16,16 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private AudioClip shootSound;
 
     private PlayerMovement movement;
+    private PlayerScrap playerScrap;
     private float lastMeleeAnimationStartTime;
     private float lastShootStartTime;
     private bool isMeleeAnimationPlaying;
     private bool isPolePositionValid;
 
-    public int currentScrapAmount { get; private set; }
-
-    public UnityEvent<int> onScrapChanged;
-    public UnityEvent<string> onScrapGiven;
-    public UnityEvent<string> onScrapSpent;
-
     void Awake()
     {
         movement = GetComponent<PlayerMovement>();
-
-        // This has to be set before the HUD loads so the UI displays the correct number.
-        currentScrapAmount = data.initialScrapAmount;
+        playerScrap = GetComponent<PlayerScrap>();
     }
 
     public void AirMeleeAttack()
@@ -73,14 +65,14 @@ public class PlayerActions : MonoBehaviour
 
         if (Time.time - lastShootStartTime >= data.shootCooldown)
         {
-            if (currentScrapAmount >= data.shootCost || data.debugInfiniteAmmo)
+            if (playerScrap.currentAmount >= data.shootCost || data.debugInfiniteAmmo)
             {
                 lastShootStartTime = Time.time;
                 GameObject newBullet = PlayerBulletPool.instance.GetPooledObject();
 
                 if (newBullet != null)
                 {
-                    SpendScrap(data.shootCost);
+                    playerScrap.Spend(data.shootCost);
                     newBullet.transform.position = firePoint.position;
                     newBullet.SetActive(true);
                     newBullet.GetComponent<PlayerBullet>().Initialize(
@@ -92,7 +84,7 @@ public class PlayerActions : MonoBehaviour
             }
             else
             {
-                Debug.Log("Not enough scrap! " + currentScrapAmount + " remaining.");
+                Debug.Log("Not enough scrap! " + playerScrap.currentAmount + " remaining.");
             }
         }
     }
@@ -110,7 +102,7 @@ public class PlayerActions : MonoBehaviour
     public void SetPolePositionValid(bool isPositionValid)
     {
 
-        if (isPositionValid && CanAffordPole())
+        if (isPositionValid && playerScrap.CanAffordPole())
         {
             poleUI.SetGreenColor();
         }
@@ -127,44 +119,15 @@ public class PlayerActions : MonoBehaviour
     /// </summary>
     public void Build()
     {
-        if (CanAffordPole() && isPolePositionValid)
+        if (playerScrap.CanAffordPole() && isPolePositionValid)
         {
             GameObject newPole = Instantiate(pole, poleUI.GetSpawnPoint(), Quaternion.identity);
             if (newPole != null)
             {
-                SpendScrap(data.poleCost);
+                playerScrap.Spend(data.poleCost);
                 newPole.GetComponent<Pole>()?.Initialize(movement.facingDirection, data.poleDamage);
             }
         }
     }
 
-    /// <summary>
-    /// Gives the player the specified amount of scrap.
-    /// If the paramter is left empty, it defaults to PlayerActionData.scrapCollectAmount.
-    /// </summary>
-    public void GiveScrap(int amount = -1)
-    {
-        currentScrapAmount += amount <= 0 ? data.scrapCollectAmount : amount;
-        onScrapChanged.Invoke(currentScrapAmount);
-        onScrapGiven.Invoke($"+{data.scrapCollectAmount} Scrap");
-    }
-
-    private void SpendScrap(int amount)
-    {
-        if (data.debugInfiniteAmmo) return;
-
-        currentScrapAmount -= amount;
-        onScrapChanged.Invoke(currentScrapAmount);
-        onScrapSpent.Invoke($"-{amount} Scrap");
-
-        if (!CanAffordPole())
-        {
-            poleUI.SetRedColor();
-        }
-    }
-
-    private bool CanAffordPole()
-    {
-        return currentScrapAmount >= data.poleCost;
-    }
 }

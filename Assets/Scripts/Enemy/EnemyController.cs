@@ -26,6 +26,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     private Vector2 bodySize;
     private EnemyState state;
     private EnemyStatusBubble statusBubble;
+    private ItemDropBehavior dropBehavior;
     private float currentDirectionTimer;
     private int currentHealth;
     private bool isGrounded;
@@ -40,6 +41,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         rb = GetComponent<Rigidbody2D>();
         bodyCollider = GetComponent<BoxCollider2D>();
+        dropBehavior =  GetComponent<ItemDropBehavior>();
         statusBubble = GetComponentInChildren<EnemyStatusBubble>();
     }
 
@@ -179,6 +181,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     public void Die()
     {
         Instantiate(killParticleEmiter, transform.position, Quaternion.identity);
+        dropBehavior.DropItems(4, gameObject.transform.position);
         Destroy(gameObject);
     }
 

@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 public class HUD : MonoBehaviour
 {
-    [SerializeField] private PlayerActions player;
+    [SerializeField] private PlayerScrap playerScrap;
 
     private VisualElement container;
     private VisualElement scrapIcon;
@@ -23,25 +23,25 @@ public class HUD : MonoBehaviour
 
     void Start()
     {
-        UpdateScrap(player.currentScrapAmount);
+        UpdateScrap(playerScrap.currentAmount);
         UpdateFontSize(GameManager.instance.CurrentUIScale);
         UpdateScrapIconSize(GameManager.instance.CurrentUIScale);
     }
 
     void OnEnable()
     {
-        player.onScrapChanged.AddListener(UpdateScrap);
-        player.onScrapGiven.AddListener(SetUpLabelPlus);
-        player.onScrapSpent.AddListener(SetUpLabelMinus);
+        playerScrap.onScrapChanged.AddListener(UpdateScrap);
+        playerScrap.onScrapGiven.AddListener(SetUpLabelPlus);
+        playerScrap.onScrapSpent.AddListener(SetUpLabelMinus);
 
         GameManager.instance?.OnUIScaleChanged.AddListener(HandleUIScaleChanged);
     }
 
     void OnDisable()
     {
-        player.onScrapChanged.RemoveListener(UpdateScrap);
-        player.onScrapGiven.RemoveListener(SetUpLabelPlus);
-        player.onScrapSpent.RemoveListener(SetUpLabelMinus);
+        playerScrap.onScrapChanged.RemoveListener(UpdateScrap);
+        playerScrap.onScrapGiven.RemoveListener(SetUpLabelPlus);
+        playerScrap.onScrapSpent.RemoveListener(SetUpLabelMinus);
     }
 
     void UpdateScrap(int value)

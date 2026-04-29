@@ -5,6 +5,7 @@ public class PlayerMeleeAttack : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private PlayerActions actions;
+    private PlayerScrap playerScrap;
     private BoxCollider2D hitbox;
     private DamageType damageType;
 
@@ -15,6 +16,7 @@ public class PlayerMeleeAttack : MonoBehaviour
         hitbox = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         actions = GetComponentInParent<PlayerActions>();
+        playerScrap = GetComponentInParent<PlayerScrap>();
     }
 
     void Start()
@@ -45,7 +47,8 @@ public class PlayerMeleeAttack : MonoBehaviour
             PoleHitbox pole = hit.GetComponent<PoleHitbox>();
             if (pole != null)
             {
-                actions.GiveScrap(pole.destroyScrapAmount);
+                Debug.Log("Giving the player " + pole.destroyScrapAmount + " scrap.");
+                playerScrap.Give(pole.destroyScrapAmount);
                 pole.DestroyPole();
             }
         }

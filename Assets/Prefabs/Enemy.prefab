@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4536088232488307824}
   - component: {fileID: 3932091104924684656}
   - component: {fileID: 8697862837849435968}
+  - component: {fileID: 5097249283953486888}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -215,6 +216,19 @@ MonoBehaviour:
   bullet: {fileID: 7713078644292860561, guid: 4bb45c1df325532b5b639cf31907ddf6, type: 3}
   killParticleEmiter: {fileID: 7654207000868994754, guid: 2e46888541f3d48ae8622b24316f661f, type: 3}
   firePoint: {fileID: 9028400676217977350}
+--- !u!114 &5097249283953486888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3917632067138265761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a216848733468a2a7bb873f720fdbbd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemDropBehavior
+  item: {fileID: 4201902389094269549, guid: c89051d0d5b0e3e15af81320c23cf021, type: 3}
 --- !u!1 &4488096494836379142
 GameObject:
   m_ObjectHideFlags: 0

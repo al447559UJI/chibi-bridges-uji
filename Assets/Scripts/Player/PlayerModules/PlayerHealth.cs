@@ -10,7 +10,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [SerializeField] private PlayerHealthData data;
     [SerializeField] private AudioClip hurtSound;
     private SpriteRenderer spriteRenderer;
-
+//
 
     private int currentHealth;
     private PlayerMovement movement;
