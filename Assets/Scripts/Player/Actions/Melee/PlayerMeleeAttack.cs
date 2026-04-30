@@ -44,12 +44,19 @@ public class PlayerMeleeAttack : MonoBehaviour
             {
                 damageable.Damage(damage, damageType, 0);
             }
+
             PoleHitbox pole = hit.GetComponent<PoleHitbox>();
             if (pole != null)
             {
                 Debug.Log("Giving the player " + pole.destroyScrapAmount + " scrap.");
                 playerScrap.Give(pole.destroyScrapAmount);
                 pole.DestroyPole();
+            }
+
+            Trashcan trashcan = hit.GetComponent<Trashcan>();
+            if (trashcan != null)
+            {
+                trashcan.HandleAttack();
             }
         }
     }

@@ -3,8 +3,8 @@ using UnityEngine.Events;
 
 public class PlayerScrap : MonoBehaviour
 {
-    [SerializeField] private PlayerActionData data;
     [SerializeField] private PoleUI poleUI;
+    [SerializeField] private PlayerActionData data;
 
     public UnityEvent<int> onScrapChanged;
     public UnityEvent<string> onScrapGiven;
@@ -49,5 +49,10 @@ public class PlayerScrap : MonoBehaviour
     public bool CanAffordPole()
     {
         return currentAmount >= data.poleCost;
+    }
+
+    public int GetPoleCost()
+    {
+        return data.poleCost;
     }
 }
