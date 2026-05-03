@@ -61,11 +61,18 @@ public class PlayerMeleeAttack : MonoBehaviour
         }
     }
 
-    public void Render()
+    public void Render(bool isGrounded)
     {
         spriteRenderer.enabled = true;
         animator.enabled = true;
-        animator.Play("Melee");
+        if (isGrounded)
+        {
+            animator.Play("Melee");
+        } else
+        {
+            animator.Play("MeleeAir");
+        }
+        
     }
 
     public void Hide()

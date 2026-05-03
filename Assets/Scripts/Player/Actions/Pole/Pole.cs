@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 enum PoleState
@@ -21,6 +22,7 @@ public class Pole : MonoBehaviour
     private JointMotor2D motor;
     private HingeJoint2D hinge;
     private Rigidbody2D rb;
+    private DestroyTimeout timeout;
     private int direction = 1;
     private int damageAmount;
     private DamageType damageType;
@@ -29,6 +31,7 @@ public class Pole : MonoBehaviour
     {
         hinge = GetComponent<HingeJoint2D>();
         rb = GetComponent<Rigidbody2D>();
+        timeout = GetComponent<DestroyTimeout>();
     }
 
     void Start()
@@ -69,6 +72,7 @@ public class Pole : MonoBehaviour
         {
             case PoleState.FALL:
                 state = PoleState.ROTATE;
+                timeout.Cancel();
                 break;
             case PoleState.ROTATE:
                 if (collision != null && collision.gameObject.layer == LayerMask.NameToLayer("Damageable"))

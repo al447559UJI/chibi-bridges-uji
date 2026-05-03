@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3831731099077341340}
   - component: {fileID: 2975795359056481739}
   - component: {fileID: 718386159921033051}
-  m_Layer: 0
+  - component: {fileID: 4811456809403445183}
+  m_Layer: 10
   m_Name: ScrapDrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,6 +185,19 @@ MonoBehaviour:
   - {fileID: 4811928000198824258, guid: 4b74f31445a30280c923e031f64b0c8c, type: 3}
   - {fileID: 1962551697672649649, guid: 4284973758e228a7b996a781735c4d5d, type: 3}
   - {fileID: -6004354019170119599, guid: 1cf855c68c278c70b95f53cc7dc6bbfb, type: 3}
+--- !u!114 &4811456809403445183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4201902389094269549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb3bdf463b1d7e1f3b9aca40168ddf45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyTimeout
+  timeout: 5
 --- !u!1 &5265505890264639049
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,7 +208,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6881561425004611515}
   - component: {fileID: 3643017231031558632}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ScrapDropCollision
   m_TagString: Untagged
   m_Icon: {fileID: 0}

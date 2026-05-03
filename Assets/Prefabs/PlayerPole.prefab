@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 5511622833877377371}
   - component: {fileID: 6928606661586691235}
   - component: {fileID: 117477079216082449}
+  - component: {fileID: 1472122394729943028}
   - component: {fileID: 3263162336721166189}
   - component: {fileID: 4575369528098371552}
   - component: {fileID: 5438396963308631692}
@@ -193,6 +194,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Pole
   anchorPoint: {fileID: 1584889955323612065}
   data: {fileID: 11400000, guid: 5fe4f59291eb9a2e5b85c4df023b13da, type: 2}
+--- !u!114 &1472122394729943028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6285149721415366652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb3bdf463b1d7e1f3b9aca40168ddf45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyTimeout
+  timeout: 5
 --- !u!50 &3263162336721166189
 Rigidbody2D:
   serializedVersion: 5

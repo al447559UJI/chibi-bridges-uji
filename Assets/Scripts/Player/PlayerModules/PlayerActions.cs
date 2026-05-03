@@ -17,6 +17,7 @@ public class PlayerActions : MonoBehaviour
 
     private PlayerMovement movement;
     private PlayerScrap playerScrap;
+    private Animator animator;
     private float lastMeleeAnimationStartTime;
     private float lastShootStartTime;
     private bool isMeleeAnimationPlaying;
@@ -26,11 +27,13 @@ public class PlayerActions : MonoBehaviour
     {
         movement = GetComponent<PlayerMovement>();
         playerScrap = GetComponent<PlayerScrap>();
+        animator = GetComponent<Animator>();
     }
 
     public void AirMeleeAttack()
     {
-        meleeAttack.Render();
+        meleeAttack.Render(movement.isGrounded);
+        animator.SetBool("isAttacking", true);
         meleeAttack.InitializeHitbox(data.meleeDamage, damageableLayer);
     }
 
@@ -40,7 +43,8 @@ public class PlayerActions : MonoBehaviour
         {
             lastMeleeAnimationStartTime = Time.time;
             isMeleeAnimationPlaying = true;
-            meleeAttack.Render();
+            animator.SetBool("isAttacking", true);
+            meleeAttack.Render(movement.isGrounded);
             meleeAttack.InitializeHitbox(data.meleeDamage, damageableLayer);
         }
     }
@@ -48,6 +52,7 @@ public class PlayerActions : MonoBehaviour
     public void OnMeleeAnimationEnded()
     {
         isMeleeAnimationPlaying = false;
+        animator.SetBool("isAttacking", false);
     }
 
     public bool IsMeleeAnimationPlaying()
