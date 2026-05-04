@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/MainMenu/MainMenu.uss?fileID=7433441132597879392&amp;guid=6e0695ea6056fc690b074658a8ef6db8&amp;type=3#MainMenu"/>
+    <ui:VisualElement name="ScreenContainer" style="flex-grow: 1; align-items: center;">
+        <ui:VisualElement name="MiddleContainer" style="flex-grow: 1; width: 50%; justify-content: center; align-items: center;">
+            <ui:Label text="You win!" name="WinLabel" style="color: rgb(255, 255, 255); font-size: 100%; -unity-font-definition: url(&quot;project://database/Assets/Fonts/NotJamChunkySans.ttf?fileID=12800000&amp;guid=b534870695be2dc60a4f54898c782cbf&amp;type=3#NotJamChunkySans&quot;); -unity-text-align: middle-center; margin-top: 0; margin-right: 0; margin-left: 0; margin-bottom: 32%;"/>
+            <ui:Button text="Go to Main Menu" name="MainMenuButton" class="button-base" style="width: 75%; height: 7.5%;"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,6 +1,5 @@
 using System.Collections;
 using Unity.Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,6 +24,6 @@ public class FinishLine : MonoBehaviour
         camera.Follow = origin;
         SoundManager.instance.PlaySound(finishSound, origin.position);
         yield return new WaitForSeconds(2.5f);
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("WinMenu");
     }
 }
