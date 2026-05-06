@@ -29,6 +29,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     private EnemyState state;
     private EnemyStatusBubble statusBubble;
     private ItemDropBehavior dropBehavior;
+    private Healthbar healthBar;
     private float currentDirectionTimer;
     private int currentHealth;
     private bool isGrounded;
@@ -46,6 +47,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         animator = GetComponent<Animator>();
         dropBehavior =  GetComponent<ItemDropBehavior>();
         statusBubble = GetComponentInChildren<EnemyStatusBubble>();
+        healthBar = GetComponentInChildren<Healthbar>();
     }
 
     void Start()
@@ -82,11 +84,12 @@ public class EnemyController : MonoBehaviour, IDamageable
                 Stop();
                 if (!isShooting)
                 {
-                    StartCoroutine(Shoot(data.shootDamage));
+                    StartCoroutine(ShootBehavior());
                 }
                 break;
             case EnemyState.HURT:
                 Stop();
+                StopCoroutine(ShootBehavior());
                 break;
         }
     }
@@ -184,6 +187,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         currentHealth -= damageAmount;
         state = EnemyState.HURT;
         animator.Play("Hurt");
+        healthBar.SetSize(currentHealth, data.health);
 
         if (currentHealth <= 0)
         {
@@ -211,13 +215,12 @@ public class EnemyController : MonoBehaviour, IDamageable
         playerDetected = hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Player");
     }
 
-    private IEnumerator Shoot(int damage)
+    private IEnumerator ShootBehavior()
     {
         isShooting = true;
         statusBubble.PlayWarningAnimation();
         yield return new WaitForSeconds(data.reactionCooldown);
         statusBubble.PlayEmptyAnimation();
-        // Debug.Log(name + " shot the player for " + damage + " damage.");
         Shoot();
         yield return new WaitForSeconds(data.shootCooldown);
         if (!playerDetected)
