@@ -8,13 +8,15 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     [Header("Data & Prefabs")]
     [SerializeField] private PlayerHealthData data;
+    [SerializeField] private AudioClip hurtSound;
     private SpriteRenderer spriteRenderer;
-
+//
 
     private int currentHealth;
     private PlayerMovement movement;
 
     public UnityEvent<int> onHealthChanged;
+    public UnityEvent onDeath;
 
     private bool isInvencible = false;
 
@@ -31,8 +33,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public void Damage(int damageAmount, DamageType damageType, int direction)
     {
-        Debug.Log("PlayerHealth Damage");
-
         if (data.debugGodMode || isInvencible) return;
 
         currentHealth -= damageAmount;
@@ -45,6 +45,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         else
         {
             movement.HurtKnockback(direction);
+            SoundManager.instance.PlaySound(hurtSound, transform.position);
             StartCoroutine(InvencibleTime());
             StartCoroutine(Flicker());
         }
@@ -54,7 +55,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public void Die()
     {
-        Debug.Log("You died!");
+        onDeath.Invoke();
     }
 
 

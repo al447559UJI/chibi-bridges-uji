@@ -1,9 +1,15 @@
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class BuildUI : MonoBehaviour
 {
     [SerializeField] private ActionStateManager stateManager;
+    [SerializeField] private CinemachineCamera cinemachineCamera;
+    public float zoomInLevel { get; private set; } = 6;
+    public float zoomOutLevel { get; private set; } = 10;
+
+    private bool isZoomedIn = true;
 
     private VisualElement top;
     private VisualElement bottom;
@@ -43,15 +49,24 @@ public class BuildUI : MonoBehaviour
     private void HandleStateChanged(ActionStateType type)
     {
         if (type == ActionStateType.BUILD)
+        {
             ShowUI();
+            ZoomOut();
+                            isZoomedIn = false;
+        }
         else
+        {
             HideUI();
+            if (!isZoomedIn)
+            {
+                isZoomedIn = true;
+                ZoomIn();
+            }
+        }
     }
 
     private void ShowUI()
     {
-
-
         top.AddToClassList(topEnabledClass);
         bottom.AddToClassList(bottomEnabledClass);
 
@@ -66,5 +81,15 @@ public class BuildUI : MonoBehaviour
 
         top.AddToClassList(topDisabledClass);
         bottom.AddToClassList(bottomDisabledClass);
+    }
+
+    private void ZoomIn()
+    {
+        cinemachineCamera.Lens.OrthographicSize = zoomInLevel;
+    }
+
+    private void ZoomOut()
+    {
+        cinemachineCamera.Lens.OrthographicSize = zoomOutLevel;
     }
 }

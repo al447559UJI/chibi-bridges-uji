@@ -5,6 +5,7 @@ public class PlayerBullet : MonoBehaviour
 {
     
     [SerializeField] private float lifetime = 3f; 
+    [SerializeField] private GameObject hitParticle;
     private int damageAmount;
     private DamageType damageType;
     private float spawnTime;
@@ -51,6 +52,7 @@ public class PlayerBullet : MonoBehaviour
 
     void OnDisable()
     {
+        Instantiate(hitParticle, transform.position, Quaternion.identity);
         spriteRenderer.flipX = false;
     }
 }

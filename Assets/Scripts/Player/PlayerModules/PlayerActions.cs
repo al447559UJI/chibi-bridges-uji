@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 public class PlayerActions : MonoBehaviour
 {
@@ -13,30 +12,28 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private GameObject pole;
     [Header("Layer Settings")]
     [SerializeField] private LayerMask damageableLayer;
+    [Header("Sound Assets")]
+    [SerializeField] private AudioClip shootSound;
 
     private PlayerMovement movement;
+    private PlayerScrap playerScrap;
+    private Animator animator;
     private float lastMeleeAnimationStartTime;
     private float lastShootStartTime;
     private bool isMeleeAnimationPlaying;
     private bool isPolePositionValid;
 
-    public int currentScrapAmount { get; private set; }
-
-    public UnityEvent<int> onScrapChanged;
-    public UnityEvent<string> onScrapGiven;
-    public UnityEvent<string> onScrapSpent;
-
     void Awake()
     {
         movement = GetComponent<PlayerMovement>();
-
-        // This has to be set before the HUD loads so the UI displays the correct number.
-        currentScrapAmount = data.initialScrapAmount;
+        playerScrap = GetComponent<PlayerScrap>();
+        animator = GetComponent<Animator>();
     }
 
     public void AirMeleeAttack()
     {
-        meleeAttack.Render();
+        meleeAttack.Render(movement.isGrounded);
+        animator.SetBool("isAttacking", true);
         meleeAttack.InitializeHitbox(data.meleeDamage, damageableLayer);
     }
 
@@ -46,7 +43,8 @@ public class PlayerActions : MonoBehaviour
         {
             lastMeleeAnimationStartTime = Time.time;
             isMeleeAnimationPlaying = true;
-            meleeAttack.Render();
+            animator.SetBool("isAttacking", true);
+            meleeAttack.Render(movement.isGrounded);
             meleeAttack.InitializeHitbox(data.meleeDamage, damageableLayer);
         }
     }
@@ -54,6 +52,7 @@ public class PlayerActions : MonoBehaviour
     public void OnMeleeAnimationEnded()
     {
         isMeleeAnimationPlaying = false;
+        animator.SetBool("isAttacking", false);
     }
 
     public bool IsMeleeAnimationPlaying()
@@ -71,25 +70,26 @@ public class PlayerActions : MonoBehaviour
 
         if (Time.time - lastShootStartTime >= data.shootCooldown)
         {
-            if (currentScrapAmount >= data.shootCost || data.debugInfiniteAmmo)
+            if (playerScrap.currentAmount >= data.shootCost || data.debugInfiniteAmmo)
             {
                 lastShootStartTime = Time.time;
                 GameObject newBullet = PlayerBulletPool.instance.GetPooledObject();
 
                 if (newBullet != null)
                 {
-                    SpendScrap(data.shootCost);
+                    playerScrap.Spend(data.shootCost);
                     newBullet.transform.position = firePoint.position;
                     newBullet.SetActive(true);
                     newBullet.GetComponent<PlayerBullet>().Initialize(
                         movement.facingDirection,
                         data.projectileSpeed,
                         data.shootDamage);
+                    SoundManager.instance.PlaySound(shootSound, transform.position, .5f);
                 }
             }
             else
             {
-                Debug.Log("Not enough scrap! " + currentScrapAmount + " remaining.");
+                Debug.Log("Not enough scrap! " + playerScrap.currentAmount + " remaining.");
             }
         }
     }
@@ -107,7 +107,7 @@ public class PlayerActions : MonoBehaviour
     public void SetPolePositionValid(bool isPositionValid)
     {
 
-        if (isPositionValid && CanAffordPole())
+        if (isPositionValid && playerScrap.CanAffordPole())
         {
             poleUI.SetGreenColor();
         }
@@ -124,40 +124,15 @@ public class PlayerActions : MonoBehaviour
     /// </summary>
     public void Build()
     {
-        if (CanAffordPole() && isPolePositionValid)
+        if (playerScrap.CanAffordPole() && isPolePositionValid)
         {
             GameObject newPole = Instantiate(pole, poleUI.GetSpawnPoint(), Quaternion.identity);
             if (newPole != null)
             {
-                SpendScrap(data.poleCost);
-                newPole.GetComponent<Pole>().Initialize(movement.facingDirection, data.poleDamage);
+                playerScrap.Spend(data.poleCost);
+                newPole.GetComponent<Pole>()?.Initialize(movement.facingDirection, data.poleDamage);
             }
         }
     }
 
-    public void GiveScrap()
-    {
-        currentScrapAmount += data.scrapCollectAmount;
-        onScrapChanged.Invoke(currentScrapAmount);
-        onScrapGiven.Invoke($"+{data.scrapCollectAmount} Scrap");
-    }
-
-    private void SpendScrap(int amount)
-    {
-        if (data.debugInfiniteAmmo) return;
-
-        currentScrapAmount -= amount;
-        onScrapChanged.Invoke(currentScrapAmount);
-        onScrapSpent.Invoke($"-{amount} Scrap");
-
-        if (!CanAffordPole())
-        {
-            poleUI.SetRedColor();
-        }
-    }
-
-    private bool CanAffordPole()
-    {
-        return currentScrapAmount >= data.poleCost;
-    }
 }

@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameSettingsData
   uiScale: 3
   debugTimeScale: 1
+  deathTimer: 1

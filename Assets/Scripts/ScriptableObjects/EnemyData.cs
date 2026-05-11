@@ -14,6 +14,8 @@ public class EnemyData : ScriptableObject
     [Header("Health / damage parameters")]
     public int health = 5;
     public int shootDamage = 1;
+    public float projectileSpeed;
+    
     [Tooltip("Time between the enemy reacting to the player and shooting.")]
     public float reactionCooldown = .75f;
     public float shootCooldown = 1f;

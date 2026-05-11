@@ -20,6 +20,7 @@ public class PlayerInput : MonoBehaviour
 
     private bool lockHorizontal = false;
     private bool lockJump = false;
+    private bool lockActions = false;
 
     private InputAction moveAction;
     private InputAction jumpAction;
@@ -38,6 +39,9 @@ public class PlayerInput : MonoBehaviour
 
     void Update()
     {
+
+        if (lockActions && lockHorizontal && lockJump) return;
+
         isMeleePressed = meleeAction.IsPressed();
         isShootPressed = shootAction.IsPressed();
         shootPressedThisFrame = shootAction.WasPressedThisFrame();
@@ -73,23 +77,25 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    public void LockHorizontalMovement()
+    public void LockHorizontalMovement(bool value)
     {
-        lockHorizontal = true;
+        lockHorizontal = value;
     }
 
-    public void LockJump()
+    public void LockJump(bool value)
     {
-        lockJump = true;
+        lockJump = value;
     }
 
-    public void UnlockHorizontalMovement()
+    public void LockActions(bool value)
     {
-        lockHorizontal = false;
+        lockActions = value;
     }
 
-    public void UnlockJump()
+    public void LockInput(bool value)
     {
-        lockJump = false;
+        LockHorizontalMovement(value);
+        LockJump(value);
+        LockActions(value);
     }
 }

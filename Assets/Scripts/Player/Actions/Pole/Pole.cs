@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 enum PoleState
@@ -14,11 +15,14 @@ public class Pole : MonoBehaviour
     [Tooltip("PoleData ScriptableObject")]
     [SerializeField] private PoleData data;
 
+    public int destroyScrapAmount {get; private set;}
+
     private PoleState state;
 
     private JointMotor2D motor;
     private HingeJoint2D hinge;
     private Rigidbody2D rb;
+    private DestroyTimeout timeout;
     private int direction = 1;
     private int damageAmount;
     private DamageType damageType;
@@ -27,6 +31,7 @@ public class Pole : MonoBehaviour
     {
         hinge = GetComponent<HingeJoint2D>();
         rb = GetComponent<Rigidbody2D>();
+        timeout = GetComponent<DestroyTimeout>();
     }
 
     void Start()
@@ -45,6 +50,7 @@ public class Pole : MonoBehaviour
         damageType = DamageType.MELEE;
 
         rb.gravityScale = data.gravityScale;
+        destroyScrapAmount = data.destroyScrapAmount;
     }
 
     public void Anchor(Vector2 anchorPoint)
@@ -66,6 +72,7 @@ public class Pole : MonoBehaviour
         {
             case PoleState.FALL:
                 state = PoleState.ROTATE;
+                timeout.Cancel();
                 break;
             case PoleState.ROTATE:
                 if (collision != null && collision.gameObject.layer == LayerMask.NameToLayer("Damageable"))
@@ -96,5 +103,10 @@ public class Pole : MonoBehaviour
     {
         direction = dir;
         damageAmount = damage;
+    }
+
+    public void DestroyPole()
+    {
+        Destroy(gameObject);
     }
 }

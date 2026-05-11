@@ -9,4 +9,5 @@ public class PoleData : ScriptableObject
     public float maxMotorTorque;
     [Range(0.5f, 4f)]
     public float gravityScale;
+    public int destroyScrapAmount;
 }

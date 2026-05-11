@@ -1,12 +1,14 @@
-using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
     [SerializeField] private GameSettingsData settings;
+    [SerializeField] private PlayerController player;
 
     public UIScale CurrentUIScale => settings.uiScale;
 
@@ -23,6 +25,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         ApplySettings();
+        player.health.onDeath.AddListener(HandlePlayerDeath);
     }
     public void SetUIScale(UIScale newScale)
     {
@@ -34,5 +37,14 @@ public class GameManager : MonoBehaviour
         Time.timeScale = settings.debugTimeScale;
     }
 
+    private IEnumerator RestartLevel()
+    {
+        yield return new WaitForSeconds(settings.deathTimer);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
+    public void HandlePlayerDeath()
+    {
+        StartCoroutine(RestartLevel());
+    }
 }

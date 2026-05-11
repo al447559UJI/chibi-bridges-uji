@@ -15,3 +15,4 @@ MonoBehaviour:
   motorSpeed: 100
   maxMotorTorque: 200
   gravityScale: 1
+  destroyScrapAmount: 95

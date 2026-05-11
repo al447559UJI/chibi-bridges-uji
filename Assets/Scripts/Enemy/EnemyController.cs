@@ -9,20 +9,27 @@ using UnityEditor;
 enum EnemyState
 {
     PATROL,
-    SHOOT
+    SHOOT,
+    HURT
 }
-public class EnemyController : MonoBehaviour, IDamageable
+public class EnemyController : MonoBehaviour, IDamageable, IHurtBoxUser
 {
     [SerializeField] private EnemyData data;
     [SerializeField] private LayerMask groundLayer;
     [Tooltip("Every layer the enemy will be able to see.")]
     [SerializeField] private LayerMask detectionLayers;
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private GameObject killParticleEmiter;
+    [SerializeField] private Transform firePoint;
 
     private Rigidbody2D rb;
     private BoxCollider2D bodyCollider;
+    private Animator animator;
     private Vector2 bodySize;
     private EnemyState state;
     private EnemyStatusBubble statusBubble;
+    private ItemDropBehavior dropBehavior;
+    private Healthbar healthBar;
     private float currentDirectionTimer;
     private int currentHealth;
     private bool isGrounded;
@@ -37,7 +44,10 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         rb = GetComponent<Rigidbody2D>();
         bodyCollider = GetComponent<BoxCollider2D>();
+        animator = GetComponent<Animator>();
+        dropBehavior =  GetComponent<ItemDropBehavior>();
         statusBubble = GetComponentInChildren<EnemyStatusBubble>();
+        healthBar = GetComponentInChildren<Healthbar>();
     }
 
     void Start()
@@ -71,11 +81,15 @@ public class EnemyController : MonoBehaviour, IDamageable
                 }
                 break;
             case EnemyState.SHOOT:
-                rb.linearVelocity = Vector2.zero;
+                Stop();
                 if (!isShooting)
                 {
-                    StartCoroutine(Shoot(data.shootDamage));
+                    StartCoroutine(ShootBehavior());
                 }
+                break;
+            case EnemyState.HURT:
+                Stop();
+                StopCoroutine(ShootBehavior());
                 break;
         }
     }
@@ -96,6 +110,11 @@ public class EnemyController : MonoBehaviour, IDamageable
         );
 
         lastDirection = Math.Sign(rb.linearVelocityX);
+    }
+
+    private void Stop()
+    {
+        rb.linearVelocity = Vector2.zero;
     }
 
     private void UpdateTimer()
@@ -166,6 +185,9 @@ public class EnemyController : MonoBehaviour, IDamageable
     public void Damage(int damageAmount, DamageType damageType, int direction)
     {
         currentHealth -= damageAmount;
+        state = EnemyState.HURT;
+        animator.Play("Hurt");
+        healthBar.SetSize(currentHealth, data.health);
 
         if (currentHealth <= 0)
         {
@@ -175,6 +197,8 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     public void Die()
     {
+        Instantiate(killParticleEmiter, transform.position, Quaternion.identity);
+        dropBehavior.DropItems(4, gameObject.transform.position);
         Destroy(gameObject);
     }
 
@@ -191,13 +215,13 @@ public class EnemyController : MonoBehaviour, IDamageable
         playerDetected = hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Player");
     }
 
-    private IEnumerator Shoot(int damage)
+    private IEnumerator ShootBehavior()
     {
         isShooting = true;
         statusBubble.PlayWarningAnimation();
         yield return new WaitForSeconds(data.reactionCooldown);
         statusBubble.PlayEmptyAnimation();
-        Debug.Log(name + " shot the player for " + damage + " damage.");
+        Shoot();
         yield return new WaitForSeconds(data.shootCooldown);
         if (!playerDetected)
         {
@@ -243,5 +267,18 @@ public class EnemyController : MonoBehaviour, IDamageable
     public void MeleeAttack(IDamageable target)
     {
         target.Damage(data.meleeDamage, DamageType.MELEE, lastDirection);
+    }
+
+    public void Shoot()
+    {
+        GameObject newBullet = Instantiate(bullet, firePoint.position, Quaternion.identity);
+        newBullet.GetComponent<EnemyBullet>()?.Initialize(
+            currentDirection, data.projectileSpeed, data.shootDamage
+        );
+    }
+
+    public void OnHurtAnimationEnded()
+    {
+        state = EnemyState.SHOOT;
     }
 }

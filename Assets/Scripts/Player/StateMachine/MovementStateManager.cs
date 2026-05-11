@@ -7,7 +7,8 @@ public enum MovementStateType
     MOVE,
     JUMP,
     FALL,
-    HURT
+    HURT,
+    DEAD
 }
 
 public class MovementStateManager : MonoBehaviour
@@ -20,6 +21,7 @@ public class MovementStateManager : MonoBehaviour
     public MovementJumpState jumpState = new MovementJumpState();
     public MovementFallState fallState = new MovementFallState();
     public MovementHurtState hurtState = new MovementHurtState();
+    public MovementDeathState deathState = new MovementDeathState();
 
     public UnityEvent<MovementStateType> onStateEntered;
     public UnityEvent<MovementStateType> onStateExited;
