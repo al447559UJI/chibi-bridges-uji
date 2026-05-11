@@ -12,7 +12,7 @@ enum EnemyState
     SHOOT,
     HURT
 }
-public class EnemyController : MonoBehaviour, IDamageable
+public class EnemyController : MonoBehaviour, IDamageable, IHurtBoxUser
 {
     [SerializeField] private EnemyData data;
     [SerializeField] private LayerMask groundLayer;
