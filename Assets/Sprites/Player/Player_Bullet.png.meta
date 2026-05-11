@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ce801985848daacbc8e9c1f6b961523b
+guid: 256cfdb6fe534d8acba80d9942cf0c61
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2346302928887187388
-    second: bullet_0
+      213: -9223124649531969855
+    second: Player_Bullet 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,24 +96,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bullet_0
+      name: Player_Bullet 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 448783cdae1407fd0800000000000000
-      internalID: -2346302928887187388
+      spriteID: 1ce6f795ff0e00080800000000000000
+      internalID: -9223124649531969855
       vertices: []
       indices: 
       edges: []
@@ -148,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bullet_0: -2346302928887187388
+      Player_Bullet 1_0: -9223124649531969855
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
