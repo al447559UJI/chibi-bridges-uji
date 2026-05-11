@@ -53,8 +53,7 @@ public class EnemyAltController : MonoBehaviour, IDamageable, IHurtBoxUser, IDet
         {
             case EnemyAltState.MOVE:
                 Move();
-                // CheckGrounded();
-                if (ShouldFlip())
+                if (TargetOnOppositeSide())
                 {
                     Flip();
                 }
@@ -73,7 +72,7 @@ public class EnemyAltController : MonoBehaviour, IDamageable, IHurtBoxUser, IDet
         playerDetected = true;
     }
 
-    private bool ShouldFlip()
+    private bool TargetOnOppositeSide()
     {
         bool result = false;
 
