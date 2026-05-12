@@ -23,19 +23,14 @@ public class PlayerMeleeAttack : MonoBehaviour
     {
         Hide();
         damageType = DamageType.MELEE;
-        DebugRegistry.Register("Hitbox size", hitbox.size.ToString);
-        DebugRegistry.Register("Hitbox size", hitbox.offset.ToString);
     }
 
-    public void InitializeHitbox(int damage, LayerMask damageableLayer)
+    public void InitializeHitbox(int damage, LayerMask damageableLayer, int direction)
     {
-        // In case hitboxes break later, try this:
-        // Vector2 size = Vector2.Scale(hitbox.size, hitbox.transform.lossyScale);
-
         Vector2 hitboxOrigin = hitbox.transform.position;
 
         Collider2D[] hits = Physics2D.OverlapBoxAll(
-            new Vector2(hitboxOrigin.x + hitbox.offset.x, hitboxOrigin.y + hitbox.offset.y),
+            new Vector2(hitboxOrigin.x + hitbox.offset.x * direction, hitboxOrigin.y + hitbox.offset.y),
             hitbox.size,
             0f,
             damageableLayer);
@@ -72,11 +67,11 @@ public class PlayerMeleeAttack : MonoBehaviour
         if (isGrounded)
         {
             animator.Play("Melee");
-        } else
+        }
+        else
         {
             animator.Play("MeleeAir");
         }
-        
     }
 
     public void Hide()
@@ -95,18 +90,5 @@ public class PlayerMeleeAttack : MonoBehaviour
     public void OnMeleeAnimationStarted()
     {
 
-    }
-
-    void OnDrawGizmos()
-    {
-        if (hitbox != null)
-        {
-            Gizmos.color = Color.red;
-
-            Gizmos.DrawWireCube(
-                hitbox.transform.position,
-                hitbox.size
-            );
-        }
     }
 }

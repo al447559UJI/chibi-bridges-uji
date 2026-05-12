@@ -34,7 +34,7 @@ public class PlayerActions : MonoBehaviour
     {
         meleeAttack.Render(movement.isGrounded);
         animator.SetBool("isAttacking", true);
-        meleeAttack.InitializeHitbox(data.meleeDamage, damageableLayer);
+        meleeAttack.InitializeHitbox(data.meleeDamage, damageableLayer, movement.facingDirection);
     }
 
     public void MeleeAttack()
@@ -45,7 +45,7 @@ public class PlayerActions : MonoBehaviour
             isMeleeAnimationPlaying = true;
             animator.SetBool("isAttacking", true);
             meleeAttack.Render(movement.isGrounded);
-            meleeAttack.InitializeHitbox(data.meleeDamage, damageableLayer);
+            meleeAttack.InitializeHitbox(data.meleeDamage, damageableLayer, movement.facingDirection);
         }
     }
 
