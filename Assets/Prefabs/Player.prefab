@@ -499,8 +499,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c97bd65933b1ce64a456bd392da51b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerParticles
-  deathParticle: {fileID: 5029761163222346087, guid: 7f7aa186b764215ba83aec7da4587093, type: 3}
+  deathParticles: {fileID: 5029761163222346087, guid: 7f7aa186b764215ba83aec7da4587093, type: 3}
+  jumpParticles: {fileID: 793120490341576706, guid: 57e3cf52537e65b0d9f33980d57036b5, type: 3}
+  landParticles: {fileID: 793120490341576706, guid: de3c3a20ec42b67edbe314604fecefc0, type: 3}
   playerOrigin: {fileID: 2295298824381702100}
+  playerFeet: {fileID: 3828985765775906824}
 --- !u!1 &7567329168597332709
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,7 +625,7 @@ CapsuleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0

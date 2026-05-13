@@ -30,6 +30,7 @@ public class PoleUI : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collision)
     {
+        Debug.Log(collision.gameObject.name);
         DenyBuild();
     }
 

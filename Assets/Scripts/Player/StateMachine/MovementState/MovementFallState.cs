@@ -43,11 +43,13 @@ public class MovementFallState : MovementBaseState
             else if (player.controller.input.horizontal != 0f)
             {
                 player.SwitchState(player.moveState);
+                player.controller.particles.SpawnLandParticles();
                 return;
             }
             else
             {
                 player.SwitchState(player.idleState);
+                player.controller.particles.SpawnLandParticles();
                 return;
             }
         }

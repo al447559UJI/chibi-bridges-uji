@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioClip jumpSound;
 
     private PlayerInput input;
+    private PlayerParticles particles;
     private Animator animator;
     public Rigidbody2D rb { get; private set; }
     private float lastJumpStartTime;
@@ -28,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         input = GetComponent<PlayerInput>();
         animator = GetComponent<Animator>();
+        particles = GetComponent<PlayerParticles>();
     }
 
     void Start()
@@ -84,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
         lastJumpStartTime = Time.time;
         input.LockHorizontalMovement(false);
         SoundManager.instance.PlaySound(jumpSound, transform.position);
+        particles.SpawnJumpParticles();
     }
 
     public bool IsBufferedJumpAvailable()
