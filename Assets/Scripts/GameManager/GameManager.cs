@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     public UIScale CurrentUIScale => settings.uiScale;
 
     public UnityEvent<UIScale> OnUIScaleChanged;
+    public UnityEvent<int> OnScoreChanged;
+
+    public int score {get; private set;} = 0; 
 
     void Awake()
     {
@@ -46,5 +49,13 @@ public class GameManager : MonoBehaviour
     public void HandlePlayerDeath()
     {
         StartCoroutine(RestartLevel());
+    }
+
+    public void AddScore(int newScore)
+    {
+                Debug.Log("Updating score, newscore = " + newScore);
+        score += newScore;
+        Debug.Log("Current score = " + score);
+        OnScoreChanged.Invoke(score);
     }
 }

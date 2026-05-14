@@ -20,6 +20,7 @@ public class EnemyData : ScriptableObject
     public float reactionCooldown = .75f;
     public float shootCooldown = 1f;
     public int meleeDamage = 1;
+    public int score = 50;
 
     [Header("Search parameters")]
     public float searchDistance = 5f;

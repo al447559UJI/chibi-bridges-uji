@@ -21,6 +21,8 @@ public class ScrapController : MonoBehaviour, IDamageable
     [SerializeField] bool randomType = true;
     [SerializeField] private ScrapType type = ScrapType.CAN_SMALL;
 
+    [SerializeField] private int score = 100;
+
 
     private Animator animator;
     public UnityEvent scrapCollectEvent;
@@ -118,6 +120,7 @@ public class ScrapController : MonoBehaviour, IDamageable
 
     public void Die()
     {
+        GameManager.instance.AddScore(score);
         Destroy(gameObject);
     }
 

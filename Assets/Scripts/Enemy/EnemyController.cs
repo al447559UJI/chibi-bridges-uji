@@ -199,6 +199,7 @@ public class EnemyController : MonoBehaviour, IDamageable, IHurtBoxUser
     {
         Instantiate(killParticleEmiter, transform.position, Quaternion.identity);
         dropBehavior.DropItems(4, gameObject.transform.position);
+        GameManager.instance.AddScore(data.score);
         Destroy(gameObject);
     }
 

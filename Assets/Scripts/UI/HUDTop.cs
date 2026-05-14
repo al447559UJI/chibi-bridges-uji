@@ -1,7 +1,8 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class HealthBar : MonoBehaviour
+public class HUDTop : MonoBehaviour
 {
     [SerializeField] private Sprite[] frames;
     [SerializeField] private float fps = 10f;
@@ -9,7 +10,8 @@ public class HealthBar : MonoBehaviour
     private VisualElement container;
     private VisualElement heart;
     private VisualElement battery;
-    private Label label;
+    private Label hp;
+    private Label score;
     private int currentFrame;
     private float timer;
 
@@ -23,7 +25,8 @@ public class HealthBar : MonoBehaviour
         container = root.Q<VisualElement>("Container");
         heart = container.Q<VisualElement>("Heart");
         battery = container.Q<VisualElement>("Battery");
-        label = battery.Q<Label>("HP");
+        score = container.Q<Label>("Score");
+        hp = battery.Q<Label>("HP");
     }
 
     void Start()
@@ -31,6 +34,7 @@ public class HealthBar : MonoBehaviour
         UpdateFontSize(GameManager.instance.CurrentUIScale);
         UpdateBatterySize(GameManager.instance.CurrentUIScale);
         UpdateHeartSize(GameManager.instance.CurrentUIScale);
+        UpdateScore(GameManager.instance.score);
     }
 
     void Update()
@@ -50,18 +54,25 @@ public class HealthBar : MonoBehaviour
 
     private void UpdateHealth(int health)
     {
-        label.text = $"{health}%";
+        hp.text = $"{health}%";
+    }
+
+    private void UpdateScore(int newScore)
+    {
+        score.text = $"Score: {newScore}";
     }
 
     void OnEnable()
     {
         player.onHealthChanged.AddListener(UpdateHealth);
-        GameManager.instance?.OnUIScaleChanged.AddListener(HandleUIScaleChanged);
+        StartCoroutine(DelayedEventConnection());
     }
 
     void OnDisable()
     {
         player.onHealthChanged.RemoveListener(UpdateHealth);
+        GameManager.instance?.OnUIScaleChanged.RemoveListener(HandleUIScaleChanged);
+        GameManager.instance.OnScoreChanged.RemoveListener(UpdateScore);
     }
 
     private void HandleUIScaleChanged(UIScale scale)
@@ -76,9 +87,11 @@ public class HealthBar : MonoBehaviour
         string newClass = CSSClasses.GetByScale(CSSClasses.FontSizes, scale);
 
         if (!string.IsNullOrEmpty(currentFontClass))
-            label.RemoveFromClassList(currentFontClass);
+            hp.RemoveFromClassList(currentFontClass);
+            score.RemoveFromClassList(currentFontClass);
 
-        label.AddToClassList(newClass);
+        hp.AddToClassList(newClass);
+        score.AddToClassList(newClass);
         currentFontClass = newClass;
     }
 
@@ -102,5 +115,16 @@ public class HealthBar : MonoBehaviour
 
         heart.AddToClassList(newClass);
         currentHeartClass = newClass;
+    }
+
+    /* Since Unity is trash, I have to delay the AddListeners for one frame 
+       because the GameManager instance isn't loaded when the OnEnable() function is executed. 
+
+       Use Godot next time. */
+    private IEnumerator DelayedEventConnection()
+    {
+        yield return null;
+        GameManager.instance.OnUIScaleChanged.AddListener(HandleUIScaleChanged);
+        GameManager.instance.OnScoreChanged.AddListener(UpdateScore);
     }
 }

@@ -3,6 +3,9 @@ using UnityEngine;
 public class ScrapDrop : MonoBehaviour
 {
     [SerializeField] private Sprite[] sprites;
+    [SerializeField] private int amount = 5;
+    [SerializeField] private int score = 5;
+
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
 
@@ -28,7 +31,8 @@ public class ScrapDrop : MonoBehaviour
 
         if (playerScrap != null)
         {
-            playerScrap?.Give(5);
+            playerScrap?.Give(amount);
+            GameManager.instance.AddScore(score);
             DestroyScrap();
         }
     }
