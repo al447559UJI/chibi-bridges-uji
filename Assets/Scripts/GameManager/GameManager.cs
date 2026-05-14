@@ -53,9 +53,7 @@ public class GameManager : MonoBehaviour
 
     public void AddScore(int newScore)
     {
-                Debug.Log("Updating score, newscore = " + newScore);
         score += newScore;
-        Debug.Log("Current score = " + score);
         OnScoreChanged.Invoke(score);
     }
 }

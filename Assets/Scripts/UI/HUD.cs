@@ -107,7 +107,6 @@ public class HUD : MonoBehaviour
             scrapIcon.RemoveFromClassList(currentIconClass);
 
         scrapIcon.AddToClassList(newClass);
-        // Debug.Log(newClass);
         currentIconClass = newClass;
     }
 }

@@ -87,10 +87,6 @@ public class PlayerActions : MonoBehaviour
                     SoundManager.instance.PlaySound(shootSound, transform.position, .5f);
                 }
             }
-            else
-            {
-                Debug.Log("Not enough scrap! " + playerScrap.currentAmount + " remaining.");
-            }
         }
     }
 

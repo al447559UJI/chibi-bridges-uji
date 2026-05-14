@@ -47,7 +47,6 @@ public class PlayerMeleeAttack : MonoBehaviour
             PoleHitbox pole = hit.GetComponent<PoleHitbox>();
             if (pole != null)
             {
-                Debug.Log("Giving the player " + pole.destroyScrapAmount + " scrap.");
                 playerScrap.Give(pole.destroyScrapAmount);
                 pole.DestroyPole();
             }
