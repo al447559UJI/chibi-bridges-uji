@@ -406,6 +406,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   shootSound: {fileID: 8300000, guid: 25d5b7a7744e6954e984a4a50bb9189a, type: 3}
+  swishSound: {fileID: 8300000, guid: 7ec9621512bf61605ac697836cd4eb20, type: 3}
 --- !u!114 &4055945279597263477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,6 +421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScrap
   poleUI: {fileID: 530714925586828824}
   data: {fileID: 11400000, guid: ec3007f7f8b9647a09dcc4667a4f80ba, type: 2}
+  pickupSound: {fileID: 8300000, guid: 1b99f2f2992c386439e013181def06ab, type: 3}
   onScrapChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -777,6 +779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c165381a8c44f3339b07676149cbf14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMeleeVisual
+  hitSound: {fileID: 8300000, guid: d32625fab1d3ecae490309fe6dd2d2d0, type: 3}
 --- !u!61 &8623907456457695528
 BoxCollider2D:
   m_ObjectHideFlags: 0

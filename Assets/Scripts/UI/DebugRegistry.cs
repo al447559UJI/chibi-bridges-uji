@@ -10,4 +10,9 @@ public static class DebugRegistry
     {
         Fields.Add((name, getter));
     }
+
+    public static void Clear()
+    {
+        Fields.Clear();
+    }
 }

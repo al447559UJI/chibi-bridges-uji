@@ -14,6 +14,7 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private LayerMask damageableLayer;
     [Header("Sound Assets")]
     [SerializeField] private AudioClip shootSound;
+    [SerializeField] private AudioClip swishSound;
 
     private PlayerMovement movement;
     private PlayerScrap playerScrap;
@@ -34,6 +35,7 @@ public class PlayerActions : MonoBehaviour
     {
         meleeAttack.Render(movement.isGrounded);
         animator.SetBool("isAttacking", true);
+        SoundManager.instance.PlaySound(swishSound, transform.position);
         meleeAttack.InitializeHitbox(data.meleeDamage, damageableLayer, movement.facingDirection);
     }
 
@@ -45,6 +47,7 @@ public class PlayerActions : MonoBehaviour
             isMeleeAnimationPlaying = true;
             animator.SetBool("isAttacking", true);
             meleeAttack.Render(movement.isGrounded);
+            SoundManager.instance.PlaySound(swishSound, transform.position);
             meleeAttack.InitializeHitbox(data.meleeDamage, damageableLayer, movement.facingDirection);
         }
     }

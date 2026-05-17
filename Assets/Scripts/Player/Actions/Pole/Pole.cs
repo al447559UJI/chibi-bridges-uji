@@ -14,6 +14,8 @@ public class Pole : MonoBehaviour
     [SerializeField] private Transform anchorPoint;
     [Tooltip("PoleData ScriptableObject")]
     [SerializeField] private PoleData data;
+    [SerializeField] private AudioClip anchorSound;
+    [SerializeField] private AudioClip hitSound;
 
     public int destroyScrapAmount {get; private set;}
 
@@ -58,6 +60,7 @@ public class Pole : MonoBehaviour
         hinge.enabled = true;
         hinge.anchor = transform.InverseTransformPoint(anchorPoint);
         hinge.connectedAnchor = anchorPoint;
+        SoundManager.instance.PlaySound(anchorSound, transform.position);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -81,9 +84,13 @@ public class Pole : MonoBehaviour
                 }
                 else
                 {
-                    state = PoleState.STOP;
-                    hinge.useMotor = false;
-                    rb.bodyType = RigidbodyType2D.Static;
+                    if (collision.gameObject.layer != LayerMask.NameToLayer("Player"))
+                    {
+                        state = PoleState.STOP;
+                        hinge.useMotor = false;
+                        rb.bodyType = RigidbodyType2D.Static;
+                        SoundManager.instance.PlaySound(hitSound, transform.position);
+                    }
                 }
                 break;
         }

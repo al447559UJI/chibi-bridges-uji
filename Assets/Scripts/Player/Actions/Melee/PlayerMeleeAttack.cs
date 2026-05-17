@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class PlayerMeleeAttack : MonoBehaviour
 {
+    [SerializeField] private AudioClip hitSound;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private PlayerActions actions;
     private PlayerScrap playerScrap;
     private BoxCollider2D hitbox;
     private DamageType damageType;
+
 
 
     void Awake()
@@ -57,6 +59,8 @@ public class PlayerMeleeAttack : MonoBehaviour
                 trashcan.HandleAttack();
             }
         }
+
+        if (hits.Length > 0) SoundManager.instance.PlaySound(hitSound, transform.position);
     }
 
     public void Render(bool isGrounded)

@@ -217,6 +217,8 @@ MonoBehaviour:
   bullet: {fileID: 7713078644292860561, guid: 4bb45c1df325532b5b639cf31907ddf6, type: 3}
   killParticleEmiter: {fileID: 7654207000868994754, guid: 2e46888541f3d48ae8622b24316f661f, type: 3}
   firePoint: {fileID: 9028400676217977350}
+  shootSound: {fileID: 8300000, guid: 7649ec2b3d6c2d11ca2419d841620c23, type: 3}
+  deathSound: {fileID: 8300000, guid: 8d0dfe5865b2f909ba9ee303eeafdb4d, type: 3}
 --- !u!114 &5097249283953486888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,7 +401,7 @@ GameObject:
   - component: {fileID: 738140111330776920}
   - component: {fileID: 757624882245682689}
   - component: {fileID: 4621119619931040134}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: HurtBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}

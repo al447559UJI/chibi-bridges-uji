@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public PlayerParticles particles { get; private set; }
 
     private MovementStateManager movementStateManager;
-    // private ActionStateManager actionStateManager;
+    private ActionStateManager actionStateManager;
 
 
     void OnEnable()
@@ -31,12 +31,13 @@ public class PlayerController : MonoBehaviour
         particles = GetComponent<PlayerParticles>();
         
         movementStateManager = GetComponent<MovementStateManager>();
-        // actionStateManager = GetComponent<ActionStateManager>();
+        actionStateManager = GetComponent<ActionStateManager>();
     }
 
     private void HandleDeath()
     {
         movementStateManager.SwitchState(movementStateManager.deathState);
+        actionStateManager.SwitchState(actionStateManager.deathState);
     }
 
 

@@ -3,6 +3,7 @@ using UnityEngine;
 public class PoleAnchor : MonoBehaviour
 {
     private Pole pole;
+    private bool isAnchored = false;
 
     void Awake()
     {
@@ -11,6 +12,10 @@ public class PoleAnchor : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        pole.Anchor(transform.position);
+        if (!isAnchored)
+        {
+            pole.Anchor(transform.position);
+            isAnchored = true;
+        }
     }
 }

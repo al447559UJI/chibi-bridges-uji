@@ -17,4 +17,4 @@ MonoBehaviour:
   deceleration: 10
   health: 3
   reactionCooldown: 0.75
-  meleeDamage: 1
+  meleeDamage: 5

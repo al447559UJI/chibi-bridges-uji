@@ -11,6 +11,7 @@ public class EnemyAltController : MonoBehaviour, IDamageable, IHurtBoxUser, IDet
 {
     [SerializeField] private EnemyAltData data;
     [SerializeField] private GameObject killParticleEmiter;
+    [SerializeField] private AudioClip deathSound;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -135,6 +136,7 @@ public class EnemyAltController : MonoBehaviour, IDamageable, IHurtBoxUser, IDet
     {
         Instantiate(killParticleEmiter, transform.position, Quaternion.identity);
         dropBehavior.DropItems(4, gameObject.transform.position);
+        SoundManager.instance.PlaySound(deathSound, transform.position, .5f);
         Destroy(gameObject);
     }
 
@@ -147,6 +149,12 @@ public class EnemyAltController : MonoBehaviour, IDamageable, IHurtBoxUser, IDet
     {
         currentDirection = -currentDirection;
         transform.Rotate(0f, 180f, 0f);
+    }
+
+    public void OnHurtAnimationEnd()
+    {
+        state = EnemyAltState.IDLE;
+        animator.Play("Move");
     }
 
 }

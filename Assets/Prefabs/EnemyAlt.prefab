@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6651344330963625213}
   - component: {fileID: 277482531728017109}
   - component: {fileID: 8164274202411565361}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Hurtbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.1, y: 0}
+  m_Offset: {x: -0.1, y: -0.03}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -77,7 +77,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.1, y: 1}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &8164274202411565361
 MonoBehaviour:
@@ -236,9 +236,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &9185677354907902460
 BoxCollider2D:
@@ -274,7 +274,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.09, y: -0.05}
+  m_Offset: {x: -0.1, y: -0.03}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -284,7 +284,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.8, y: 0.9}
+  m_Size: {x: 0.9, y: 0.95}
   m_EdgeRadius: 0
 --- !u!114 &5935759057452329531
 MonoBehaviour:
@@ -300,6 +300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   data: {fileID: 11400000, guid: 63aae38903f54d4ffbad29bc01971426, type: 2}
   killParticleEmiter: {fileID: 7654207000868994754, guid: 2e46888541f3d48ae8622b24316f661f, type: 3}
+  deathSound: {fileID: 8300000, guid: 8d0dfe5865b2f909ba9ee303eeafdb4d, type: 3}
 --- !u!114 &4914041430180813470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,7 +422,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 12, y: 8}
+  m_Size: {x: 12, y: 10}
   m_EdgeRadius: 0
 --- !u!114 &1112154026158975753
 MonoBehaviour:
@@ -450,7 +451,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7440102031486417383, guid: e1eb6b0d512b9ba44a50cccc5e5b17e2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7440102031486417383, guid: e1eb6b0d512b9ba44a50cccc5e5b17e2, type: 3}
       propertyPath: m_LocalPosition.y

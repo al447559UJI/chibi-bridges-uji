@@ -7,7 +7,8 @@ public enum ActionStateType
     INACTIVE,
     AIR_MELEE,
     MELEE,
-    SHOOT
+    SHOOT,
+    DEATH
 }
 
 public class ActionStateManager : MonoBehaviour
@@ -20,6 +21,7 @@ public class ActionStateManager : MonoBehaviour
     public ActionAirMeleeState airMeleeState = new ActionAirMeleeState();
     public ActionMeleeState meleeState = new ActionMeleeState();
     public ActionShootState shootState = new ActionShootState();
+    public ActionDeathState deathState = new ActionDeathState();
 
     public UnityEvent<ActionStateType> onStateEntered;
     public UnityEvent<ActionStateType> onStateExited;

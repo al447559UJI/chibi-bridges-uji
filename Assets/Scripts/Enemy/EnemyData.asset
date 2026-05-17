@@ -21,5 +21,6 @@ MonoBehaviour:
   projectileSpeed: 14
   reactionCooldown: 0.75
   shootCooldown: 1
-  meleeDamage: 50
+  meleeDamage: 10
+  score: 50
   searchDistance: 5

@@ -21,6 +21,8 @@ public class EnemyController : MonoBehaviour, IDamageable, IHurtBoxUser
     [SerializeField] private GameObject bullet;
     [SerializeField] private GameObject killParticleEmiter;
     [SerializeField] private Transform firePoint;
+    [SerializeField] private AudioClip shootSound;
+    [SerializeField] private AudioClip deathSound;
 
     private Rigidbody2D rb;
     private BoxCollider2D bodyCollider;
@@ -200,6 +202,7 @@ public class EnemyController : MonoBehaviour, IDamageable, IHurtBoxUser
         Instantiate(killParticleEmiter, transform.position, Quaternion.identity);
         dropBehavior.DropItems(4, gameObject.transform.position);
         GameManager.instance.AddScore(data.score);
+        SoundManager.instance.PlaySound(deathSound, transform.position, .5f);
         Destroy(gameObject);
     }
 
@@ -276,6 +279,7 @@ public class EnemyController : MonoBehaviour, IDamageable, IHurtBoxUser
         newBullet.GetComponent<EnemyBullet>()?.Initialize(
             currentDirection, data.projectileSpeed, data.shootDamage
         );
+        SoundManager.instance.PlaySound(shootSound, transform.position);
     }
 
     public void OnHurtAnimationEnded()

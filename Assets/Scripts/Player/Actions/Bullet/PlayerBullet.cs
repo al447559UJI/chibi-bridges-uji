@@ -6,6 +6,7 @@ public class PlayerBullet : MonoBehaviour
     
     [SerializeField] private float lifetime = 3f; 
     [SerializeField] private GameObject hitParticle;
+    [SerializeField] private AudioClip hitSound;
     private int damageAmount;
     private DamageType damageType;
     private float spawnTime;
@@ -41,12 +42,23 @@ public class PlayerBullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        HandleCollision(collision);
+    }
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        HandleCollision(collision);        
+    }
+
+    private void HandleCollision(Collider2D collision)
+    {
         IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
         if (damageable != null)
         {
             damageable.Damage(damageAmount, damageType, Math.Sign(rb.linearVelocityX));
         }
 
+        SoundManager.instance.PlaySound(hitSound, transform.position);
         gameObject.SetActive(false);
     }
 

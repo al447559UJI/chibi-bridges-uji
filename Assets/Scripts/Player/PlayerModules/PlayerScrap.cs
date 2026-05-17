@@ -5,6 +5,7 @@ public class PlayerScrap : MonoBehaviour
 {
     [SerializeField] private PoleUI poleUI;
     [SerializeField] private PlayerActionData data;
+    [SerializeField] private AudioClip pickupSound;
 
     public UnityEvent<int> onScrapChanged;
     public UnityEvent<string> onScrapGiven;
@@ -27,6 +28,7 @@ public class PlayerScrap : MonoBehaviour
         int amountGiven = amount <= 0 ? data.scrapCollectAmount : amount;
 
         currentAmount += amountGiven;
+        SoundManager.instance.PlaySound(pickupSound, transform.position, .35f);
         onScrapChanged.Invoke(currentAmount);
         onScrapGiven.Invoke($"+{amountGiven} Scrap");
     }

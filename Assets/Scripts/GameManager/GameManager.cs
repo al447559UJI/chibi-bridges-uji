@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator RestartLevel()
     {
+        DebugRegistry.Clear();
         yield return new WaitForSeconds(settings.deathTimer);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

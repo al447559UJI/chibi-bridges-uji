@@ -171,3 +171,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBullet
   lifetime: 3
   hitParticle: {fileID: 2034162456334995786, guid: da6d5b524f82fbc358947b559e0a001f, type: 3}
+  hitSound: {fileID: 8300000, guid: d24bce8029ed85f259b5695b0851a096, type: 3}
